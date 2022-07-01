@@ -1,0 +1,14 @@
+.item {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.item img {
+    width: 1.5em;
+    height: 1.5em;
+    position: absolute;
+    right: 0.6em;
+    top: 0.6em;
+    cursor: pointer;
+}

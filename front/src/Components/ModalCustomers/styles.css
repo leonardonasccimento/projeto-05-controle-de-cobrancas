@@ -1,0 +1,101 @@
+.backdrop {
+    background: rgba(145, 154, 150, 0.3);
+    backdrop-filter: blur(4px);
+
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-container {
+    position: relative;
+    background-color: white;
+    padding: 2rem 4rem;
+    border-radius: 2.4rem;
+}
+
+.modal-container h2 {
+    margin-bottom: 3.2rem;
+    align-self: center;
+    text-align: center;
+    color: #343447;
+    font-size: 24px;
+}
+
+.close-icon {
+    cursor: pointer;
+    width: 1.8rem;
+    height: 1.8rem;
+    position: absolute;
+    right: 3.2rem;
+}
+
+.close-icon img:hover {
+    transform: scale(1.1);
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-customers-icon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.header-customers-icon img {
+    width: 32px;
+    height: 32px;
+    left: 3.4rem;
+    position: absolute;
+}
+
+.header-customers-icon h2 {
+    margin: 0 0 0 35px;
+    position: relative;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 26px;
+
+    color: #3F3F55;
+}
+
+.btn-modal-customers {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-modal-customers button {
+    width: 236px;
+}
+
+.btn-cancel {
+    border: none;
+    background-color: #F8F8F9;
+    color: #0E8750;
+    border-radius: 10px;
+    height: 33px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #DEDEE9;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+}
+
+.modal-form .error-input {
+    border: 1px solid red;
+}

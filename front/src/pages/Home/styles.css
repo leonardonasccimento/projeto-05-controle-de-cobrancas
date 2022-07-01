@@ -1,0 +1,51 @@
+.container-home,
+.content-ouverdue-card {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: center;
+
+  background-color: #f8f8f9;
+}
+
+.container-header-section {
+  width: 100%;
+}
+
+.charges-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary-charges-paid {
+  margin-top: 1.9rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .customize-paid, */
+.customize-overdue {
+  display: inline-table;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2.3rem 4rem;
+  gap: 1rem;
+
+  background: #eef7f7;
+  border-radius: 3rem;
+}
+
+.summary-charges-paid {
+  width: 113.8rem;
+}
+
+.customer-pay-tables,
+.customer-status-tables {
+  margin: 2rem 0 2rem 0;
+  display: flex;
+  width: 113.8rem;
+  justify-content: space-between;
+}

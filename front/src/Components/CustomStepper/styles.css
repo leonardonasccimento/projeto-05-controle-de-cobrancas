@@ -1,0 +1,36 @@
+.stepper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 15rem;
+}
+
+.box-stepper {
+  display: flex;
+  flex-direction: row;
+}
+
+.label-card {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 2.5rem 2rem;
+}
+
+.label-card label:first-child {
+  color: #0e8750;
+  margin-bottom: 5rem;
+}
+
+.vertical {
+  background-color: #0e8750;
+  height: 1rem;
+  transform: rotate(90);
+  position: absolute;
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1rem;
+}

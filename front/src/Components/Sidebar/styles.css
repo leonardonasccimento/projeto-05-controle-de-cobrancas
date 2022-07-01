@@ -1,0 +1,36 @@
+.lateral-menu {
+  width: 10.8rem;
+  height: 100vh;
+  color: var(--cor-cinza-1);
+  background-color: #f0f0f5;
+
+  position: sticky;
+  z-index: 5;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+  color: #343447
+}
+
+.lateral-menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2.4rem;
+  gap: 7.2rem;
+}
+
+.btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.btns.selected {
+  color: #da0175;
+  border-right: 0.2rem solid #da0175;
+}

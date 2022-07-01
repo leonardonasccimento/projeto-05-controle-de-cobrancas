@@ -1,0 +1,55 @@
+.mod-modal-container {
+  width: 60rem;
+}
+
+.new-height input {
+  height: 8.8rem;
+}
+
+.mod-modal-edit-row {
+  display: flex;
+  justify-content: space-between;
+  width: 50rem;
+}
+
+.mod-modal-edit-row label {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+}
+
+.mod-modal-edit-row label input {
+  width: 100%;
+}
+
+.container-labels {
+  display: flex;
+}
+
+.container-radio {
+  height: 8.2rem;
+  width: 2rem;
+}
+
+.status-paid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.status-paid :nth-child(1) {
+  margin-top: 0.7rem;
+}
+
+.status-paid :nth-child(2) {
+  margin-bottom: 0.7rem;
+}
+
+.status-paid :nth-child(1),
+.status-paid :nth-child(2) {
+  margin-left: 0.5rem;
+}
+
+.container-radio input :nth-child(1) {
+  background-color: green;
+}

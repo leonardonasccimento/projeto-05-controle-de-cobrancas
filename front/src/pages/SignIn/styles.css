@@ -1,0 +1,92 @@
+.container-sign-in {
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+}
+
+.left-sign-in {
+  width: 30%;
+  background-image: url("../../assets/background-sign-in.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.left-sign-in h1 {
+  margin: 10rem 3rem 0 3rem;
+  align-items: center;
+  text-align: center;
+
+  color: #034a2a;
+}
+
+.right-sign-in {
+  width: 70%;
+  background-color: #f8f8f9;
+
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-sign-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 38rem;
+}
+
+.form-sign-in h1 {
+  margin-bottom: 0.3rem;
+  color: #343447;
+}
+
+.form-sign-in label {
+  margin-top: 0.6rem;
+}
+
+.form-sign-in input {
+  margin-top: 0.6rem;
+  margin-bottom: 1.6rem;
+  background-color: #fff;
+  width: 36rem;
+}
+
+.form-sign-in button {
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  font-family: "Nunito";
+  font-size: 1.6rem;
+}
+
+.right-sign-in a {
+  color: #da0175;
+}
+
+.right-sign-in span {
+  color: #3f3f55;
+}
+
+.forgot-password {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.forgot-password span {
+  font-size: 1.4rem;
+  text-decoration-line: underline;
+  margin-top: 0.5rem;
+}
+
+.forgot-password a {
+  color: #da0175;
+}
+
+.btn {
+  width: 200px;
+}
