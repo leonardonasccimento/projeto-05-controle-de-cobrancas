@@ -16,8 +16,8 @@ export default function TableCustomers() {
   const [openModalAddCharges, setOpenModalAddCharges] = useState("");
   const { token, customers, setCustomers, setCurrentCustomer } = useGlobalContext();
 
-  function handleVerifyDataCustomer(customer) {
-    setCurrentCustomer(customer);
+  function handleVerifyDataCustomer(row) {
+    setCurrentCustomer(row);
   }
 
   useEffect(() => {
@@ -56,17 +56,17 @@ export default function TableCustomers() {
           <TableCell className="title-table">Criar Cobrança</TableCell>
         </TableHead>
         <TableBody>
-          {customers.map((customer, index) => (
+          {customers.map((row, index) => (
             <TableRow key={index}>
               <TableCell component="th" scope="row" className="table-items">
-                {customer.nome}
+                {row.nome}
               </TableCell>
-              <TableCell className="table-items">{customer.cpf}</TableCell>
-              <TableCell className="table-items">{customer.email}</TableCell>
-              <TableCell className="table-items">{customer.telefone}</TableCell>
-              <TableCell className="table-items">{customer.status}</TableCell>
+              <TableCell className="table-items">{row.cpf}</TableCell>
+              <TableCell className="table-items">{row.email}</TableCell>
+              <TableCell className="table-items">{row.telefone}</TableCell>
+              <TableCell className="table-items">{row.status}</TableCell>
               <TableCell className="table-items">
-                <div onClick={() => handleVerifyDataCustomer(customer)}>
+                <div onClick={() => handleVerifyDataCustomer(row)}>
                   <img
                     src={ChargesIcon}
                     alt="cobranca"

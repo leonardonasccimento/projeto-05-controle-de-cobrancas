@@ -10,6 +10,7 @@ function useGlobalContextProvider() {
     const [customers, setCustomers] = useState([]);
     const [chargesArray, setChargesArray]=useState([]);
     const[currentCustomer, setCurrentCustomer, clearCurrentCustomer]=useLocalStorage('currentCustomer');
+    const[currentCharge, setCurrentCharge, clearCurrentCharge]=useLocalStorage('currentCharge');
 
     return {
         token,
@@ -41,6 +42,10 @@ function useGlobalContextProvider() {
         currentCustomer,
         setCurrentCustomer,
         clearCurrentCustomer,
+
+        currentCharge,
+        setCurrentCharge,
+        clearCurrentCharge,
     }
 }
 

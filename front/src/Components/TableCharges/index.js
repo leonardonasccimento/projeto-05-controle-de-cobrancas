@@ -4,17 +4,24 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ChargesDelete from '../../assets/chargesDelete.svg';
 import ChargesEdit from '../../assets/chargesEdit.svg';
 import OrganizeIcon from '../../assets/organize-icon.svg';
 import useGlobalContext from '../../hooks/useGlobalContext';
 import api from '../../services/api';
 import './style.css';
+import ModalEditCharge from '../ModalEditCharge';
 
 
 export default function TableCharges() {
-  const { token, chargesArray, setChargesArray } = useGlobalContext();
+  const [openModalEditCharges, setOpenModalEditCharges] = useState("");
+  const { token, chargesArray, setChargesArray, currentCharge, setCurrentCharge, clearCurrentCharge } = useGlobalContext();
+
+  function handleVerifyDataCharge(row) {
+    console.log(row);
+    setCurrentCharge(row);
+  }
 
   async function loadCharges() {
     try {
@@ -70,17 +77,30 @@ export default function TableCharges() {
               <TableCell className="table-items">{row.status}</TableCell>
               <TableCell className="table-items">{row.descricao}</TableCell>
               <TableCell className="table-items">
-                <img
-                  className="edit-icon"
-                  src={ChargesEdit}
-                  alt="edit cobranca"
-                />
-                <img src={ChargesDelete} alt="delete cobranca" />
+                <div onClick={() => handleVerifyDataCharge(row)}>
+                  <img
+                    className="edit-icon"
+                    src={ChargesEdit}
+                    alt="edit cobranca"
+                    onClick={() => setOpenModalEditCharges(true)}
+                  />
+                  
+                  <img 
+                    src={ChargesDelete} 
+                    alt="delete cobranca" 
+                  />
+                </div>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+
+      <ModalEditCharge
+        open={openModalEditCharges}
+        handleClose={() => setOpenModalEditCharges(false)}
+      />
+
     </TableContainer>
   );
 }
