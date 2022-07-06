@@ -19,17 +19,16 @@ const registerBilling = async (req, res) => {
     let dateISO = new Date(vencimento.split('/').reverse().join('/'));
     
     try {
-      
         const customer = await knex("clientes").where("cpf", id).first();
 
         if (!customer) {
-          return res.status(404).json({ error: "Cliente não encontrado. Cobrança de ser cadastrada pelo CPF." });
+          return res.status(404).json({ error: "Cliente não encontrado. Cobrança deve ser cadastrada pelo CPF." });
         }
 
         const billing = await knex("cobrancas")
           .insert({
             cliente: customer.nome,
-            descricao: descricao ?? null,
+            descricao: descricao ?? '',
             status,
             valor,
             vencimento: dateISO,

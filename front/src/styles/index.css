@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -5,22 +11,17 @@ html {
 @import url("./buttons.css");
 @import url("./inputs.css");
 @import url("./fonts.css");
-@import url('react-toastify/dist/ReactToastify.min.css');
+@import url("react-toastify/dist/ReactToastify.min.css");
 
 :root {
-  --toastify-color-success: #0E8750;
-  --toastify-color-error: #DA0175;
+  --toastify-color-success: #0e8750;
+  --toastify-color-error: #da0175;
   --toastify-icon-color-error: var(--toastify-color-error);
-  --toastify-toast-min-height: 54px;
+  /* --toastify-toast-min-height: 54px; */
+  --toastify-toast-min-height: 5.4rem;
   --toastify-text-color-error: #fff;
 
   --toastify-color-progress-error: red;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {

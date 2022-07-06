@@ -1,17 +1,17 @@
 .btn-pink {
-    border: none;
-    background-color: #DA0175;
-    color: white;
-    border-radius: 10px;
-    height: 33px;
-    font-size: 16px;
-    cursor: pointer;
+  border: none;
+  background-color: #da0175;
+  color: white;
+  border-radius: 1rem;
+  height: 3.3rem;
+  font-size: 1.6rem;
+  cursor: pointer;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 400;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
 }

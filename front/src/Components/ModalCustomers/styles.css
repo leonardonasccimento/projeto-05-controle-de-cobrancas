@@ -1,101 +1,103 @@
 .backdrop {
-    background: rgba(145, 154, 150, 0.3);
-    backdrop-filter: blur(4px);
+  background: rgba(145, 154, 150, 0.3);
+  backdrop-filter: blur(0.4rem);
 
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-container {
-    position: relative;
-    background-color: white;
-    padding: 2rem 4rem;
-    border-radius: 2.4rem;
+  position: relative;
+  background-color: white;
+  padding: 2rem 4rem;
+  border-radius: 2.4rem;
+
+  /* min-height: 100vh; */
 }
 
 .modal-container h2 {
-    margin-bottom: 3.2rem;
-    align-self: center;
-    text-align: center;
-    color: #343447;
-    font-size: 24px;
+  margin-bottom: 3.2rem;
+  align-self: center;
+  text-align: center;
+  color: #343447;
+  font-size: 24rem;
 }
 
 .close-icon {
-    cursor: pointer;
-    width: 1.8rem;
-    height: 1.8rem;
-    position: absolute;
-    right: 3.2rem;
+  cursor: pointer;
+  width: 1.8rem;
+  height: 1.8rem;
+  position: absolute;
+  right: 3.2rem;
 }
 
 .close-icon img:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .modal-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header-customers-icon {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .header-customers-icon img {
-    width: 32px;
-    height: 32px;
-    left: 3.4rem;
-    position: absolute;
+  width: 3.2rem;
+  height: 3.2rem;
+  left: 3.4rem;
+  position: absolute;
 }
 
 .header-customers-icon h2 {
-    margin: 0 0 0 35px;
-    position: relative;
-    font-family: 'Montserrat';
-    font-weight: 600;
-    font-size: 26px;
+  margin: 0 0 0 3.5rem;
+  position: relative;
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 2.6rem;
 
-    color: #3F3F55;
+  color: #3f3f55;
 }
 
 .btn-modal-customers {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
 }
 
 .btn-modal-customers button {
-    width: 236px;
+  width: 23.6rem;
 }
 
 .btn-cancel {
-    border: none;
-    background-color: #F8F8F9;
-    color: #0E8750;
-    border-radius: 10px;
-    height: 33px;
-    font-size: 16px;
-    cursor: pointer;
-    border: 1px solid #DEDEE9;
+  border: none;
+  background-color: #f8f8f9;
+  color: #0e8750;
+  border-radius: 1rem;
+  height: 3.3rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  border: 0.1rem solid #dedee9;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 400;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
 }
 
 .modal-form .error-input {
-    border: 1px solid red;
+  border: 0.1rem solid red;
 }

@@ -11,10 +11,10 @@ const routeBilling = express();
 
 routeBilling.use(authenticateAccess);
 
-routeBilling.post('/cobrancas/:id', verify.verifyFieldsBilling, registerBilling);
-routeBilling.get('/cobrancas', listBillings);
-routeBilling.put('/cobrancas/:id', verify.verifyFieldsBilling, editBilling);
-routeBilling.get('/cobrancas/:id', detailBilling);
-routeBilling.delete('/cobrancas/:id', deleteBilling);
+routeBilling.post('/cobranca/:id', verify.verifyFieldsBilling, registerBilling);
+routeBilling.get('/cobranca', listBillings);
+routeBilling.put('/cobranca/:id', verify.verifyFieldsBilling, editBilling);
+routeBilling.get('/cobranca/:id', detailBilling);
+routeBilling.delete('/cobranca/:id', deleteBilling);
 
 module.exports = routeBilling;

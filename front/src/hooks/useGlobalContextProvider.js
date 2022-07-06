@@ -4,12 +4,14 @@ import { useLocalStorage } from "react-use";
 function useGlobalContextProvider() {
     const [token, setToken, clearToken] = useLocalStorage('token');
     const [user, setUser, clearUser] = useLocalStorage('user');
-    const [usersArray, setUsersArray, clearUsersArray]=useLocalStorage('usersArray');
+    // const [usersArray, setUsersArray, clearUsersArray]=useLocalStorage('usersArray');
+    const [usersArray, setUsersArray]=useState([]);
     const [charges, setCharges, clearCharges] = useLocalStorage('charges');
     const [customersData, setCustomersData, clearCustomersData] = useLocalStorage('customers');
     const [customers, setCustomers] = useState([]);
     const [chargesArray, setChargesArray]=useState([]);
     const[currentCustomer, setCurrentCustomer, clearCurrentCustomer]=useLocalStorage('currentCustomer');
+    const[currentCharge, setCurrentCharge, clearCurrentCharge]=useLocalStorage('currentCharge');
 
     return {
         token,
@@ -22,7 +24,7 @@ function useGlobalContextProvider() {
 
         usersArray,
         setUsersArray,
-        clearUsersArray,
+        // clearUsersArray,
 
         customers,
         setCustomers,
@@ -41,6 +43,10 @@ function useGlobalContextProvider() {
         currentCustomer,
         setCurrentCustomer,
         clearCurrentCustomer,
+
+        currentCharge,
+        setCurrentCharge,
+        clearCurrentCharge,
     }
 }
 

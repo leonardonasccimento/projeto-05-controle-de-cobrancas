@@ -55,12 +55,12 @@ async function registerCustomer(req, res){
             email,
             cpf,
             telefone,
-            cep: cep??null,
-            logradouro: logradouro??null,
-            complemento: complemento??null,
-            bairro: bairro??null,
-            cidade: cidade??null,
-            estado: estado??null,
+            cep: cep??'',
+            logradouro: logradouro??'',
+            complemento: complemento??'',
+            bairro: bairro??'',
+            cidade: cidade??'',
+            estado: estado??'',
             usuario_id: usuario.id
         }).returning('*');
 
