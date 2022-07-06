@@ -5,6 +5,7 @@ import IconEdit from '../../assets/icon-edit.svg';
 import IconExit from '../../assets/icon-exit.svg';
 import useGlobalContext from '../../hooks/useGlobalContext';
 import api from '../../services/api';
+// import { clearAll } from '../../utils/localStorage';
 import Modal from '../Modal';
 import './styles.css';
 
@@ -20,13 +21,15 @@ function Header() {
     usersArray,
     setUsersArray,
     clearCharges,
-    clearUsersArray,
+    // clearUsersArray,
     clearCurrentCustomer,
+    clearCurrentCharge,
+    clearChargesArray
   } = useGlobalContext();
   const [modal, setModal] = useState(false);
   const [modalEdit, setModalEdit] = useState(false);
 
-  async function handleUpdateUserArray() {
+  async function handleLoadUserArray() {
     try {
       const response = await api.get("/usuario", {
         headers: {
@@ -38,7 +41,7 @@ function Header() {
         return;
       }
 
-      setUsersArray(response.data);
+      setUsersArray([...response.data]);
     } catch (error) {
       alert(error.response.data.message);
     }
@@ -56,7 +59,7 @@ function Header() {
         return;
       }
 
-      setUsersArray(response.data);
+      setUsersArray([...response.data]);
 
       const userFound = usersArray.filter((object) => object.id === user.id);
 
@@ -81,14 +84,18 @@ function Header() {
     clearUser();
     clearCharges();
     clearCustomersData();
-    clearUsersArray();
+    // clearUsersArray();
     clearCurrentCustomer();
+    clearCurrentCharge();
+    clearChargesArray();
+
     navigate("/");
+    // clearAll();
   }
 
   useEffect(() => {
-    handleUpdateUserArray();
-  }, []);
+    handleLoadUserArray();
+  });
 
   return (
     <header>
@@ -130,7 +137,7 @@ function Header() {
               handleUpdateUser={handleUpdateUser}
               modalEdit={modalEdit}
               setModalEdit={setModalEdit}
-            ></Modal>
+            />
           </>
         )}
       </div>

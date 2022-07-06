@@ -92,7 +92,7 @@ function ModalCustomers({ open, handleClose }) {
 
       alert("Cliente registrado com sucesso!");
       handleClear();
-      setCustomers([...customers, response.data]);
+      setCustomers([...response.data]);
     } catch (error) {
       return error.response.data.mensage;
     }
@@ -100,7 +100,7 @@ function ModalCustomers({ open, handleClose }) {
 
   function handleReloadPage(e) {
     e.stopPropagation();
-    window.location.reload();
+    // window.location.reload();
   }
 
   return (

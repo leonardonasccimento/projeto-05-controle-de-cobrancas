@@ -13,7 +13,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
   const [activeStep, setActiveStep] = useState({
     firstSection: true,
     secondSection: false,
@@ -22,7 +22,7 @@ function SignUp() {
 
   function nextFirstSection() {
     if (!name || !email) {
-      setError(true);
+      // setError(true);
       alert("Preencha os campos abaixo");
       return;
     }
@@ -33,12 +33,12 @@ function SignUp() {
     e.preventDefault();
 
     if (!password || !confirmPassword) {
-      setError(true);
+      // setError(true);
       alert("Preencha os campos abaixo");
       return;
     }
     if (password !== confirmPassword) {
-      setError(true);
+      // setError(true);
       alert("As senhas não conferem");
       return;
     }
@@ -62,7 +62,8 @@ function SignUp() {
     };
 
     try {
-      const response = await api.post("usuario", user);
+      // const response= await api.post("usuario", user);
+      await api.post("usuario", user);
       alert("usuario cadastrado " + name);
 
       navigate("/");

@@ -12,20 +12,38 @@ import useGlobalContext from '../../hooks/useGlobalContext';
 import api from '../../services/api';
 import './style.css';
 import ModalEditCharge from '../ModalEditCharge';
+import ModalDeleteCharge from '../ModalDeleteCharge';
 
 
 export default function TableCharges() {
   const [openModalEditCharges, setOpenModalEditCharges] = useState("");
-  const { token, chargesArray, setChargesArray, currentCharge, setCurrentCharge, clearCurrentCharge } = useGlobalContext();
+  const { 
+    token, 
+    chargesArray, 
+    setChargesArray, 
+    setCurrentCharge } = useGlobalContext();
+
+
+    // const [description, setDescription] = useState('');
+    // // const [description, setDescription] = useState('');
+    // const [status, setStatus] = useState("");
+    // const [value, setValue] = useState("");
+    // const [dueDate, setDueDate] = useState("");
+
+  // function modalComplementDataCharge(){
+  //   // setOpenModalEditCharges(true);
+  //   setDescription(currentCharge.descricao);
+  //   return;
+  // };
 
   function handleVerifyDataCharge(row) {
-    console.log(row);
+    // console.log(row);
     setCurrentCharge(row);
   }
 
-  async function loadCharges() {
+  async function handleLoadCharges() {
     try {
-      const response = await api.get("/cobrancas", {
+      const response = await api.get("/cobranca", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,7 +60,7 @@ export default function TableCharges() {
   }
 
   useEffect(() => {
-    loadCharges();
+    handleLoadCharges();
   });
 
   return (
@@ -70,7 +88,7 @@ export default function TableCharges() {
                 {row.cliente}
               </TableCell>
               <TableCell className="table-items">{row.id}</TableCell>
-              <TableCell className="table-items">{row.valor}</TableCell>
+              <TableCell className="table-items">{`R$ ${row.valor}`.replace('.',',')}</TableCell>
               <TableCell className="table-items">
                 {new Date(row.vencimento).toLocaleDateString()}
               </TableCell>
@@ -78,16 +96,23 @@ export default function TableCharges() {
               <TableCell className="table-items">{row.descricao}</TableCell>
               <TableCell className="table-items">
                 <div onClick={() => handleVerifyDataCharge(row)}>
+                  
+
                   <img
                     className="edit-icon"
                     src={ChargesEdit}
-                    alt="edit cobranca"
+                    alt="editar cobranca"
+                    
                     onClick={() => setOpenModalEditCharges(true)}
                   />
+
+                  
                   
                   <img 
                     src={ChargesDelete} 
-                    alt="delete cobranca" 
+                    alt="excluir cobranca"
+                    
+                    onClick={() => setOpenModalEditCharges(true)}
                   />
                 </div>
               </TableCell>
@@ -99,6 +124,7 @@ export default function TableCharges() {
       <ModalEditCharge
         open={openModalEditCharges}
         handleClose={() => setOpenModalEditCharges(false)}
+        
       />
 
     </TableContainer>

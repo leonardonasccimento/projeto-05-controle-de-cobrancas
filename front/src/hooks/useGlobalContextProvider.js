@@ -4,7 +4,8 @@ import { useLocalStorage } from "react-use";
 function useGlobalContextProvider() {
     const [token, setToken, clearToken] = useLocalStorage('token');
     const [user, setUser, clearUser] = useLocalStorage('user');
-    const [usersArray, setUsersArray, clearUsersArray]=useLocalStorage('usersArray');
+    // const [usersArray, setUsersArray, clearUsersArray]=useLocalStorage('usersArray');
+    const [usersArray, setUsersArray]=useState([]);
     const [charges, setCharges, clearCharges] = useLocalStorage('charges');
     const [customersData, setCustomersData, clearCustomersData] = useLocalStorage('customers');
     const [customers, setCustomers] = useState([]);
@@ -23,7 +24,7 @@ function useGlobalContextProvider() {
 
         usersArray,
         setUsersArray,
-        clearUsersArray,
+        // clearUsersArray,
 
         customers,
         setCustomers,

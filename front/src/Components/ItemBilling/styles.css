@@ -13,12 +13,16 @@
   line-height: 4rem;
   letter-spacing: 0.005em;
   color: #6e6e85;
-}
 
-.customer-billing-description :nth-child(1),
-.customer-billing-description :nth-child(2),
-.customer-billing-description :nth-child(3) {
-  /* width: 120rem; */
   width: 18.533rem;
   height: 4rem;
 }
+
+/* .customer-billing-description :nth-child(1),
+.customer-billing-description :nth-child(2),
+.customer-billing-description :nth-child(3) {
+   width: 120rem; 
+
+   width: 18.533rem;
+  height: 4rem; 
+} */

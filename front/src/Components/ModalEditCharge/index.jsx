@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Charges from '../../assets/charges.svg';
 import CloseIcon from '../../assets/close-icon.svg';
 import useGlobalContext from '../../hooks/useGlobalContext.js';
@@ -8,10 +8,19 @@ import './styles.css';
 function ModalEditCharge({ open, handleClose }) {
   const { token, currentCharge } = useGlobalContext();
 
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
   const [status, setStatus] = useState("");
   const [value, setValue] = useState("");
   const [dueDate, setDueDate] = useState("");
+
+  useEffect(()=>{
+    if(open){
+      setDescription(`${currentCharge.descricao}`);
+      setValue(`${currentCharge.valor}`);
+      setDueDate(`${(new Date(currentCharge.vencimento)).toLocaleDateString()}`);
+      setStatus(currentCharge.status==='vencido'||currentCharge.status==='pendente' ? 'pendente' : 'pago');
+    }
+  }, [open, currentCharge]);
 
   function handleClear() {
     setDescription("");
@@ -22,6 +31,13 @@ function ModalEditCharge({ open, handleClose }) {
 
   async function handleSubmitCharge(e) {
     e.preventDefault();
+    // modalComplementDataCharge();
+
+    // setDescription(`${currentCharge.descricao}`);
+
+    console.log('Passou no handleSubmitCharge');
+
+    // console.log(currentCharge);
 
     if (status !== "pago" && status !== "pendente") {
       alert("Escolha um status");
@@ -34,7 +50,7 @@ function ModalEditCharge({ open, handleClose }) {
     }
 
     try {
-      const response = await api.post(`/cobrancas/${currentCharge.id}`, {
+      const response = await api.put(`/cobranca/${currentCharge.id}`, {
         descricao: description,
         status,
         valor: value,
@@ -48,7 +64,7 @@ function ModalEditCharge({ open, handleClose }) {
         return;
       }
 
-      alert("Cobrança cadastrada com sucesso!");
+      alert("Cobrança editada com sucesso!");
       handleClear();
     } catch (error) {
       alert(
@@ -74,20 +90,21 @@ function ModalEditCharge({ open, handleClose }) {
               <div className="modal-edit-input mod-modal-edit-input">
                 <div className="header-customers-icon">
                   <img src={Charges} alt="customers icon" />
-                  <h2>Cadastro da cobrança</h2>
+                  <h2>Edição de Cobrança</h2>
                 </div>
                 <label className="nunito-14">
                   Nome
                   <input
                     placeholder={`${currentCharge.cliente}`}
                     type="text"
-                    readonly="readonly"
+                    readOnly="readOnly"
                   />
                 </label>
                 <label className="nunito-14 new-height">
                   Descrição (opcional)
                   <input
-                    placeholder=""
+                    placeholder=''
+                    // placeholder={`${currentCharge.descricao}`}
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -98,6 +115,7 @@ function ModalEditCharge({ open, handleClose }) {
                     Valor*
                     <input
                       placeholder="Ex: 1500"
+                      // placeholder={`${currentCharge.descricao}`}
                       type="number"
                       value={value}
                       onChange={(e) => setValue(e.target.value)}

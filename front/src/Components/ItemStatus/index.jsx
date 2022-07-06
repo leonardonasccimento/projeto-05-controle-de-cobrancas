@@ -5,7 +5,7 @@ function ItemStatus({name, date, value}){
       <li className="customer-billing-description">
         <strong>{name}</strong>
         <strong>{date}</strong>
-        <strong>{value}</strong>
+        <strong>{value?`R$ ${value}`.replace('.',','):''}</strong>
       </li>
     );
 }

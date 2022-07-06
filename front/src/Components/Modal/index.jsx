@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CloseIcon from '../../assets/close-icon.svg';
 import useGlobalContext from '../../hooks/useGlobalContext';
 import api from '../../services/api';
@@ -12,7 +12,7 @@ function Modal({
   setModalEdit,
   }){
     
-  const { token, user, usersArray} = useGlobalContext();
+  const { token, user, usersArray, setUser} = useGlobalContext();
 
   const [nameEdit, setNameEdit] = useState("");
   const [emailEdit, setEmailEdit] = useState("");
@@ -20,6 +20,16 @@ function Modal({
   const [phoneEdit, setPhoneEdit] = useState("");
   const [passwordEdit, setPasswordEdit] = useState("");
   const [passwordEditConfirmed, setPasswordEditConfirmed] = useState("");
+
+  useEffect(()=>{
+    if(modalEdit){
+      setNameEdit(user.nome);
+      setEmailEdit(user.email);
+      setCpfEdit(user.cpf);
+      setPhoneEdit(user.telefone);
+    }
+
+  },[modalEdit, user.nome, user.email, user.cpf, user.telefone]);
 
   function handleReset() {
     setNameEdit("");
@@ -91,11 +101,11 @@ function Modal({
 
   handleUpdateUser();
 
-  function toggleModal(e) {
-    e.stopPropagation();
-    setModalEdit(!modalEdit);
-    // window.location.reload();
-  }
+  // function toggleModal(e) {
+  //   e.stopPropagation();
+  //   setModalEdit(!modalEdit);
+  //   // window.location.reload();
+  // }
 
   return (
     <>

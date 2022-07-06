@@ -20,26 +20,27 @@ export default function TableCustomers() {
     setCurrentCustomer(row);
   }
 
-  useEffect(() => {
-    async function loadCustomers() {
-      try {
-        const response = await api.get("/cliente", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+  async function handleLoadCustomers() {
+    try {
+      const response = await api.get("/cliente", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-        if (response.status > 204) {
-          return;
-        }
-
-        setCustomers([...response.data]);
-      } catch (error) {
-        console.log(error);
+      if (response.status > 204) {
+        return;
       }
+
+      setCustomers([...response.data]);
+    } catch (error) {
+      console.log(error.response.data.message);
     }
-    loadCustomers();
-  }, []);
+  }
+
+  useEffect(() => {
+    handleLoadCustomers();
+  });
 
   return (
     <TableContainer>

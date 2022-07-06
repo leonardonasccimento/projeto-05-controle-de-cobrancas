@@ -30,7 +30,7 @@ function SignIn() {
       setToken(data.token);
 
       navigate("/home");
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       alert("Email ou senha invalidos.");
     }
@@ -40,7 +40,7 @@ function SignIn() {
     if (token) {
       navigate("/home");
     }
-  }, []);
+  }, [token, navigate]);
 
   return (
     <div className="container-sign-in">

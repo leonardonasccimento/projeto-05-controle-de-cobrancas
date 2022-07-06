@@ -1,75 +1,75 @@
 .customers-header,
 .customers-title,
 .customers-header-actions {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .customers-header {
-    justify-content: space-between;
-    margin-top: 30px;
+  justify-content: space-between;
+  margin-top: 3rem;
 }
 
 .customers-title {
-    gap: 1.6rem;
+  gap: 1.6rem;
 }
 
 .customers-title h2 {
-    font-family: 'Montserrat';
-    font-weight: 600;
-    font-size: 26px;
-    color: #3F3F55;
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 2.6rem;
+  color: #3f3f55;
 }
 
 .customers-title img {
-    width: 3.2rem;
-    height: 3.2rem;
-    margin-left: 50px;
+  width: 3.2rem;
+  height: 3.2rem;
+  margin-left: 5rem;
 }
 
 .customers-header-actions {
-    justify-content: space-between;
-    gap: 2rem;
-    margin-right: 50px;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-right: 5rem;
 }
 
 .customers-header-actions input {
-    margin: 0;
-    box-shadow: rgba(0, 0, 0, 0.35) 0 0rem 0.4rem;
-    width: 300px;
+  margin: 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 0rem 0.4rem;
+  width: 30rem;
 }
 
 .customer-filter {
-    border-style: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.35) 0 0rem 0.4rem;
-    background-color: #FFFFFF;
+  border-style: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 0rem 0.4rem;
+  background-color: #ffffff;
 }
 
 .customer-filter:hover {
-    transform: scale(1.02);
+  transform: scale(1.02);
 }
 
 .btn-add {
-    width: 276px;
+  width: 27.6rem;
 }
 
 .container-customers-table {
-    margin: 30px 50px;
-    border-radius: 1rem;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0 0rem 0.5rem;
+  margin: 3rem 5rem;
+  border-radius: 1rem;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 0rem 0.5rem;
 }
 
 .search input {
-    position: relative;
+  position: relative;
 }
 
 .search img {
-    position: absolute;
-    margin: 10px 0px 0 -25px;
-    width: 14px;
-    cursor: pointer;
+  position: absolute;
+  margin: 1rem 0 0 -2.5rem;
+  width: 1.4rem;
+  cursor: pointer;
 }

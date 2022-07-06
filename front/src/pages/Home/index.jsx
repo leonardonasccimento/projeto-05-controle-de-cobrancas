@@ -13,15 +13,23 @@ import api from '../../services/api';
 import { getItem, setItem } from '../../utils/localStorage';
 import './styles.css';
 
-function Home({}) {
-  setItem("charges", getItem("charges") ?? 0);
-  setItem("customers", getItem("customers") ?? 0);
+function Home() {
+  // setItem("charges", getItem("charges") ?? 0);
+  // setItem("customers", getItem("customers") ?? 0);
 
-  const { token, charges, setCharges, setCustomersData } = useGlobalContext();
+  const { 
+    token, 
+    charges, 
+    setCharges, 
+    setCustomersData, 
+    customers, 
+    chargesArray, 
+    setCustomers, 
+    setChargesArray } = useGlobalContext();
 
   async function handleCharges() {
     try {
-      const response = await api.get("/cobrancas", {
+      const response = await api.get("/cobranca", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -31,53 +39,71 @@ function Home({}) {
         return;
       }
 
-      setCharges(response.data);
+      setChargesArray([...response.data]);
     } catch (error) {
       alert(error.response.data.message);
     }
   }
 
-  async function handleCustomers() {
-    try {
-      const response = await api.get("/cliente", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  // async function handleCharges() {
+  //   try {
+  //     const response = await api.get("/cobranca", {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
 
-      if (response.status > 204) {
-        return;
-      }
+  //     if (response.status > 204) {
+  //       return;
+  //     }
 
-      setCustomersData(response.data);
-    } catch (error) {
-      alert(error.response.data.message);
-    }
-  }
+  //     setCharges(response.data);
+  //   } catch (error) {
+  //     alert(error.response.data.message);
+  //   }
+  // }
+
+  // async function handleCustomers() {
+  //   try {
+  //     const response = await api.get("/cliente", {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+
+  //     if (response.status > 204) {
+  //       return;
+  //     }
+
+  //     setCustomersData(response.data);
+  //   } catch (error) {
+  //     alert(error.response.data.message);
+  //   }
+  // }
 
   useEffect(() => {
     handleCharges();
-    handleCustomers();
-  }, []);
+    // handleCustomers();
+  });
 
   let sumChargesPaid = 0;
-  for (let i = 0; i < charges.length; i++) {
-    if (charges[i].status === "pago") {
-      sumChargesPaid += charges[i].valor;
+  for (let i = 0; i < chargesArray.length; i++) {
+    if (chargesArray[i].status === "pago") {
+      sumChargesPaid += chargesArray[i].valor;
     }
   }
 
   let sumOverdueCharges = 0;
-  for (let i = 0; i < charges.length; i++) {
-    if (charges[i].status === "vencido") {
-      sumOverdueCharges += charges[i].valor;
+  for (let i = 0; i < chargesArray.length; i++) {
+    if (chargesArray[i].status === "vencido") {
+      sumOverdueCharges += chargesArray[i].valor;
     }
   }
 
   let sumExpectedCharges = 0;
-  for (let i = 0; i < charges.length; i++) {
-    if (charges[i].status === "pendente") {
-      sumExpectedCharges += charges[i].valor;
+  for (let i = 0; i < chargesArray.length; i++) {
+    if (chargesArray[i].status === "pendente") {
+      sumExpectedCharges += chargesArray[i].valor;
     }
   }
 
@@ -86,11 +112,11 @@ function Home({}) {
   let chargesBillingPaidName = [];
   let chargesBillingPaidIdentifier = [];
   let chargesBillingPaidValue = [];
-  for (let i = 0; i < charges.length; i++) {
-    if (charges[i].status === "pago") {
-      chargesBillingPaidName.push(charges[i].cliente);
-      chargesBillingPaidIdentifier.push(charges[i].id);
-      chargesBillingPaidValue.push(`R$ ${charges[i].valor}`);
+  for (let i = 0; i < chargesArray.length; i++) {
+    if (chargesArray[i].status === "pago") {
+      chargesBillingPaidName.push(chargesArray[i].cliente);
+      chargesBillingPaidIdentifier.push(chargesArray[i].id);
+      chargesBillingPaidValue.push(`${chargesArray[i].valor}`);
     }
   }
   const arrayBillingPaid = [
@@ -102,11 +128,11 @@ function Home({}) {
   let chargesPendingBillingName = [];
   let chargesPendingBillingIdentifier = [];
   let chargesPendingBillingValue = [];
-  for (let i = 0; i < charges.length; i++) {
-    if (charges[i].status === "pendente") {
-      chargesPendingBillingName.push(charges[i].cliente);
-      chargesPendingBillingIdentifier.push(charges[i].id);
-      chargesPendingBillingValue.push(`R$ ${charges[i].valor}`);
+  for (let i = 0; i < chargesArray.length; i++) {
+    if (chargesArray[i].status === "pendente") {
+      chargesPendingBillingName.push(chargesArray[i].cliente);
+      chargesPendingBillingIdentifier.push(chargesArray[i].id);
+      chargesPendingBillingValue.push(`${chargesArray[i].valor}`);
     }
   }
   const arrayPendingBilling = [
@@ -118,11 +144,11 @@ function Home({}) {
   let chargesOverdueBillingName = [];
   let chargesOverdueBillingIdentifier = [];
   let chargesOverdueBillingValue = [];
-  for (let i = 0; i < charges.length; i++) {
-    if (charges[i].status === "vencido") {
-      chargesOverdueBillingName.push(charges[i].cliente);
-      chargesOverdueBillingIdentifier.push(charges[i].id);
-      chargesOverdueBillingValue.push(`R$ ${charges[i].valor}`);
+  for (let i = 0; i < chargesArray.length; i++) {
+    if (chargesArray[i].status === "vencido") {
+      chargesOverdueBillingName.push(chargesArray[i].cliente);
+      chargesOverdueBillingIdentifier.push(chargesArray[i].id);
+      chargesOverdueBillingValue.push(`${chargesArray[i].valor}`);
     }
   }
   const arrayOverdueBilling = [
@@ -134,11 +160,11 @@ function Home({}) {
   let customerOverdueBillingName = [];
   let customerOverdueBillingIdentifier = [];
   let customerOverdueBillingValue = [];
-  for (let i = 0; i < charges.length; i++) {
-    if (charges[i].status === "vencido") {
-      customerOverdueBillingName.push(charges[i].cliente);
-      customerOverdueBillingIdentifier.push(charges[i].vencimento);
-      customerOverdueBillingValue.push(`R$ ${charges[i].valor}`);
+  for (let i = 0; i < chargesArray.length; i++) {
+    if (chargesArray[i].status === "vencido") {
+      customerOverdueBillingName.push(chargesArray[i].cliente);
+      customerOverdueBillingIdentifier.push(chargesArray[i].vencimento);
+      customerOverdueBillingValue.push(`${chargesArray[i].valor}`);
     }
   }
   const arrayDelinquentCustomers = [
@@ -150,14 +176,14 @@ function Home({}) {
   let regularCustomersName = [];
   let regularCustomersIdentifier = [];
   let regularCustomersValue = [];
-  for (let i = 0; i < charges.length; i++) {
+  for (let i = 0; i < chargesArray.length; i++) {
     if (
-      charges[i].status === "pago" ||
-      ("pendente" && charges[i].status !== "vencido")
+      chargesArray[i].status === "pago" ||
+      ("pendente" && chargesArray[i].status !== "vencido")
     ) {
-      regularCustomersName.push(charges[i].cliente);
-      regularCustomersIdentifier.push(charges[i].vencimento);
-      regularCustomersValue.push(`R$ ${charges[i].valor}`);
+      regularCustomersName.push(chargesArray[i].cliente);
+      regularCustomersIdentifier.push(chargesArray[i].vencimento);
+      regularCustomersValue.push(`${chargesArray[i].valor}`);
     }
   }
   const arrayRegularCustomers = [

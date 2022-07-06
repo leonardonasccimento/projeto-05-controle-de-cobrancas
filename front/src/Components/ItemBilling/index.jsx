@@ -5,7 +5,7 @@ function ItemBilling({name, identifier, value}){
       <li className="customer-billing-description">
         <strong>{name}</strong>
         <strong>{identifier}</strong>
-        <strong>{value}</strong>
+        <strong>{value?`R$ ${value}`.replace('.',','):''}</strong>
       </li>
     );
 }

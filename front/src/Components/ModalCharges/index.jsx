@@ -34,7 +34,7 @@ function ModalCharges({ open, handleClose }) {
     }
 
     try {
-      const response = await api.post(`/cobrancas/${currentCustomer.cpf}`, {
+      const response = await api.post(`/cobranca/${currentCustomer.cpf}`, {
         descricao: description,
         status,
         valor: value,
@@ -81,7 +81,7 @@ function ModalCharges({ open, handleClose }) {
                   <input
                     placeholder={`${currentCustomer.nome}`}
                     type="text"
-                    readonly="readonly"
+                    readOnly="readOnly"
                   />
                 </label>
                 <label className="nunito-14 new-height">
@@ -97,7 +97,7 @@ function ModalCharges({ open, handleClose }) {
                   <label className="nunito-14">
                     Valor*
                     <input
-                      placeholder="Ex: 1500"
+                      placeholder="Ex: 1500,00"
                       type="number"
                       value={value}
                       onChange={(e) => setValue(e.target.value)}
