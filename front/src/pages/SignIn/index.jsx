@@ -30,7 +30,6 @@ function SignIn() {
       setToken(data.token);
 
       navigate("/home");
-      // window.location.reload();
     } catch (error) {
       alert("Email ou senha invalidos.");
     }

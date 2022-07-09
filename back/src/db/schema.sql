@@ -36,7 +36,7 @@ create table if not exists cobrancas(
   cliente text not null,
   descricao text,
   status text not null,
-  valor int not null,
+  valor real not null,
   vencimento date not null,
   cliente_id int not null,
   foreign key (cliente_id) references clientes (id)

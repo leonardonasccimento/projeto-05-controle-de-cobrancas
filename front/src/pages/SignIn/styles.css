@@ -1,7 +1,6 @@
 .container-sign-in {
   height: 100vh;
   width: 100vw;
-
   display: flex;
 }
 
@@ -17,14 +16,12 @@
   margin: 10rem 3rem 0 3rem;
   align-items: center;
   text-align: center;
-
   color: #034a2a;
 }
 
 .right-sign-in {
   width: 70%;
   background-color: #f8f8f9;
-
   display: flex;
   position: relative;
   flex-direction: column;

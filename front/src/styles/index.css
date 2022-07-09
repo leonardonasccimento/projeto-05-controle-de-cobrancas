@@ -4,6 +4,11 @@
   padding: 0;
 }
 
+button {
+  all: unset;
+  box-sizing: border-box;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -17,10 +22,8 @@ html {
   --toastify-color-success: #0e8750;
   --toastify-color-error: #da0175;
   --toastify-icon-color-error: var(--toastify-color-error);
-  /* --toastify-toast-min-height: 54px; */
   --toastify-toast-min-height: 5.4rem;
   --toastify-text-color-error: #fff;
-
   --toastify-color-progress-error: red;
 }
 

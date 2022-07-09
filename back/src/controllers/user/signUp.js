@@ -14,7 +14,7 @@ async function signUp(req, res) {
 
         return res.status(201).json();
     } catch (error) {
-        return res.status(400).json(error.message);
+        return res.status(500).json(error.message);
     }
 }
 
