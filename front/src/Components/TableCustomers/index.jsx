@@ -13,8 +13,12 @@ import ModalCharges from '../ModalCharges';
 import './style.css';
 
 export default function TableCustomers() {
-  const [openModalAddCharges, setOpenModalAddCharges] = useState("");
-  const { token, customers, setCustomers, setCurrentCustomer } = useGlobalContext();
+  const [openModalAddCharges, setOpenModalAddCharges] = useState(false);
+  const { 
+    token, 
+    customersArray, 
+    setCustomersArray, 
+    setCurrentCustomer } = useGlobalContext();
 
   function handleVerifyDataCustomer(row) {
     setCurrentCustomer(row);
@@ -32,7 +36,7 @@ export default function TableCustomers() {
         return;
       }
 
-      setCustomers([...response.data]);
+      setCustomersArray([...response.data]);
     } catch (error) {
       console.log(error.response.data.message);
     }
@@ -57,7 +61,7 @@ export default function TableCustomers() {
           <TableCell className="title-table">Criar Cobrança</TableCell>
         </TableHead>
         <TableBody>
-          {customers.map((row, index) => (
+          {customersArray.map((row, index) => (
             <TableRow key={index}>
               <TableCell component="th" scope="row" className="table-items">
                 {row.nome}

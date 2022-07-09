@@ -9,7 +9,7 @@ import TableCustomers from '../../Components/TableCustomers';
 import './styles.css';
 
 function Customers() {
-    const [openModalAddCustomers, setOpenModalAddCustomers] = useState('');
+    const [openModalAddCustomers, setOpenModalAddCustomers] = useState(false);
 
     return (
         <div className="container-home">

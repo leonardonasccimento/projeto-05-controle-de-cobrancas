@@ -14,8 +14,8 @@ const authenticateAccess = async (req, res, next) => {
         const { id } = jwt.verify(token, process.env.DATABASE_HASH);
 
         const userFound = await knex('usuarios')
-            .where({ id })
-            .first();
+        .where({ id })
+        .first();
 
         if (!userFound) {
             return res.status(404).json({ error: 'Usuario não encontrado' });

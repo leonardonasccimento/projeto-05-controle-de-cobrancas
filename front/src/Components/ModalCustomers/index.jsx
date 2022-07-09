@@ -6,7 +6,7 @@ import api from '../../services/api';
 import './styles.css';
 
 function ModalCustomers({ open, handleClose }) {
-  const { token, customers, setCustomers } = useGlobalContext();
+  const { token, customersArray, setCustomersArray } = useGlobalContext();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -45,13 +45,13 @@ function ModalCustomers({ open, handleClose }) {
       return;
     }
 
-    const emailDouble = customers.some((object) => object.email === email);
+    const emailDouble = customersArray.some((object) => object.email === email);
     if (emailDouble) {
       alert("Este E-mail já foi cadastrado.");
       return;
     }
 
-    const cpfDouble = customers.some((object) => object.cpf === cpf);
+    const cpfDouble = customersArray.some((object) => object.cpf === cpf);
     if (cpfDouble) {
       alert("Este CPF já foi cadastrado.");
       return;
@@ -92,9 +92,9 @@ function ModalCustomers({ open, handleClose }) {
 
       alert("Cliente registrado com sucesso!");
       handleClear();
-      setCustomers([...response.data]);
+      setCustomersArray([...response.data]);
     } catch (error) {
-      return error.response.data.mensage;
+      alert(error.response.data.mensage);
     }
   }
 

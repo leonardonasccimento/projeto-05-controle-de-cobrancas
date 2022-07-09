@@ -10,21 +10,12 @@ import Sidebar from '../../Components/Sidebar';
 import { customerDescriptionData, statusCobrancas, typesOfCharge } from '../../data/index.js';
 import useGlobalContext from '../../hooks/useGlobalContext';
 import api from '../../services/api';
-import { getItem, setItem } from '../../utils/localStorage';
 import './styles.css';
 
 function Home() {
-  // setItem("charges", getItem("charges") ?? 0);
-  // setItem("customers", getItem("customers") ?? 0);
-
   const { 
     token, 
-    charges, 
-    setCharges, 
-    setCustomersData, 
-    customers, 
     chargesArray, 
-    setCustomers, 
     setChargesArray } = useGlobalContext();
 
   async function handleCharges() {
@@ -45,78 +36,54 @@ function Home() {
     }
   }
 
-  // async function handleCharges() {
-  //   try {
-  //     const response = await api.get("/cobranca", {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-
-  //     if (response.status > 204) {
-  //       return;
-  //     }
-
-  //     setCharges(response.data);
-  //   } catch (error) {
-  //     alert(error.response.data.message);
-  //   }
-  // }
-
-  // async function handleCustomers() {
-  //   try {
-  //     const response = await api.get("/cliente", {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-
-  //     if (response.status > 204) {
-  //       return;
-  //     }
-
-  //     setCustomersData(response.data);
-  //   } catch (error) {
-  //     alert(error.response.data.message);
-  //   }
-  // }
-
   useEffect(() => {
     handleCharges();
-    // handleCustomers();
   });
 
   let sumChargesPaid = 0;
-  for (let i = 0; i < chargesArray.length; i++) {
-    if (chargesArray[i].status === "pago") {
-      sumChargesPaid += chargesArray[i].valor;
-    }
-  }
-
-  let sumOverdueCharges = 0;
-  for (let i = 0; i < chargesArray.length; i++) {
-    if (chargesArray[i].status === "vencido") {
-      sumOverdueCharges += chargesArray[i].valor;
-    }
-  }
-
   let sumExpectedCharges = 0;
-  for (let i = 0; i < chargesArray.length; i++) {
-    if (chargesArray[i].status === "pendente") {
-      sumExpectedCharges += chargesArray[i].valor;
+  let sumOverdueCharges = 0;
+  for (let chargeObject of chargesArray) {
+    if (chargeObject.status === "pago") {
+      sumChargesPaid += chargeObject.valor;
+    }
+
+    if (chargeObject.status === "pendente") {
+      sumExpectedCharges += chargeObject.valor;
+    }
+
+    if (chargeObject.status === "vencido") {
+      sumOverdueCharges += chargeObject.valor;
     }
   }
-
   const arraySumValue = [sumChargesPaid, sumOverdueCharges, sumExpectedCharges];
 
   let chargesBillingPaidName = [];
   let chargesBillingPaidIdentifier = [];
   let chargesBillingPaidValue = [];
-  for (let i = 0; i < chargesArray.length; i++) {
-    if (chargesArray[i].status === "pago") {
-      chargesBillingPaidName.push(chargesArray[i].cliente);
-      chargesBillingPaidIdentifier.push(chargesArray[i].id);
-      chargesBillingPaidValue.push(`${chargesArray[i].valor}`);
+  let chargesPendingBillingName = [];
+  let chargesPendingBillingIdentifier = [];
+  let chargesPendingBillingValue = [];
+  let chargesOverdueBillingName = [];
+  let chargesOverdueBillingIdentifier = [];
+  let chargesOverdueBillingValue = [];
+  for (let chargeObject of chargesArray) {
+    if (chargeObject.status === "pago") {
+      chargesBillingPaidName.push(chargeObject.cliente);
+      chargesBillingPaidIdentifier.push(chargeObject.id);
+      chargesBillingPaidValue.push(`${chargeObject.valor}`);
+    }
+
+    if (chargeObject.status === "pendente") {
+      chargesPendingBillingName.push(chargeObject.cliente);
+      chargesPendingBillingIdentifier.push(chargeObject.id);
+      chargesPendingBillingValue.push(`${chargeObject.valor}`);
+    }
+
+    if (chargeObject.status === "vencido") {
+      chargesOverdueBillingName.push(chargeObject.cliente);
+      chargesOverdueBillingIdentifier.push(chargeObject.id);
+      chargesOverdueBillingValue.push(`${chargeObject.valor}`);
     }
   }
   const arrayBillingPaid = [
@@ -124,72 +91,48 @@ function Home() {
     chargesBillingPaidIdentifier,
     chargesBillingPaidValue,
   ];
-
-  let chargesPendingBillingName = [];
-  let chargesPendingBillingIdentifier = [];
-  let chargesPendingBillingValue = [];
-  for (let i = 0; i < chargesArray.length; i++) {
-    if (chargesArray[i].status === "pendente") {
-      chargesPendingBillingName.push(chargesArray[i].cliente);
-      chargesPendingBillingIdentifier.push(chargesArray[i].id);
-      chargesPendingBillingValue.push(`${chargesArray[i].valor}`);
-    }
-  }
   const arrayPendingBilling = [
     chargesPendingBillingName,
     chargesPendingBillingIdentifier,
     chargesPendingBillingValue,
   ];
-
-  let chargesOverdueBillingName = [];
-  let chargesOverdueBillingIdentifier = [];
-  let chargesOverdueBillingValue = [];
-  for (let i = 0; i < chargesArray.length; i++) {
-    if (chargesArray[i].status === "vencido") {
-      chargesOverdueBillingName.push(chargesArray[i].cliente);
-      chargesOverdueBillingIdentifier.push(chargesArray[i].id);
-      chargesOverdueBillingValue.push(`${chargesArray[i].valor}`);
-    }
-  }
   const arrayOverdueBilling = [
     chargesOverdueBillingName,
     chargesOverdueBillingIdentifier,
     chargesOverdueBillingValue,
   ];
-
+  
   let customerOverdueBillingName = [];
   let customerOverdueBillingIdentifier = [];
   let customerOverdueBillingValue = [];
-  for (let i = 0; i < chargesArray.length; i++) {
-    if (chargesArray[i].status === "vencido") {
-      customerOverdueBillingName.push(chargesArray[i].cliente);
-      customerOverdueBillingIdentifier.push(chargesArray[i].vencimento);
-      customerOverdueBillingValue.push(`${chargesArray[i].valor}`);
-    }
-  }
-  const arrayDelinquentCustomers = [
-    customerOverdueBillingName,
-    customerOverdueBillingIdentifier,
-    customerOverdueBillingValue,
-  ];
-
   let regularCustomersName = [];
   let regularCustomersIdentifier = [];
   let regularCustomersValue = [];
-  for (let i = 0; i < chargesArray.length; i++) {
+  for (let chargeObject of chargesArray) {
+    if (chargeObject.status === "vencido") {
+      customerOverdueBillingName.push(chargeObject.cliente);
+      customerOverdueBillingIdentifier.push(chargeObject.vencimento);
+      customerOverdueBillingValue.push(`${chargeObject.valor}`);
+    }
+
     if (
-      chargesArray[i].status === "pago" ||
-      ("pendente" && chargesArray[i].status !== "vencido")
+      chargeObject.status === "pago" ||
+      ("pendente" && chargeObject.status !== "vencido")
     ) {
-      regularCustomersName.push(chargesArray[i].cliente);
-      regularCustomersIdentifier.push(chargesArray[i].vencimento);
-      regularCustomersValue.push(`${chargesArray[i].valor}`);
+      regularCustomersName.push(chargeObject.cliente);
+      regularCustomersIdentifier.push(chargeObject.vencimento);
+      regularCustomersValue.push(`${chargeObject.valor}`);
     }
   }
   const arrayRegularCustomers = [
     regularCustomersName,
     regularCustomersIdentifier,
     regularCustomersValue,
+  ];
+  const arrayDelinquentCustomers = [
+    customerOverdueBillingName,
+    customerOverdueBillingIdentifier,
+    customerOverdueBillingValue,
   ];
 
   return (

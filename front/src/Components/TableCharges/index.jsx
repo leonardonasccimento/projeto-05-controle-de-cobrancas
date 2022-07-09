@@ -10,34 +10,20 @@ import ChargesEdit from '../../assets/chargesEdit.svg';
 import OrganizeIcon from '../../assets/organize-icon.svg';
 import useGlobalContext from '../../hooks/useGlobalContext';
 import api from '../../services/api';
-import './style.css';
-import ModalEditCharge from '../ModalEditCharge';
 import ModalDeleteCharge from '../ModalDeleteCharge';
-
+import ModalEditCharge from '../ModalEditCharge';
+import './style.css';
 
 export default function TableCharges() {
-  const [openModalEditCharges, setOpenModalEditCharges] = useState("");
+  const [openModalEditCharges, setOpenModalEditCharges] = useState(false);
+  const [openModalDeleteCharges, setOpenModalDeleteCharges] = useState(false);
   const { 
     token, 
     chargesArray, 
     setChargesArray, 
     setCurrentCharge } = useGlobalContext();
 
-
-    // const [description, setDescription] = useState('');
-    // // const [description, setDescription] = useState('');
-    // const [status, setStatus] = useState("");
-    // const [value, setValue] = useState("");
-    // const [dueDate, setDueDate] = useState("");
-
-  // function modalComplementDataCharge(){
-  //   // setOpenModalEditCharges(true);
-  //   setDescription(currentCharge.descricao);
-  //   return;
-  // };
-
   function handleVerifyDataCharge(row) {
-    // console.log(row);
     setCurrentCharge(row);
   }
 
@@ -88,7 +74,9 @@ export default function TableCharges() {
                 {row.cliente}
               </TableCell>
               <TableCell className="table-items">{row.id}</TableCell>
-              <TableCell className="table-items">{`R$ ${row.valor}`.replace('.',',')}</TableCell>
+              <TableCell className="table-items">
+                {`R$ ${row.valor}`.replace(".", ",")}
+              </TableCell>
               <TableCell className="table-items">
                 {new Date(row.vencimento).toLocaleDateString()}
               </TableCell>
@@ -96,23 +84,17 @@ export default function TableCharges() {
               <TableCell className="table-items">{row.descricao}</TableCell>
               <TableCell className="table-items">
                 <div onClick={() => handleVerifyDataCharge(row)}>
-                  
-
                   <img
                     className="edit-icon"
                     src={ChargesEdit}
                     alt="editar cobranca"
-                    
                     onClick={() => setOpenModalEditCharges(true)}
                   />
 
-                  
-                  
-                  <img 
-                    src={ChargesDelete} 
+                  <img
+                    src={ChargesDelete}
                     alt="excluir cobranca"
-                    
-                    onClick={() => setOpenModalEditCharges(true)}
+                    onClick={() => setOpenModalDeleteCharges(true)}
                   />
                 </div>
               </TableCell>
@@ -124,9 +106,12 @@ export default function TableCharges() {
       <ModalEditCharge
         open={openModalEditCharges}
         handleClose={() => setOpenModalEditCharges(false)}
-        
       />
 
+      <ModalDeleteCharge
+        open={openModalDeleteCharges}
+        handleClose={() => setOpenModalDeleteCharges(false)}
+      />
     </TableContainer>
   );
 }

@@ -5,7 +5,6 @@ import IconEdit from '../../assets/icon-edit.svg';
 import IconExit from '../../assets/icon-exit.svg';
 import useGlobalContext from '../../hooks/useGlobalContext';
 import api from '../../services/api';
-// import { clearAll } from '../../utils/localStorage';
 import Modal from '../Modal';
 import './styles.css';
 
@@ -14,17 +13,13 @@ function Header() {
   const {
     token,
     user,
+    usersArray,
     setUser,
+    setUsersArray,
     clearToken,
     clearUser,
-    clearCustomersData,
-    usersArray,
-    setUsersArray,
-    clearCharges,
-    // clearUsersArray,
     clearCurrentCustomer,
     clearCurrentCharge,
-    clearChargesArray
   } = useGlobalContext();
   const [modal, setModal] = useState(false);
   const [modalEdit, setModalEdit] = useState(false);
@@ -82,15 +77,9 @@ function Header() {
     e.stopPropagation();
     clearToken();
     clearUser();
-    clearCharges();
-    clearCustomersData();
-    // clearUsersArray();
     clearCurrentCustomer();
     clearCurrentCharge();
-    clearChargesArray();
-
     navigate("/");
-    // clearAll();
   }
 
   useEffect(() => {
@@ -130,7 +119,6 @@ function Header() {
         )}
 
         {modalEdit && (
-          <>
             <Modal
               toggleModal={toggleModal}
               applyModal={editUser}
@@ -138,7 +126,6 @@ function Header() {
               modalEdit={modalEdit}
               setModalEdit={setModalEdit}
             />
-          </>
         )}
       </div>
     </header>

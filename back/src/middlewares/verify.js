@@ -6,7 +6,7 @@ const verifyFieldsEditUser = async (req, res, next) => {
 	const schema = yup.object().shape({
 		nome: yup.string().required(),
 		email: yup.string().required(),
-		senha: yup.string(),
+		senha: yup.string().required(),
 		cpf: yup.string(),
 		telefone: yup.string()
 	})

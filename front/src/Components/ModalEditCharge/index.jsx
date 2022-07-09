@@ -31,13 +31,8 @@ function ModalEditCharge({ open, handleClose }) {
 
   async function handleSubmitCharge(e) {
     e.preventDefault();
-    // modalComplementDataCharge();
-
-    // setDescription(`${currentCharge.descricao}`);
 
     console.log('Passou no handleSubmitCharge');
-
-    // console.log(currentCharge);
 
     if (status !== "pago" && status !== "pendente") {
       alert("Escolha um status");

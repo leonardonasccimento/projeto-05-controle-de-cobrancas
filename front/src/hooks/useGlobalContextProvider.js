@@ -4,11 +4,11 @@ import { useLocalStorage } from "react-use";
 function useGlobalContextProvider() {
     const [token, setToken, clearToken] = useLocalStorage('token');
     const [user, setUser, clearUser] = useLocalStorage('user');
-    // const [usersArray, setUsersArray, clearUsersArray]=useLocalStorage('usersArray');
-    const [usersArray, setUsersArray]=useState([]);
+    const [users, setUsers, clearUsers]=useLocalStorage('users');
+    const [customers, setCustomers, clearCustomers] = useLocalStorage('customers');
     const [charges, setCharges, clearCharges] = useLocalStorage('charges');
-    const [customersData, setCustomersData, clearCustomersData] = useLocalStorage('customers');
-    const [customers, setCustomers] = useState([]);
+    const [usersArray, setUsersArray]=useState([]);
+    const [customersArray, setCustomersArray] = useState([]);
     const [chargesArray, setChargesArray]=useState([]);
     const[currentCustomer, setCurrentCustomer, clearCurrentCustomer]=useLocalStorage('currentCustomer');
     const[currentCharge, setCurrentCharge, clearCurrentCharge]=useLocalStorage('currentCharge');
@@ -22,23 +22,26 @@ function useGlobalContextProvider() {
         setUser,
         clearUser,
 
+        users,
+        setUsers,
+        clearUsers,
+
         usersArray,
         setUsersArray,
-        // clearUsersArray,
+
+        customersArray,
+        setCustomersArray,
+
+        chargesArray,
+        setChargesArray,
 
         customers,
         setCustomers,
+        clearCustomers,
 
         charges,
         setCharges,
         clearCharges,
-
-        customersData,
-        setCustomersData,
-        clearCustomersData,
-
-        chargesArray,
-        setChargesArray,
 
         currentCustomer,
         setCurrentCustomer,

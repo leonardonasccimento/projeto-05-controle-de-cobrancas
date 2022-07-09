@@ -4,16 +4,19 @@ const detailCustomer = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const customer = await knex('clientes').where('id', id).first();
+        const customer = await knex('clientes')
+        .where('id', id)
+        .first();
 
         if (!customer) {
             return res.status(400).json('Cliente não encontrado')
         }
 
         const { id: idCostumer, usuario_id, ...costumerInfo } = customer;
-        res.status(200).json(costumerInfo);
+
+        return res.status(200).json(costumerInfo);
     } catch (error) {
-        res.status(400).json(error.message)
+        return res.status(500).json(error.message)
     }
 }
 

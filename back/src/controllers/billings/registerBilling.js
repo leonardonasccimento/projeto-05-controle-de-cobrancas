@@ -42,7 +42,7 @@ const registerBilling = async (req, res) => {
 
         return res.status(201).json(billing[0]);
     } catch (error) {
-      return res.status(500).json(error.message);
+        return res.status(500).json(error.message);
     }
 }
 

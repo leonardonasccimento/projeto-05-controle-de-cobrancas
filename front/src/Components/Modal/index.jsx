@@ -9,10 +9,9 @@ function Modal({
   toggleModal,
   handleUpdateUser,
   modalEdit,
-  setModalEdit,
   }){
     
-  const { token, user, usersArray, setUser} = useGlobalContext();
+  const { token, user, usersArray} = useGlobalContext();
 
   const [nameEdit, setNameEdit] = useState("");
   const [emailEdit, setEmailEdit] = useState("");
@@ -100,12 +99,6 @@ function Modal({
   }
 
   handleUpdateUser();
-
-  // function toggleModal(e) {
-  //   e.stopPropagation();
-  //   setModalEdit(!modalEdit);
-  //   // window.location.reload();
-  // }
 
   return (
     <>
@@ -200,14 +193,9 @@ function Modal({
         </form>
       </div>
     </div>
-    
-    
-    
     </>
   );
 }
-
-
 
 export default Modal;
 
