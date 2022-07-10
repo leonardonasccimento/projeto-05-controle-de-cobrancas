@@ -16,3 +16,7 @@
 img {
   cursor: pointer;
 }
+
+.add-icon:hover {
+  transform: scale(1.1);
+}

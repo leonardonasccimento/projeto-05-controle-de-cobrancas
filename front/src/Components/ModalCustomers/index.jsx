@@ -6,7 +6,9 @@ import api from '../../services/api';
 import './styles.css';
 
 function ModalCustomers({ open, handleClose }) {
-  const { token, customersArray, setCustomersArray } = useGlobalContext();
+  const { 
+    token, 
+    customersArray} = useGlobalContext();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -92,7 +94,7 @@ function ModalCustomers({ open, handleClose }) {
 
       alert("Cliente registrado com sucesso!");
       handleClear();
-      setCustomersArray([...response.data]);
+      // setCustomersArray([...response.data]);
     } catch (error) {
       alert(error.response.data.mensage);
     }
@@ -100,7 +102,6 @@ function ModalCustomers({ open, handleClose }) {
 
   function handleReloadPage(e) {
     e.stopPropagation();
-    // window.location.reload();
   }
 
   return (

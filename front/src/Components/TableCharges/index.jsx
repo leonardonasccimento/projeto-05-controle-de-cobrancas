@@ -92,6 +92,7 @@ export default function TableCharges() {
                   />
 
                   <img
+                    className="delete-icon"
                     src={ChargesDelete}
                     alt="excluir cobranca"
                     onClick={() => setOpenModalDeleteCharges(true)}

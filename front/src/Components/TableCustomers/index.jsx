@@ -73,6 +73,7 @@ export default function TableCustomers() {
               <TableCell className="table-items">
                 <div onClick={() => handleVerifyDataCustomer(row)}>
                   <img
+                    className='add-icon'
                     src={ChargesIcon}
                     alt="cobranca"
                     onClick={() => setOpenModalAddCharges(true)}
