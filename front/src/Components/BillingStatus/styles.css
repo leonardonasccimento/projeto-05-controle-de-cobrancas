@@ -1,5 +1,4 @@
 .customer-charge-card {
-  border-radius: 2rem;
   width: 36rem;
   background-color: #ffffff;
   position: relative;
@@ -16,10 +15,13 @@
   height: 5.8rem;
   background: #ffffff;
   box-shadow: 0rem 0.4rem 0.4rem rgba(172, 217, 197, 0.25);
+}
+
+.customer-charge-card,
+.charge-card-header {
   border-top-left-radius: 0.8rem;
   border-top-right-radius: 0.8rem;
 }
-
 .charge-card-header h2 {
   width: 18.8rem;
   height: 2.3rem;
@@ -28,6 +30,7 @@
   font-weight: 600;
   font-size: 1.8rem;
   /* line-height: 130%; */
+  line-height: 130%;
   color: #3f3f55;
   margin-right: 5rem;
 }
@@ -39,6 +42,7 @@
   font-style: normal;
   font-weight: 700;
   font-size: 1.6rem;
+  line-height: 130%;
   /* line-height: 130%; */
   display: flex;
   align-items: center;
@@ -95,9 +99,9 @@
   background-color: #ffffff;
 }
 
-.see-all h4 {
-  width: 7.8rem;
-  height: 2.3rem;
+.see-all :nth-child(1) {
+  /* width: 7.8rem; */
+  /* height: 2.3rem; */
   font-family: "Nunito";
   font-style: normal;
   font-weight: 400;

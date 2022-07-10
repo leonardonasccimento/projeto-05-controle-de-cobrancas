@@ -1,6 +1,7 @@
 .customer-billing-description {
   display: flex;
   border-bottom: 0.1rem solid #eff0f7;
+  /* border-bottom: 0.2rem solid #000; */
 }
 
 .customer-billing-description :nth-child(1),
@@ -17,12 +18,3 @@
   width: 18.533rem;
   height: 4rem;
 }
-
-/* .customer-billing-description :nth-child(1),
-.customer-billing-description :nth-child(2),
-.customer-billing-description :nth-child(3) {
-   width: 120rem; 
-
-   width: 18.533rem;
-  height: 4rem; 
-} */
