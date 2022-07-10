@@ -32,8 +32,6 @@ function ModalEditCharge({ open, handleClose }) {
   async function handleSubmitCharge(e) {
     e.preventDefault();
 
-    console.log('Passou no handleSubmitCharge');
-
     if (status !== "pago" && status !== "pendente") {
       alert("Escolha um status");
       return;
@@ -99,7 +97,6 @@ function ModalEditCharge({ open, handleClose }) {
                   Descrição (opcional)
                   <input
                     placeholder=''
-                    // placeholder={`${currentCharge.descricao}`}
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -110,7 +107,6 @@ function ModalEditCharge({ open, handleClose }) {
                     Valor*
                     <input
                       placeholder="Ex: 1500"
-                      // placeholder={`${currentCharge.descricao}`}
                       type="number"
                       value={value}
                       onChange={(e) => setValue(e.target.value)}
