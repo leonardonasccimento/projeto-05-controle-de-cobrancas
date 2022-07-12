@@ -2,8 +2,11 @@ const knex = require('../../db/conection');
 const { compareAsc } = require('date-fns');
 
 const listBillings = async (req, res) => {
+  const {query}=req.query;
+
   try {
-    const billings = await knex("cobrancas");
+    const billings = await knex("cobrancas")
+    .whereILike('cliente', `${query}%`);
 
     let billingsArray = [];
     const currentDate = new Date();

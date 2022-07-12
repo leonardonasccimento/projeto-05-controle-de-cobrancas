@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ChargesIcon from '../../assets/charges.svg';
 import FilterIcon from '../../assets/filter-icon.svg';
 import SearchIcon from '../../assets/search-icon.svg';
@@ -7,6 +8,8 @@ import TableCharges from '../../Components/TableCharges';
 import './styles.css';
 
 function Charges() {
+  const [searchValue, setSearchValue] = useState('');
+
   return (
     <div className="container-home">
       <Sidebar />
@@ -23,13 +26,23 @@ function Charges() {
               <img src={FilterIcon} alt="filter" />
             </button>
             <div className="search">
-              <input type="text" placeholder="Pesquisa" />
-              <img src={SearchIcon} alt="search" />
+              <input 
+                type="text" 
+                placeholder="Pesquisar"
+                value={searchValue}
+                onChange={(e)=>setSearchValue(e.target.value)} 
+              />
+              <img 
+                src={SearchIcon} 
+                alt="search" 
+              />
             </div>
           </div>
         </div>
         <div className="container-customers-table">
-          <TableCharges />
+          <TableCharges
+            searchValue={searchValue}
+          />
         </div>
       </div>
     </div>

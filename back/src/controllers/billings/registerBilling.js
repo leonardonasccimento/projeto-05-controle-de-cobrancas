@@ -5,7 +5,7 @@ const registerBilling = async (req, res) => {
     const { descricao, status, valor, vencimento } = req.body;
 
     if (status !== 'pago' && status !== 'pendente') {
-        return res.status(400).json("Status deve ser apenas pago ou pendente");
+        return res.status(400).json({error: "Status deve ser apenas pago ou pendente"});
     }
 
     if(!vencimento){
@@ -28,7 +28,7 @@ const registerBilling = async (req, res) => {
         const billing = await knex("cobrancas")
           .insert({
             cliente: customer.nome,
-            descricao: descricao ?? '',
+            descricao,
             status,
             valor,
             vencimento: dateISO,

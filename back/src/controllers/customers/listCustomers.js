@@ -2,9 +2,12 @@ const knex = require('../../db/conection');
 const { compareAsc } = require('date-fns');
 
 const listCustomers = async (req, res) => {
+  const {query}=req.query;
+
   try {
     const customers = await knex("clientes")
       .leftJoin("cobrancas", "cobrancas.cliente_id", "clientes.id")
+      .whereILike('clientes.nome', `${query}%`)
       .returning("*");
 
     const currentDate = new Date();

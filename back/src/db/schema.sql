@@ -19,7 +19,7 @@ create table if not exists clientes(
   id serial primary key,
   nome text not null,
   email text not null,
-  cpf varchar(11) not null,
+  cpf varchar(11) not null unique,
   telefone varchar(11) not null,
   cep varchar(8),
   logradouro text,
@@ -38,6 +38,6 @@ create table if not exists cobrancas(
   status text not null,
   valor real not null,
   vencimento date not null,
-  cliente_id int not null,
+  cliente_id integer not null,
   foreign key (cliente_id) references clientes (id)
-)
+);

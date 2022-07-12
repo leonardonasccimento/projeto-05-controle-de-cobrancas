@@ -12,8 +12,10 @@ import api from '../../services/api';
 import ModalCharges from '../ModalCharges';
 import './style.css';
 
-export default function TableCustomers() {
+export default function TableCustomers({searchValue}) {
   const [openModalAddCharges, setOpenModalAddCharges] = useState(false);
+  const [clickedOrganizeCustomers, setClickedOrganizeCustomers] = useState(false);
+  
   const { 
     token, 
     customersArray, 
@@ -26,7 +28,11 @@ export default function TableCustomers() {
 
   async function handleLoadCustomers() {
     try {
-      const response = await api.get("/cliente", {
+      // let valueAndClick=searchValue&&clickedSearchIcon?
+      // searchValue:
+      // '';
+      
+      const response = await api.get(`/cliente?query=${searchValue}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -36,7 +42,11 @@ export default function TableCustomers() {
         return;
       }
 
-      setCustomersArray([...response.data]);
+      setCustomersArray(
+        clickedOrganizeCustomers?
+        [...response.data].sort((a,b)=>(b.nome).localeCompare(a.nome)):
+        [...response.data].sort((a,b)=>(a.nome).localeCompare(b.nome))
+      );
     } catch (error) {
       console.log(error.response.data.message);
     }
@@ -51,7 +61,11 @@ export default function TableCustomers() {
       <Table sx={{ minWidth: 280 }} size="medium" aria-label="a dense table">
         <TableHead>
           <TableCell className="title-table">
-            <img src={OrganizeIcon} alt="organize" />
+            <img 
+              src={OrganizeIcon} 
+              alt="organize" 
+              onClick={()=>setClickedOrganizeCustomers(!clickedOrganizeCustomers)}
+            />
             <span>Cliente</span>
           </TableCell>
           <TableCell className="title-table">CPF</TableCell>
@@ -77,7 +91,6 @@ export default function TableCustomers() {
                     src={ChargesIcon}
                     alt="cobranca"
                     onClick={() => setOpenModalAddCharges(true)}
-                    // onClick={() => handleOpenChargesAdd()}
                   />
                 </div>
               </TableCell>

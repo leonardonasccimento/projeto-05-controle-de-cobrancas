@@ -44,9 +44,7 @@ async function registerCustomer(req, res){
         .first();
 
         if(cpfCustomerUnique){
-            return res.status(404).json({ 
-                error: `Este CPF já foi cadastrado.`
-            });
+            return res.status(404).json({ error: `Este CPF já foi cadastrado.`});
         }
 
         const customerInserted=await knex('clientes')
@@ -55,12 +53,12 @@ async function registerCustomer(req, res){
             email,
             cpf,
             telefone,
-            cep: cep??'',
-            logradouro: logradouro??'',
-            complemento: complemento??'',
-            bairro: bairro??'',
-            cidade: cidade??'',
-            estado: estado??'',
+            cep,
+            logradouro,
+            complemento,
+            bairro,
+            cidade,
+            estado,
             usuario_id: usuario.id
         }).returning('*');
 
