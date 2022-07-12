@@ -14,13 +14,13 @@ import './styles.css';
 
 function Home() {
   const { 
-    token, 
+    token,
     chargesArray, 
     setChargesArray } = useGlobalContext();
 
   async function handleCharges() {
     try {
-      const response = await api.get("/cobranca", {
+      const response = await api.get("/cobranca?query", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -149,7 +149,6 @@ function Home() {
                 key={statusCobranca.id}
                 img={statusCobranca.img}
                 description={statusCobranca.description}
-                // value={statusCobranca.value}
                 value={arraySumValue[index]}
                 backgroundColor={statusCobranca.backgroundColor}
               />

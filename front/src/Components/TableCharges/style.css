@@ -5,6 +5,10 @@
   color: #3f3f55 !important;
 }
 
+.display {
+  display: inline !important;
+}
+
 .table-items {
   font-family: "Nunito" !important;
   font-weight: 400 !important;

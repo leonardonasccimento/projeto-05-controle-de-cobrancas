@@ -3,7 +3,6 @@ const { detailCustomer } = require('../controllers/customers/detailCustomer');
 const { editCustomer } = require('../controllers/customers/editCustomer');
 const { listCustomers } = require('../controllers/customers/listCustomers');
 const { registerCustomer } = require('../controllers/customers/registerCustomer');
-const {consultCustomers}=require('../controllers/customers/consultCustomers');
 const authenticateAccess = require('../middlewares/authentication');
 const verify = require('../middlewares/verify');
 
@@ -15,6 +14,5 @@ routeCostumer.post('/cliente', verify.verifyFieldsCustomer, registerCustomer);
 routeCostumer.get('/cliente', listCustomers);
 routeCostumer.get('/cliente/:id', detailCustomer);
 routeCostumer.put('/cliente/:id',verify.verifyFieldsCustomer, verify.verifyCpfCustomerEdit,verify.verifyEmailCustomerEdit, editCustomer)
-routeCostumer.get('/clientes', consultCustomers);
 
 module.exports = routeCostumer;

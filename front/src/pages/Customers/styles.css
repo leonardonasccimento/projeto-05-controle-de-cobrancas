@@ -35,7 +35,7 @@
 
 .customers-header-actions input {
   margin: 0;
-  box-shadow: rgba(0, 0, 0, 0.35) 0 0rem 0.4rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 0 0.4rem;
   width: 30rem;
 }
 
@@ -44,7 +44,7 @@
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.35) 0 0rem 0.4rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 0 0.4rem;
   background-color: #ffffff;
 }
 
@@ -64,7 +64,7 @@
   margin: 3rem 5rem;
   border-radius: 1rem;
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.35) 0 0rem 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 0 0.5rem;
 }
 
 .search input {
@@ -75,5 +75,5 @@
   position: absolute;
   margin: 1rem 0 0 -2.5rem;
   width: 1.4rem;
-  cursor: pointer;
+  cursor: text !important;
 }

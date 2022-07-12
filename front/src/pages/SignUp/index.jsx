@@ -24,6 +24,7 @@ function SignUp() {
       alert("Preencha os campos abaixo");
       return;
     }
+    
     setActiveStep({ ...activeStep, secondSection: true });
   }
 
@@ -34,6 +35,7 @@ function SignUp() {
       alert("Preencha os campos abaixo");
       return;
     }
+
     if (password !== confirmPassword) {
       alert("As senhas não conferem");
       return;

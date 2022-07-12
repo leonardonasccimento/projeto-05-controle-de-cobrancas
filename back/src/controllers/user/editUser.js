@@ -17,7 +17,7 @@ const editUser = async (req, res) => {
            nome,
            email,
            senha: hash,
-           cpf,
+           cpf: cpf===''?null:cpf,
            telefone,
        })
        .where("id", usuario.id)

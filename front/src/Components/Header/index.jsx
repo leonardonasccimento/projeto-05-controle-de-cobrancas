@@ -19,12 +19,11 @@ function Header() {
     clearToken,
     clearUser,
     clearCurrentCustomer,
-    clearCurrentCharge,
-  } = useGlobalContext();
+    clearCurrentCharge } = useGlobalContext();
   const [modal, setModal] = useState(false);
   const [modalEdit, setModalEdit] = useState(false);
 
-  async function handleLoadUserArray() {
+  async function handleLoadUsersArray() {
     try {
       const response = await api.get("/usuario", {
         headers: {
@@ -83,7 +82,7 @@ function Header() {
   }
 
   useEffect(() => {
-    handleLoadUserArray();
+    handleLoadUsersArray();
   });
 
   return (

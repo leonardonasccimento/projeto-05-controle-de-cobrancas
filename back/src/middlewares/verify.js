@@ -7,8 +7,8 @@ const verifyFieldsEditUser = async (req, res, next) => {
 		nome: yup.string().required(),
 		email: yup.string().required(),
 		senha: yup.string().required(),
-		cpf: yup.string(),
-		telefone: yup.string()
+		cpf: yup.string().nullable(),
+		telefone: yup.string().max(11).nullable()
 	})
 
 	try {
@@ -25,12 +25,10 @@ const verifyEmailEditUser = async (req, res, next) => {
 	const { usuario } = req;
 
 	try {
-		const user = await knex("usuarios").where("id", usuario.id).first();
-
-		if (email !== user.email) {
+		if (email !== usuario.email) {
 			const userEmail = await knex("usuarios")
-				.where("email", email)
-				.first();
+			.where("email", email)
+			.first();
 
 			if (userEmail) {
 				return res.status(400).json("E-mail já cadastrado.");
@@ -73,24 +71,32 @@ const verifyEmailCustomerEdit = async (req, res, next) => {
 
 const verifyCpfEditUser = async (req, res, next) => {
 	const { cpf } = req.body;
-
 	const { usuario } = req;
+
+	if(cpf){
+		if(cpf.length<11){
+			return res.status(400).json({error: "CPF deve ter no mínimo 11 caracteres"});
+		}
+
+		if(cpf.length>11){
+			return res.status(400).json({error: "CPF deve ter no máximo 11 caracteres"});
+		}
+	}
 
 	try {
 		if (cpf) {
 			const cpfUserFound = await knex("usuarios")
-				.where("cpf", '!=', usuario.cpf)
-				.andWhere({ cpf })
-				.first();
+			.where("cpf", '!=', usuario.cpf)
+			.andWhere({ cpf })
+			.first();
 
 			if (cpfUserFound) {
-				return res.status(400).json({ error: "CPF já cadastrado" });
+				return res.status(404).json({ error: "CPF já cadastrado" });
 			}
 		}
 	} catch (error) {
 		return res.status(500).json({ error: error.message });
 	}
-
 
 	next();
 }
@@ -101,6 +107,7 @@ const verifyCpfCustomerEdit = async (req, res, next) => {
 	try {
 		if (cpf) {
 			const cpfCustomerFound = await knex("clientes").where('cpf', cpf).first();
+
 			if (!cpfCustomerFound) {
 				return res.status(401).json({ "mensagem": "Cpf ja possui cadastro para outro usuario" });
 			}

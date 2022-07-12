@@ -10,6 +10,8 @@ import './styles.css';
 
 function Customers() {
     const [openModalAddCustomers, setOpenModalAddCustomers] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
+    // const [clickedSearchIcon, setClickedSearchIcon] = useState(false);
 
     return (
         <div className="container-home">
@@ -33,13 +35,24 @@ function Customers() {
                             <img src={FilterIcon} alt='filter' />
                         </button>
                         <div className='search'>
-                            <input type='text' placeholder='Pesquisa' />
-                            <img src={SearchIcon} alt='search' />
+                            <input 
+                              type='text' 
+                              placeholder='Pesquisar'
+                              value={searchValue}
+                              onChange={(e)=>setSearchValue(e.target.value)} 
+                            />
+                            <img 
+                              src={SearchIcon} 
+                              alt='search'
+                            //   onClick={()=>setClickedSearchIcon(true)} 
+                            />
                         </div>
                     </div>
                 </div>
                 <div className='container-customers-table'>
-                    <TableCustomers />
+                    <TableCustomers
+                      searchValue={searchValue}
+                    />
                 </div>
                 <ModalCustomers
                     open={openModalAddCustomers}

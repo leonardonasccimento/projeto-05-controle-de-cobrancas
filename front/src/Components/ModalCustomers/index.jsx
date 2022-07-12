@@ -63,7 +63,7 @@ function ModalCustomers({ open, handleClose }) {
       alert("O telefone deve ter o máximo de 11 caracteres");
       return;
     }
-
+   
     if(cep){
       if (cep.length > 8) {
         alert("O CEP deve ter o máximo de 8 caracteres");

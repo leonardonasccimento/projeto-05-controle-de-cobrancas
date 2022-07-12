@@ -6,13 +6,20 @@ async function signUp(req, res) {
 
     try {
         const hash = await bcrypt.hash(senha, 10);
-        const user = await knex('usuarios').insert({ nome, email, senha: hash });
+        
+        const user = await knex('usuarios')
+        .insert({ 
+            nome, 
+            email, 
+            senha: hash
+        })
+        .returning('*');
 
-        if (!user) {
+        if (user.length===0) {
             return res.status(400).json({ error: 'Erro ao cadastrar usuário' });
         }
 
-        return res.status(201).json();
+        return res.status(201).json(user[0]);
     } catch (error) {
         return res.status(500).json(error.message);
     }

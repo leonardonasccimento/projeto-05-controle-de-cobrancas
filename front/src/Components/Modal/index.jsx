@@ -51,7 +51,7 @@ function Modal({
     }
 
     if (cpfEdit) {
-      if (cpfEdit.length < 11 || cpfEdit.length > 11) {
+      if (cpfEdit.length !== 11) {
         alert("O CPF deve ter 11 caracteres.");
         return;
       }
@@ -65,9 +65,11 @@ function Modal({
       }
     }
 
-    if (phoneEdit.length > 11) {
-      alert("O Telefone deve ter no máximo 11 caracteres.");
-      return;
+    if(phoneEdit){
+      if (phoneEdit.length > 11) {
+        alert("O Telefone deve ter no máximo 11 caracteres.");
+        return;
+      }
     }
 
     if (passwordEdit !== passwordEditConfirmed) {
@@ -76,6 +78,8 @@ function Modal({
     }
 
     try {
+      console.log(cpfEdit);
+
       const response = await api.put("/usuario", {
         nome: nameEdit,
         email: emailEdit,
