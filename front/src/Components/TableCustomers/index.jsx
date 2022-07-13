@@ -61,10 +61,12 @@ export default function TableCustomers({searchValue}) {
       <Table sx={{ minWidth: 280 }} size="medium" aria-label="a dense table">
         <TableHead>
           <TableCell className="title-table">
-            <img 
-              src={OrganizeIcon} 
-              alt="organize" 
-              onClick={()=>setClickedOrganizeCustomers(!clickedOrganizeCustomers)}
+            <img
+              src={OrganizeIcon}
+              alt="organize"
+              onClick={() =>
+                setClickedOrganizeCustomers(!clickedOrganizeCustomers)
+              }
             />
             <span>Cliente</span>
           </TableCell>
@@ -83,11 +85,20 @@ export default function TableCustomers({searchValue}) {
               <TableCell className="table-items">{row.cpf}</TableCell>
               <TableCell className="table-items">{row.email}</TableCell>
               <TableCell className="table-items">{row.telefone}</TableCell>
-              <TableCell className="table-items">{row.status}</TableCell>
+              <TableCell className="table-items">
+                <span
+                  className={
+                    (row.status === "Em dia" && "status-color in-day") ||
+                    (row.status === "Inadimplente" && "status-color defaulter")
+                  }
+                >
+                  {row.status}
+                </span>
+              </TableCell>
               <TableCell className="table-items">
                 <div onClick={() => handleVerifyDataCustomer(row)}>
                   <img
-                    className='add-icon'
+                    className="add-icon"
                     src={ChargesIcon}
                     alt="cobranca"
                     onClick={() => setOpenModalAddCharges(true)}

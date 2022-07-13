@@ -7,11 +7,11 @@ const { listUsers } = require('../controllers/user/listUsers');
 
 const routeUser = express();
 
+routeUser.get('/usuario', listUsers);
 routeUser.post('/usuario', verify.verifyFieldsSignup, verify.verifyEmailSignup, signUp);
 
 routeUser.use(authenticateAccess);
 
-routeUser.get('/usuario', listUsers);
 routeUser.put('/usuario', verify.verifyFieldsEditUser, verify.verifyEmailEditUser, verify.verifyCpfEditUser, editUser);
 
 module.exports = routeUser;

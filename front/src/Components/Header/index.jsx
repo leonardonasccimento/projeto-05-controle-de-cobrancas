@@ -11,7 +11,7 @@ import './styles.css';
 function Header() {
   const navigate = useNavigate();
   const {
-    token,
+    // token,
     user,
     usersArray,
     setUser,
@@ -25,11 +25,7 @@ function Header() {
 
   async function handleLoadUsersArray() {
     try {
-      const response = await api.get("/usuario", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.get("/usuario");
 
       if (response.status > 204) {
         return;
@@ -43,11 +39,7 @@ function Header() {
 
   async function handleUpdateUser() {
     try {
-      const response = await api.get("/usuario", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.get("/usuario");
 
       if (response.status > 204) {
         return;
