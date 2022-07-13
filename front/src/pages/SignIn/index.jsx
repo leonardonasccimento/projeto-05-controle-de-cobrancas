@@ -15,19 +15,18 @@ function SignIn() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!email || !password) {
-      alert("Preencha todos os campos ou cadastre-se.");
-      return;
-    }
-
     try {
-      const { data } = await api.post("/login", {
+      const response = await api.post("/login", {
         email: email,
         senha: password,
       });
 
-      setUser(data.usuario);
-      setToken(data.token);
+      if (response.status > 204) {
+        return;
+      }
+
+      setUser(response.data.usuario);
+      setToken(response.data.token);
 
       navigate("/home");
       window.location.reload();

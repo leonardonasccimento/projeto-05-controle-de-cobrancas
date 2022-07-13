@@ -13,8 +13,29 @@
   cursor: pointer;
 }
 
-img {
-  cursor: pointer;
+.status-color {
+  padding: 0.4rem 1rem;
+  border-radius: 0.8rem;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1.9rem;
+}
+
+.in-day {
+  color: #1fa7af;
+  background-color: #eef6f6;
+}
+
+.defaulter {
+  color: #971d1d;
+  background-color: #ffefef;
+}
+
+.in-day-pending {
+  color: #c5a605;
+  background-color: #fcf6dc;
 }
 
 .add-icon:hover {

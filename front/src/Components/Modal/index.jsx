@@ -78,8 +78,6 @@ function Modal({
     }
 
     try {
-      console.log(cpfEdit);
-
       const response = await api.put("/usuario", {
         nome: nameEdit,
         email: emailEdit,

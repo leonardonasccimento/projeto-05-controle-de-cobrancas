@@ -66,28 +66,34 @@ export default function TableCharges({searchValue}) {
     <TableContainer>
       <Table sx={{ minWidth: 280 }} size="medium" aria-label="a dense table">
         <TableHead>
-          <TableCell className="title-table" >
-            <div 
-              className='display'
+          <TableCell className="title-table">
+            <div
+              className="display"
               onClick={() => setClickedOrganizeIconId(false)}
             >
               <img
                 src={OrganizeIcon}
                 alt="organize"
-                onClick={() => setClickedOrganizeChargesCustomer(!clickedOrganizeChargesCustomer)}
+                onClick={() =>
+                  setClickedOrganizeChargesCustomer(
+                    !clickedOrganizeChargesCustomer
+                  )
+                }
               />
             </div>
             <span>Cliente</span>
           </TableCell>
           <TableCell className="title-table">
-            <div 
-              className='display'
+            <div
+              className="display"
               onClick={() => setClickedOrganizeIconId(true)}
             >
               <img
                 src={OrganizeIcon}
                 alt="organize"
-                onClick={() => setClickedOrganizeChargesId(!clickedOrganizeChargesId)}
+                onClick={() =>
+                  setClickedOrganizeChargesId(!clickedOrganizeChargesId)
+                }
               />
             </div>
             <span>ID Cob.</span>
@@ -111,7 +117,17 @@ export default function TableCharges({searchValue}) {
               <TableCell className="table-items">
                 {new Date(row.vencimento).toLocaleDateString()}
               </TableCell>
-              <TableCell className="table-items">{row.status}</TableCell>
+              <TableCell className="table-items">
+                <span
+                  className={
+                    (row.status === "pago" && "status-color in-day") ||
+                    (row.status === "vencido" && "status-color defaulter") ||
+                    (row.status === "pendente" && "status-color in-day-pending")
+                  }
+                >
+                  {row.status}
+                </span>
+              </TableCell>
               <TableCell className="table-items">{row.descricao}</TableCell>
               <TableCell className="table-items">
                 <div onClick={() => handleVerifyDataCharge(row)}>

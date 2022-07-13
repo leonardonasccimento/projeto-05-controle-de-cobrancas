@@ -1,12 +1,14 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 button {
   all: unset;
   box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
 }
 
 html {
@@ -34,11 +36,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.6rem;
-}
-
-button {
-  text-align: center;
-  cursor: pointer;
 }
 
 #root {

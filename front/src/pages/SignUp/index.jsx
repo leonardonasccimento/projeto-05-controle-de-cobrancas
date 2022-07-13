@@ -1,13 +1,18 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import RegisterSuccess from '../../assets/img-success.svg';
 import CustomStepper from '../../Components/CustomStepper/index';
 import Input from '../../Components/Input';
+import useGlobalContext from '../../hooks/useGlobalContext';
 import api from '../../services/api';
 import './styles.css';
 
 function SignUp() {
   const navigate = useNavigate();
+  const {
+    usersArray,
+    setUsersArray}=useGlobalContext();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,10 +24,31 @@ function SignUp() {
     thirdSection: false,
   });
 
+  async function handleUsers() {
+    try {
+      const response = await api.get("/usuario");
+
+      if (response.status > 204) {
+        return;
+      }
+
+      setUsersArray([...response.data]);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+  }
+
+  useEffect(()=>{
+    if(email!==''){
+      handleUsers();
+    }
+  });
+
   function nextFirstSection() {
-    if (!name || !email) {
-      alert("Preencha os campos abaixo");
-      return;
+    const emailDouble = usersArray.some((object) => object.email === email);
+    if (emailDouble) {
+        alert("Este E-mail já foi cadastrado.");
+        return;
     }
     
     setActiveStep({ ...activeStep, secondSection: true });
@@ -60,12 +86,16 @@ function SignUp() {
     };
 
     try {
-      await api.post("usuario", user);
-      alert("usuario cadastrado " + name);
+      const response=await api.post("usuario", user);
 
+      if (response.status > 204) {
+        return;
+      }
+
+      alert("usuario cadastrado " + name);
       navigate("/");
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data.message);
     }
   }
 
@@ -100,7 +130,11 @@ function SignUp() {
                   handleOnChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <button className="btn-pink btn">Continuar</button>
+              <button
+                type='submit' 
+                className="btn-pink btn"
+                onClick={()=>handleUsers()}
+              >Continuar</button>
               <span className=".nunito-16">
                 Já possui uma conta? Faça seu <Link to="/"> Login</Link>
               </span>
@@ -131,7 +165,9 @@ function SignUp() {
                 />
               </div>
               <button className="btn-pink btn">Entrar</button>
-              <span className=".nunito-16">
+              <span 
+                className="nunito-16"
+              >
                 Já possui uma conta? Faça seu <Link to="/"> Login</Link>
               </span>
             </form>

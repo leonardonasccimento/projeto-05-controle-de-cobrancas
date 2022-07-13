@@ -8,8 +8,7 @@ const steps = [
     },
     {
         label: 'Escolha uma senha',
-        description:
-            'Escolha uma senha segura',
+        description: 'Escolha uma senha segura',
     },
     {
         label: 'Cadastro realizado com sucesso',
