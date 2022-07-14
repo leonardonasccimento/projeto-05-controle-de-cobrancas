@@ -140,7 +140,6 @@ function SignUp() {
               </span>
             </form>
           )}
-
         {activeStep.firstSection &&
           activeStep.secondSection &&
           !activeStep.thirdSection && (
@@ -172,7 +171,6 @@ function SignUp() {
               </span>
             </form>
           )}
-
         {activeStep.firstSection &&
           activeStep.secondSection &&
           activeStep.thirdSection && (
@@ -190,7 +188,6 @@ function SignUp() {
               </Link>
             </div>
           )}
-
         <div className="progress-bar">
           <div
             style={{

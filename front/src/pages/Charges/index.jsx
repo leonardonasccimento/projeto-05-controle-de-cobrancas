@@ -27,7 +27,7 @@ function Charges() {
             </button>
             <div className="search">
               <input 
-                type="text" 
+                type="search" 
                 placeholder="Pesquisar"
                 value={searchValue}
                 onChange={(e)=>setSearchValue(e.target.value)} 

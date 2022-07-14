@@ -27,7 +27,6 @@ function Modal({
       setCpfEdit(user.cpf);
       setPhoneEdit(user.telefone);
     }
-
   },[modalEdit, user.nome, user.email, user.cpf, user.telefone]);
 
   function handleReset() {
@@ -55,6 +54,11 @@ function Modal({
         alert("O CPF deve ter 11 caracteres.");
         return;
       }
+
+      if(`${parseInt(cpfEdit)}`.length !== `${Number(cpfEdit)}`.length){
+        alert("O campo CPF deve conter apenas números.");
+        return;
+      }
     }
 
     const cpfDouble = usersArray.some((object) => object.cpf === cpfEdit);
@@ -68,6 +72,11 @@ function Modal({
     if(phoneEdit){
       if (phoneEdit.length > 11) {
         alert("O Telefone deve ter no máximo 11 caracteres.");
+        return;
+      }
+
+      if(`${parseInt(phoneEdit)}`.length !== `${Number(phoneEdit)}`.length){
+        alert("O campo Telefone deve conter apenas números.");
         return;
       }
     }
@@ -124,7 +133,6 @@ function Modal({
                 required
               />
             </label>
-
             <label className="nunito-14" htmlFor="nome">
               E-mail*
               <Input
@@ -136,31 +144,28 @@ function Modal({
                 required
               />
             </label>
-
             <div className="modal-edit-row">
               <label className="nunito-14" htmlFor="nome">
                 CPF
                 <Input
-                  placeholder="Digite seu CPF"
-                  type="text"
+                  placeholder="Apenas números"
+                  type="number"
                   name="cpf"
                   value={cpfEdit}
                   handleOnChange={(e) => setCpfEdit(e.target.value)}
                 />
               </label>
-
               <label className="nunito-14" htmlFor="nome">
                 Telefone
                 <Input
-                  placeholder="Digite seu Telefone"
-                  type="text"
+                  placeholder="Apenas números"
+                  type="number"
                   name="telefone"
                   value={phoneEdit}
                   handleOnChange={(e) => setPhoneEdit(e.target.value)}
                 />
               </label>
             </div>
-
             <label className="nunito-14" htmlFor="nome">
               Nova Senha*
               <Input
@@ -172,7 +177,6 @@ function Modal({
                 handleOnChange={(e) => setPasswordEdit(e.target.value)}
               />
             </label>
-
             <label className="nunito-14" htmlFor="nome">
               Confirmar Senha*
               <Input

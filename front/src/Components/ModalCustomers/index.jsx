@@ -47,6 +47,11 @@ function ModalCustomers({ open, handleClose }) {
       return;
     }
 
+    if(`${parseInt(cpf)}`.length !== `${Number(cpf)}`.length){
+      alert("O campo CPF deve conter apenas números.");
+      return;
+    }
+
     const emailDouble = customersArray.some((object) => object.email === email);
     if (emailDouble) {
       alert("Este E-mail já foi cadastrado.");
@@ -63,10 +68,20 @@ function ModalCustomers({ open, handleClose }) {
       alert("O telefone deve ter o máximo de 11 caracteres");
       return;
     }
+
+    if(`${parseInt(phone)}`.length !== `${Number(phone)}`.length){
+      alert("O campo Telefone deve conter apenas números.");
+      return;
+    }
    
     if(cep){
       if (cep.length > 8) {
         alert("O CEP deve ter o máximo de 8 caracteres");
+        return;
+      }
+  
+      if(`${parseInt(cep)}`.length !== `${Number(cep)}`.length){
+        alert("O campo CEP deve conter apenas números.");
         return;
       }
     }
@@ -93,15 +108,10 @@ function ModalCustomers({ open, handleClose }) {
       }
 
       alert("Cliente registrado com sucesso!");
-      handleClear();
       // setCustomersArray([...response.data]);
     } catch (error) {
       alert(error.response.data.mensage);
     }
-  }
-
-  function handleReloadPage(e) {
-    e.stopPropagation();
   }
 
   return (
@@ -109,21 +119,18 @@ function ModalCustomers({ open, handleClose }) {
       {open && (
         <div className="backdrop">
           <div className="modal-container">
-            <div onClick={(e) => handleReloadPage(e)}>
-              <img
-                className="close-icon"
-                src={CloseIcon}
-                alt="close icon"
-                onClick={handleClose}
-              />
-            </div>
+            <img
+              className="close-icon"
+              src={CloseIcon}
+              alt="close icon"
+              onClick={handleClose}
+            />
             <form className="modal-form" onSubmit={handleSubmit}>
               <div className="modal-edit-input">
                 <div className="header-customers-icon">
                   <img src={CustomersIcon} alt="customers icon" />
                   <h2>Cadastro do Cliente</h2>
                 </div>
-
                 <label className="nunito-14">
                   Nome*
                   <input
@@ -134,7 +141,6 @@ function ModalCustomers({ open, handleClose }) {
                     required
                   />
                 </label>
-
                 <label
                   className="nunito-14"
                   //   htmlFor="email"
@@ -149,12 +155,11 @@ function ModalCustomers({ open, handleClose }) {
                     required
                   />
                 </label>
-
                 <div className="modal-edit-row">
                   <label className="nunito-14">
                     CPF*
                     <input
-                      placeholder="Digite o CPF"
+                      placeholder="Apenas números"
                       type="number"
                       value={cpf}
                       onChange={(e) => setCpf(e.target.value)}
@@ -164,15 +169,14 @@ function ModalCustomers({ open, handleClose }) {
                   <label className="nunito-14">
                     Telefone*
                     <input
-                      placeholder="Digite o telefone"
-                      type="text"
+                      placeholder="Apenas números"
+                      type="number"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       required
                     />
                   </label>
                 </div>
-
                 <label className="nunito-14">
                   Endereço
                   <input
@@ -182,7 +186,6 @@ function ModalCustomers({ open, handleClose }) {
                     onChange={(e) => setAddress(e.target.value)}
                   />
                 </label>
-
                 <label className="nunito-14">
                   Complemento
                   <input
@@ -192,18 +195,16 @@ function ModalCustomers({ open, handleClose }) {
                     onChange={(e) => setComplement(e.target.value)}
                   />
                 </label>
-
                 <div className="modal-edit-row">
                   <label className="nunito-14">
                     CEP
                     <input
-                      placeholder="Digite o CEP"
-                      type="text"
+                      placeholder="Apenas números"
+                      type="number"
                       value={cep}
                       onChange={(e) => setCep(e.target.value)}
                     />
                   </label>
-
                   <label className="nunito-14">
                     Bairro
                     <input
@@ -225,18 +226,43 @@ function ModalCustomers({ open, handleClose }) {
                     />
                   </label>
 
-                  <label className="nunito-14">
+                  <label className="nunito-14 align-label-select">
                     UF
-                    <input
-                      placeholder="Digite a UF"
-                      type="text"
-                      value={state}
+                    <select 
                       onChange={(e) => setState(e.target.value)}
-                    />
+                    >
+                      <option value="" selected>Nenhum</option>
+                      <option value="AC">AC</option>
+                      <option value="AL">AL</option>
+                      <option value="AM">AM</option>
+                      <option value="AP">AP</option>
+                      <option value="BA">BA</option>
+                      <option value="CE">CE</option>
+                      <option value="DF">DF</option>
+                      <option value="ES">ES</option>
+                      <option value="GO">GO</option>
+                      <option value="MA">MA</option>
+                      <option value="MG">MG</option>
+                      <option value="MS">MS</option>
+                      <option value="MT">MT</option>
+                      <option value="PA">PA</option>
+                      <option value="PB">PB</option>
+                      <option value="PE">PE</option>
+                      <option value="PI">PI</option>
+                      <option value="PR">PR</option>
+                      <option value="RJ">RJ</option>
+                      <option value="RN">RN</option>
+                      <option value="RO">RO</option>
+                      <option value="RR">RR</option>
+                      <option value="RS">RS</option>
+                      <option value="SC">SC</option>
+                      <option value="SE">SE</option>
+                      <option value="SP">SP</option>
+                      <option value="TO">TO</option>
+                    </select>
                   </label>
                 </div>
               </div>
-
               <div className="btn-modal-customers">
                 <button className="btn-cancel" onClick={() => handleClear()}>
                   Cancelar

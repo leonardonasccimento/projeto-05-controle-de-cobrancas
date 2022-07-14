@@ -67,6 +67,11 @@
   color: #3f3f55;
 }
 
+.align-label-select {
+  display: flex;
+  flex-direction: column;
+}
+
 .btn-modal-customers {
   display: flex;
   align-items: center;
