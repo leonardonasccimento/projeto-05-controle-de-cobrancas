@@ -17,7 +17,7 @@ function ModalEditCharge({ open, handleClose }) {
     if(open){
       setDescription(`${currentCharge.descricao}`);
       setValue(`${currentCharge.valor}`);
-      setDueDate(`${(new Date(currentCharge.vencimento)).toLocaleDateString()}`);
+      setDueDate(`${(new Date(currentCharge.vencimento)).toLocaleDateString().split('/').reverse().join('-')}`);
       setStatus(currentCharge.status==='vencido'||currentCharge.status==='pendente' ? 'pendente' : 'pago');
     }
   }, [open, currentCharge]);
@@ -34,6 +34,11 @@ function ModalEditCharge({ open, handleClose }) {
 
     if (status !== "pago" && status !== "pendente") {
       alert("Escolha um status");
+      return;
+    }
+
+    if (value.includes('e')) {
+      alert("O campo Valor deve conter apenas números.");
       return;
     }
 
@@ -60,10 +65,7 @@ function ModalEditCharge({ open, handleClose }) {
       alert("Cobrança editada com sucesso!");
       handleClear();
     } catch (error) {
-      alert(
-        error.message ??
-        "O vencimento deve ser no formato dia/mês/ano. Com dia, mês e ano válidos"
-      );
+      alert(error.response.data.message);
     }
   }
 
@@ -118,7 +120,7 @@ function ModalEditCharge({ open, handleClose }) {
                     Vencimento*
                     <input
                       placeholder="Ex: 31/12/1999"
-                      type="text"
+                      type="date"
                       value={dueDate}
                       onChange={(e) => setDueDate(e.target.value)}
                       required

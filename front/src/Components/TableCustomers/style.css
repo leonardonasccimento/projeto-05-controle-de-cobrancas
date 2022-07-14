@@ -5,6 +5,10 @@
   color: #3f3f55 !important;
 }
 
+.title-table img {
+  cursor: pointer;
+}
+
 .table-items {
   font-family: "Nunito" !important;
   font-weight: 400 !important;

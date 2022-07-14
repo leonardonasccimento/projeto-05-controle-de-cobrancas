@@ -28,6 +28,11 @@ function ModalCharges({ open, handleClose }) {
       return;
     }
 
+    if (value.includes('e')) {
+        alert("O campo Valor deve conter apenas números.");
+        return;
+    }
+
     if (dueDate.length > 10) {
       alert("A data deve ter o máximo de 10 caracteres");
       return;
@@ -49,12 +54,8 @@ function ModalCharges({ open, handleClose }) {
       }
 
       alert("Cobrança cadastrada com sucesso!");
-      handleClear();
     } catch (error) {
-      alert(
-        error.message ??
-        "O vencimento deve ser no formato dia/mês/ano. Com dia, mês e ano válidos"
-      );
+      alert(error.response.data.message);
     }
   }
 
@@ -69,7 +70,6 @@ function ModalCharges({ open, handleClose }) {
               alt="close icon"
               onClick={handleClose}
             />
-
             <form className="modal-form" onSubmit={handleSubmitCharge}>
               <div className="modal-edit-input mod-modal-edit-input">
                 <div className="header-customers-icon">
@@ -104,12 +104,11 @@ function ModalCharges({ open, handleClose }) {
                       required
                     />
                   </label>
-
                   <label className="nunito-14">
                     Vencimento*
                     <input
                       placeholder="Ex: 31/12/1999"
-                      type="text"
+                      type="date"
                       value={dueDate}
                       onChange={(e) => setDueDate(e.target.value)}
                       required
@@ -119,7 +118,10 @@ function ModalCharges({ open, handleClose }) {
                 Status*
                 <div className="container-labels">
                   <div className="container-radio">
-                    <label className="nunito-14 mod-nunito-14" htmlFor="pago">
+                    <label 
+                      className="nunito-14 mod-nunito-14" 
+                      htmlFor="pago"
+                    >
                       <input
                         type="radio"
                         name="pago"
@@ -128,7 +130,6 @@ function ModalCharges({ open, handleClose }) {
                         onChange={() => setStatus("pago")}
                       />
                     </label>
-
                     <label
                       className="nunito-14 mod-nunito-14"
                       htmlFor="pendente"
@@ -142,14 +143,12 @@ function ModalCharges({ open, handleClose }) {
                       />
                     </label>
                   </div>
-
                   <div className="status-paid">
                     <span>Pago</span>
                     <span>Pendente</span>
                   </div>
                 </div>
               </div>
-
               <div className="btn-modal-customers">
                 <button className="btn-cancel" onClick={() => handleClear()}>
                   Cancelar
