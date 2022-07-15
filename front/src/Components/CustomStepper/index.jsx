@@ -16,7 +16,7 @@ const steps = [
     },
 ];
 
-function CustomStepper({ activeStep, setActiveStep }) {
+function CustomStepper({ activeStep }) {
   return (
     <div className="stepper">
       <Stepper activeStep={activeStep} orientation="vertical">
