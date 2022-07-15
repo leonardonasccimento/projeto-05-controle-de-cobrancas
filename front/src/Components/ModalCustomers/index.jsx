@@ -47,7 +47,7 @@ function ModalCustomers({ open, handleClose }) {
       return;
     }
 
-    if(`${parseInt(cpf)}`.length !== `${Number(cpf)}`.length){
+    if (cpf.includes('e') || cpf.includes('E') || cpf.includes('.')) {
       alert("O campo CPF deve conter apenas números.");
       return;
     }
@@ -69,7 +69,7 @@ function ModalCustomers({ open, handleClose }) {
       return;
     }
 
-    if(`${parseInt(phone)}`.length !== `${Number(phone)}`.length){
+    if (phone.includes('e') || phone.includes('E') || phone.includes('.')) {
       alert("O campo Telefone deve conter apenas números.");
       return;
     }
@@ -79,8 +79,8 @@ function ModalCustomers({ open, handleClose }) {
         alert("O CEP deve ter o máximo de 8 caracteres");
         return;
       }
-  
-      if(`${parseInt(cep)}`.length !== `${Number(cep)}`.length){
+
+      if (cep.includes('e') || cep.includes('E') || cep.includes('.')) {
         alert("O campo CEP deve conter apenas números.");
         return;
       }
@@ -108,6 +108,7 @@ function ModalCustomers({ open, handleClose }) {
       }
 
       alert("Cliente registrado com sucesso!");
+      handleClear();
       // setCustomersArray([...response.data]);
     } catch (error) {
       alert(error.response.data.mensage);

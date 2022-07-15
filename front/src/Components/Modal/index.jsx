@@ -55,7 +55,7 @@ function Modal({
         return;
       }
 
-      if(`${parseInt(cpfEdit)}`.length !== `${Number(cpfEdit)}`.length){
+      if (cpfEdit.includes('e') || cpfEdit.includes('E') || cpfEdit.includes('.')) {
         alert("O campo CPF deve conter apenas números.");
         return;
       }
@@ -75,7 +75,12 @@ function Modal({
         return;
       }
 
-      if(`${parseInt(phoneEdit)}`.length !== `${Number(phoneEdit)}`.length){
+      // if(`${parseInt(phoneEdit)}`.length !== `${Number(phoneEdit)}`.length){
+      //   alert("O campo Telefone deve conter apenas números.");
+      //   return;
+      // }
+
+      if (phoneEdit.includes('e') || phoneEdit.includes('E') || phoneEdit.includes('.')) {
         alert("O campo Telefone deve conter apenas números.");
         return;
       }

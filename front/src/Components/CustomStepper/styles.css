@@ -17,13 +17,9 @@
 }
 
 .label-card label:nth-child(1) {
-  color: #0e8750;
+  /* color: #0e8750; */
   margin-bottom: 5rem;
 }
-
-/* .montserrat-18 {
-  color: red !important;
-} */
 
 .vertical {
   background-color: #0e8750;
