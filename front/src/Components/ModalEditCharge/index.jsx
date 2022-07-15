@@ -37,7 +37,7 @@ function ModalEditCharge({ open, handleClose }) {
       return;
     }
 
-    if (value.includes('e')) {
+    if (value.includes('e') || value.includes('E')) {
       alert("O campo Valor deve conter apenas números.");
       return;
     }
@@ -97,7 +97,7 @@ function ModalEditCharge({ open, handleClose }) {
                 </label>
                 <label className="nunito-14 new-height">
                   Descrição (opcional)
-                  <input
+                  <textarea
                     placeholder=''
                     type="text"
                     value={description}

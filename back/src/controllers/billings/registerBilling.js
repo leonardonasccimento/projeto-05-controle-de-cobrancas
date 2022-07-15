@@ -16,7 +16,12 @@ const registerBilling = async (req, res) => {
       return res.status(400).json({error: "A data deve ter o máximo de 10 caracteres"});
     }
     
-    let dateISO = new Date(vencimento.split('/').reverse().join('/'));
+    let dateISO;
+    if(vencimento.includes('/')){
+      dateISO = new Date(vencimento.split('/').reverse().join('/'));
+    }else{
+      dateISO=vencimento;
+    }
     
     try {
         const customer = await knex("clientes").where("cpf", id).first();

@@ -28,7 +28,7 @@ function ModalCharges({ open, handleClose }) {
       return;
     }
 
-    if (value.includes('e')) {
+    if (value.includes('e') || value.includes('E')) {
         alert("O campo Valor deve conter apenas números.");
         return;
     }
@@ -54,6 +54,7 @@ function ModalCharges({ open, handleClose }) {
       }
 
       alert("Cobrança cadastrada com sucesso!");
+      handleClear();
     } catch (error) {
       alert(error.response.data.message);
     }
@@ -86,7 +87,7 @@ function ModalCharges({ open, handleClose }) {
                 </label>
                 <label className="nunito-14 new-height">
                   Descrição (opcional)
-                  <input
+                  <textarea
                     placeholder=""
                     type="text"
                     value={description}

@@ -26,8 +26,18 @@ function CustomStepper({ activeStep, setActiveStep }) {
             <div className="intern-circle"></div>
           </div>
           <div className="label-card">
-            <label className="montserrat-18">{steps[0].label}</label>
-            <label className="nunito-16">{steps[0].description}</label>
+            <label 
+              className= 'montserrat-18'
+              style={{
+                color: activeStep.secondSection&&'#0e8750'
+              }}
+            >{steps[0].label}</label>
+            <label 
+              className="nunito-16"
+              style={{
+                color: activeStep.secondSection&&'#0e8750'
+              }}
+            >{steps[0].description}</label>
           </div>
         </div>
 
@@ -48,8 +58,18 @@ function CustomStepper({ activeStep, setActiveStep }) {
           </div>
 
           <div className="label-card">
-            <label className="montserrat-18">{steps[1].label}</label>
-            <label className="nunito-16">{steps[1].description}</label>
+            <label 
+              className="montserrat-18"
+              style={{
+                color: activeStep.thirdSection&&'#0e8750'
+              }}
+            >{steps[1].label}</label>
+            <label 
+              className="nunito-16"
+              style={{
+                color: activeStep.thirdSection&&'#0e8750'
+              }}
+            >{steps[1].description}</label>
           </div>
         </div>
 
@@ -69,8 +89,18 @@ function CustomStepper({ activeStep, setActiveStep }) {
           </div>
 
           <div className="label-card">
-            <label className="montserrat-18">{steps[2].label}</label>
-            <label className="nunito-16">{steps[2].description}</label>
+            <label 
+              className="montserrat-18"
+              style={{
+                color: activeStep.thirdSection&&'#0e8750'
+              }}
+            >{steps[2].label}</label>
+            <label 
+              className="nunito-16"
+              style={{
+                color: activeStep.thirdSection&&'#0e8750'
+              }}
+            >{steps[2].description}</label>
           </div>
         </div>
       </Stepper>

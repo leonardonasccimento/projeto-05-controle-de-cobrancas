@@ -44,7 +44,8 @@ function SignUp() {
     }
   });
 
-  function nextFirstSection() {
+  function nextFirstSection(e) {
+    e.preventDefault();
     const emailDouble = usersArray.some((object) => object.email === email);
     if (emailDouble) {
         alert("Este E-mail já foi cadastrado.");
@@ -133,7 +134,7 @@ function SignUp() {
               <button
                 type='submit' 
                 className="btn-pink btn"
-                onClick={()=>handleUsers()}
+                onClick={(e)=>handleUsers(e)}
               >Continuar</button>
               <span className=".nunito-16">
                 Já possui uma conta? Faça seu <Link to="/"> Login</Link>

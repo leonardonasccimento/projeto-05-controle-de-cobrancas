@@ -26,3 +26,28 @@ label {
   color: #344054;
   font-size: 1.4rem;
 }
+
+textarea {
+  height: 4rem;
+  width: 100%;
+
+  background-color: #ffffff;
+  color: #404040;
+
+  border: 0.1rem solid #d0d5dd;
+  box-shadow: 0rem 0.1rem 0.2rem rgba(16, 24, 40, 0.05);
+  border-radius: 0.8rem;
+  padding: 0.7rem;
+}
+
+textarea::placeholder {
+  color: #667085;
+  font-family: "Nunito", sans-serif;
+  font-style: normal;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+textarea:focus {
+  border: 0.1rem solid #da0175;
+}
