@@ -13,7 +13,6 @@ function Charges() {
   return (
     <div className="container-home">
       <Sidebar />
-
       <div className="container-header-section">
         <Header />
         <div className="customers-header">

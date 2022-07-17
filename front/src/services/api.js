@@ -11,5 +11,5 @@ export default axios.create({
     },
 });
 
-// https://crm-controle-de-cobranca.herokuapp.com
+// https://controle-de-cobrancas.herokuapp.com
 // http://localhost:8000

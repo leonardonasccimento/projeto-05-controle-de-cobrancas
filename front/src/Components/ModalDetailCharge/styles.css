@@ -1,0 +1,47 @@
+.margin {
+  margin-bottom: 1.6rem;
+}
+
+.item-span {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.4rem;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  color: #3f3f55;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.item-span :nth-child(1) {
+  margin-top: 1rem;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  color: #3f3f55;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.description-style {
+  /* width: 48.9rem; */
+  height: 3.3rem;
+  line-height: 130%;
+  color: #000000 !important;
+}
+
+.container-dueDate-value {
+  display: flex;
+}
+
+.container-dueDate-value :nth-child(1),
+.container-dueDate-value :nth-child(2) {
+  width: 50%;
+}

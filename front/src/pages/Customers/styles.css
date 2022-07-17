@@ -41,7 +41,7 @@
 
 .customer-filter {
   border-style: none;
-  cursor: pointer;
+  cursor: auto;
   padding: 0.5rem;
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0 0 0.4rem;

@@ -28,13 +28,11 @@ function CustomerStatus({
           {number}
         </strong>
       </div>
-
       <div className="charge-header ">
         <h4>Clientes</h4>
         <h4>Data de venc.</h4>
         <h4>Valor</h4>
       </div>
-
       <ul className="separator">
         {positionsNumber.map((position, index) => (
           <ItemStatus
@@ -48,7 +46,6 @@ function CustomerStatus({
           />
         ))}
       </ul>
-
       <div className="see-all">
         <Link to="/customers">Ver Todos</Link>
       </div>

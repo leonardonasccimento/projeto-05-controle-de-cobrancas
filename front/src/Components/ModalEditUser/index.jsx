@@ -5,12 +5,11 @@ import api from '../../services/api';
 import Input from '../Input';
 import './styles.css';
 
-function Modal({
+function ModalEditUser({
   toggleModal,
   handleUpdateUser,
   modalEdit,
   }){
-    
   const { token, user, usersArray} = useGlobalContext();
 
   const [nameEdit, setNameEdit] = useState("");
@@ -208,5 +207,5 @@ function Modal({
   );
 }
 
-export default Modal;
+export default ModalEditUser;
 

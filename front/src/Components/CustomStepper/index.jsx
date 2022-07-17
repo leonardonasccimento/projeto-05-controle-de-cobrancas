@@ -40,7 +40,6 @@ function CustomStepper({ activeStep }) {
             >{steps[0].description}</label>
           </div>
         </div>
-
         <div className="box-stepper">
           <div className="vertical-next"></div>
           <div
@@ -56,7 +55,6 @@ function CustomStepper({ activeStep }) {
               }}
             ></div>
           </div>
-
           <div className="label-card">
             <label 
               className="montserrat-18"
@@ -72,7 +70,6 @@ function CustomStepper({ activeStep }) {
             >{steps[1].description}</label>
           </div>
         </div>
-
         <div className="box-stepper">
           <div
             className="circle"
@@ -87,7 +84,6 @@ function CustomStepper({ activeStep }) {
               }}
             ></div>
           </div>
-
           <div className="label-card">
             <label 
               className="montserrat-18"

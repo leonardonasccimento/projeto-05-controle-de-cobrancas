@@ -5,7 +5,7 @@ import useGlobalContext from '../../hooks/useGlobalContext.js';
 import api from '../../services/api';
 import './styles.css';
 
-function ModalCustomers({ open, handleClose }) {
+function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
   const { 
     token, 
     customersArray} = useGlobalContext();
@@ -117,7 +117,7 @@ function ModalCustomers({ open, handleClose }) {
 
   return (
     <>
-      {open && (
+      {openModalAddCustomer && (
         <div className="backdrop">
           <div className="modal-container">
             <img
@@ -280,4 +280,4 @@ function ModalCustomers({ open, handleClose }) {
   );
 }
 
-export default ModalCustomers;
+export default ModalAddCustomer;

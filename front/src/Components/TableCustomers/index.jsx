@@ -9,11 +9,11 @@ import ChargesIcon from '../../assets/charges-pink.svg';
 import OrganizeIcon from '../../assets/organize-icon.svg';
 import useGlobalContext from '../../hooks/useGlobalContext';
 import api from '../../services/api';
-import ModalCharges from '../ModalCharges';
+import ModalAddCharge from '../ModalAddCharge';
 import './style.css';
 
 export default function TableCustomers({searchValue}) {
-  const [openModalAddCharges, setOpenModalAddCharges] = useState(false);
+  const [openModalAddCharge, setOpenModalAddCharge] = useState(false);
   const [clickedOrganizeCustomers, setClickedOrganizeCustomers] = useState(false);
   
   const { 
@@ -101,7 +101,7 @@ export default function TableCustomers({searchValue}) {
                     className="add-icon"
                     src={ChargesIcon}
                     alt="cobranca"
-                    onClick={() => setOpenModalAddCharges(true)}
+                    onClick={() => setOpenModalAddCharge(true)}
                   />
                 </div>
               </TableCell>
@@ -110,9 +110,9 @@ export default function TableCustomers({searchValue}) {
         </TableBody>
       </Table>
 
-      <ModalCharges
-        open={openModalAddCharges}
-        handleClose={() => setOpenModalAddCharges(false)}
+      <ModalAddCharge
+        openModalAddCharge={openModalAddCharge}
+        handleClose={() => setOpenModalAddCharge(false)}
       />
     </TableContainer>
   );

@@ -5,7 +5,7 @@ import useGlobalContext from '../../hooks/useGlobalContext.js';
 import api from '../../services/api';
 import './styles.css';
 
-function ModalCharges({ open, handleClose }) {
+function ModalAddCharge({ openModalAddCharge, handleClose }) {
   const { token, currentCustomer } = useGlobalContext();
 
   const [description, setDescription] = useState("");
@@ -62,7 +62,7 @@ function ModalCharges({ open, handleClose }) {
 
   return (
     <>
-      {open && (
+      {openModalAddCharge && (
         <div className="backdrop">
           <div className="modal-container mod-modal-container">
             <img
@@ -166,4 +166,4 @@ function ModalCharges({ open, handleClose }) {
   );
 }
 
-export default ModalCharges;
+export default ModalAddCharge;
