@@ -80,7 +80,6 @@ function ModalEditCharge({ openModalEditCharge, handleClose }) {
               alt="close icon"
               onClick={handleClose}
             />
-
             <form className="modal-form" onSubmit={handleSubmitCharge}>
               <div className="modal-edit-input mod-modal-edit-input">
                 <div className="header-customers-icon">
@@ -115,7 +114,6 @@ function ModalEditCharge({ openModalEditCharge, handleClose }) {
                       required
                     />
                   </label>
-
                   <label className="nunito-14">
                     Vencimento*
                     <input
@@ -139,7 +137,6 @@ function ModalEditCharge({ openModalEditCharge, handleClose }) {
                         onChange={() => setStatus("pago")}
                       />
                     </label>
-
                     <label
                       className="nunito-14 mod-nunito-14"
                       htmlFor="pendente"
@@ -153,14 +150,12 @@ function ModalEditCharge({ openModalEditCharge, handleClose }) {
                       />
                     </label>
                   </div>
-
                   <div className="status-paid">
                     <span>Pago</span>
                     <span>Pendente</span>
                   </div>
                 </div>
               </div>
-
               <div className="btn-modal-customers">
                 <button className="btn-cancel" onClick={() => handleClear()}>
                   Cancelar

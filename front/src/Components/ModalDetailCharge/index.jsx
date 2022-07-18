@@ -37,7 +37,7 @@ function ModalDetailCharge({ openModalDetailCharge, handleClose }) {
                 </div>
                 <div className="nunito-14 item-span">
                   Valor
-                  <span>{`R$ ${currentCharge.valor.toFixed(2)}`}</span>
+                  <span>{`R$ ${currentCharge.valor.toFixed(2)}`.replace('.',',')}</span>
                 </div>
               </div>
               <div className="container-dueDate-value">
