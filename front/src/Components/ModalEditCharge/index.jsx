@@ -5,7 +5,7 @@ import useGlobalContext from '../../hooks/useGlobalContext.js';
 import api from '../../services/api';
 import './styles.css';
 
-function ModalEditCharge({ open, handleClose }) {
+function ModalEditCharge({ openModalEditCharge, handleClose }) {
   const { token, currentCharge } = useGlobalContext();
 
   const [description, setDescription] = useState('');
@@ -14,13 +14,13 @@ function ModalEditCharge({ open, handleClose }) {
   const [dueDate, setDueDate] = useState("");
 
   useEffect(()=>{
-    if(open){
+    if(openModalEditCharge){
       setDescription(`${currentCharge.descricao}`);
       setValue(`${currentCharge.valor}`);
       setDueDate(`${(new Date(currentCharge.vencimento)).toLocaleDateString().split('/').reverse().join('-')}`);
       setStatus(currentCharge.status==='vencido'||currentCharge.status==='pendente' ? 'pendente' : 'pago');
     }
-  }, [open, currentCharge]);
+  }, [openModalEditCharge, currentCharge]);
 
   function handleClear() {
     setDescription("");
@@ -71,7 +71,7 @@ function ModalEditCharge({ open, handleClose }) {
 
   return (
     <>
-      {open && (
+      {openModalEditCharge && (
         <div className="backdrop">
           <div className="modal-container mod-modal-container">
             <img

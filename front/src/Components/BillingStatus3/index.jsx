@@ -24,13 +24,11 @@ function BillingStatus({
           {number}
         </strong>
       </div>
-
       <div className="charge-header">
         <h4>Cliente</h4>
         <h4>ID da cob.</h4>
         <h4>Valor</h4>
       </div>
-
       <ul className="separator">
         {positionsNumber.map((position, index) => (
           <ItemBilling
@@ -41,7 +39,6 @@ function BillingStatus({
           />
         ))}
       </ul>
-
       <div className="see-all">
         <Link to="/charges">Ver Todos</Link>
       </div>

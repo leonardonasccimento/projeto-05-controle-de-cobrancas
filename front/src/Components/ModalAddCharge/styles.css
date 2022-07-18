@@ -2,9 +2,6 @@
   width: 60rem;
 }
 
-/* .new-height input {
-  height: 8.8rem;
-} */
 .new-height textarea {
   height: 8.8rem;
 }
@@ -21,9 +18,6 @@
   width: 48%;
 }
 
-/* .mod-modal-edit-row label input {
-  width: 100%;
-} */
 .mod-modal-edit-row label textarea {
   width: 100%;
 }

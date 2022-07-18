@@ -4,7 +4,7 @@ import useGlobalContext from '../../hooks/useGlobalContext.js';
 import api from '../../services/api';
 import './styles.css';
 
-function ModalDeleteCharge({ open, handleClose }) {
+function ModalDeleteCharge({ openModalDeleteCharge, handleClose }) {
   const { token, currentCharge } = useGlobalContext();
 
   async function handleDeleteCharge(e) {
@@ -34,7 +34,7 @@ function ModalDeleteCharge({ open, handleClose }) {
 
   return (
     <>
-      {open && (
+      {openModalDeleteCharge && (
         <div className="backdrop">
           <div className="modal-container mod-modal-container-delete">
             <img
@@ -43,13 +43,11 @@ function ModalDeleteCharge({ open, handleClose }) {
               alt="close icon"
               onClick={handleClose}
             />
-
             <img
               className="atention-icon"
               alt="atention icon"
               src={AtentionIcon}
             />
-
             <div className="container-no-yes">
               <strong>Tem certeza que deseja excluir esta cobrança?</strong>
               <div className="btns-no-yes">
@@ -60,8 +58,6 @@ function ModalDeleteCharge({ open, handleClose }) {
                   Sim
                 </button>
               </div>
-              {/* <form className='btns-no-yes' onClick={handleDeleteCharge}>
-                </form> */}
             </div>
           </div>
         </div>

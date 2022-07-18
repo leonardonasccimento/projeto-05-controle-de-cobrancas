@@ -23,7 +23,7 @@
   justify-content: space-between;
 }
 
-/* .customize-paid, */
+.customize-paid,
 .customize-overdue {
   display: inline-table;
   flex-direction: column;

@@ -10,13 +10,15 @@ import ChargesEdit from '../../assets/chargesEdit.svg';
 import OrganizeIcon from '../../assets/organize-icon.svg';
 import useGlobalContext from '../../hooks/useGlobalContext';
 import api from '../../services/api';
-import ModalDeleteCharge from '../ModalDeleteCharge';
+import ModalDetailCharge from '../ModalDetailCharge';
 import ModalEditCharge from '../ModalEditCharge';
+import ModalDeleteCharge from '../ModalDeleteCharge';
 import './style.css';
 
 export default function TableCharges({searchValue}) {
-  const [openModalEditCharges, setOpenModalEditCharges] = useState(false);
-  const [openModalDeleteCharges, setOpenModalDeleteCharges] = useState(false);
+  const [openModalDetailCharge, setOpenModalDetailCharge] = useState(false);
+  const [openModalEditCharge, setOpenModalEditCharge] = useState(false);
+  const [openModalDeleteCharge, setOpenModalDeleteCharge] = useState(false);
   const [clickedOrganizeChargesCustomer, setClickedOrganizeChargesCustomer] = useState(false);
   const [clickedOrganizeChargesId, setClickedOrganizeChargesId] = useState(false);
   const [clickedOrganizeIconId, setClickedOrganizeIconId] = useState(false);
@@ -26,8 +28,14 @@ export default function TableCharges({searchValue}) {
     setChargesArray, 
     setCurrentCharge } = useGlobalContext();
 
+  function stopPropagation(e){
+    e.stopPropagation();
+  }
+
   function handleVerifyDataCharge(row) {
     setCurrentCharge(row);
+    console.log(row)
+
   }
 
   async function handleLoadCharges() {
@@ -74,11 +82,7 @@ export default function TableCharges({searchValue}) {
               <img
                 src={OrganizeIcon}
                 alt="organize"
-                onClick={() =>
-                  setClickedOrganizeChargesCustomer(
-                    !clickedOrganizeChargesCustomer
-                  )
-                }
+                onClick={() => setClickedOrganizeChargesCustomer(!clickedOrganizeChargesCustomer)}
               />
             </div>
             <span>Cliente</span>
@@ -91,9 +95,7 @@ export default function TableCharges({searchValue}) {
               <img
                 src={OrganizeIcon}
                 alt="organize"
-                onClick={() =>
-                  setClickedOrganizeChargesId(!clickedOrganizeChargesId)
-                }
+                onClick={() => setClickedOrganizeChargesId(!clickedOrganizeChargesId)}
               />
             </div>
             <span>ID Cob.</span>
@@ -104,9 +106,12 @@ export default function TableCharges({searchValue}) {
           <TableCell className="title-table">Descrição</TableCell>
           <TableCell className="title-table"></TableCell>
         </TableHead>
-        <TableBody>
+        <TableBody onClick={() => setOpenModalDetailCharge(true)}>
           {chargesArray.map((row, index) => (
-            <TableRow key={row.id}>
+            <TableRow 
+              key={row.id}
+              onClick={() => handleVerifyDataCharge(row)} 
+            >
               <TableCell component="th" scope="row" className="table-items">
                 {row.cliente}
               </TableCell>
@@ -120,9 +125,9 @@ export default function TableCharges({searchValue}) {
               <TableCell className="table-items">
                 <span
                   className={
-                    (row.status === "pago" && "status-color in-day") ||
-                    (row.status === "vencido" && "status-color defaulter") ||
-                    (row.status === "pendente" && "status-color in-day-pending")
+                    (row.status==="pago" && "status-color in-day") ||
+                    (row.status==="vencido" && "status-color defaulter") ||
+                    (row.status==="pendente" && "status-color in-day-pending")
                   }
                 >
                   {row.status}
@@ -130,20 +135,24 @@ export default function TableCharges({searchValue}) {
               </TableCell>
               <TableCell className="table-items">{row.descricao}</TableCell>
               <TableCell className="table-items">
-                <div onClick={() => handleVerifyDataCharge(row)}>
-                  <img
-                    className="edit-icon"
-                    src={ChargesEdit}
-                    alt="editar cobranca"
-                    onClick={() => setOpenModalEditCharges(true)}
-                  />
-
-                  <img
-                    className="delete-icon"
-                    src={ChargesDelete}
-                    alt="excluir cobranca"
-                    onClick={() => setOpenModalDeleteCharges(true)}
-                  />
+                <div
+                  className="container-edit-delete-icons"
+                  onClick={(e) => stopPropagation(e)}
+                >
+                  <div onClick={() => handleVerifyDataCharge(row)}>
+                    <img
+                      className="edit-icon"
+                      src={ChargesEdit}
+                      alt="editar cobranca"
+                      onClick={() => setOpenModalEditCharge(true)}
+                    />
+                    <img
+                      className="delete-icon"
+                      src={ChargesDelete}
+                      alt="excluir cobranca"
+                      onClick={() => setOpenModalDeleteCharge(true)}
+                    />
+                  </div>
                 </div>
               </TableCell>
             </TableRow>
@@ -151,14 +160,19 @@ export default function TableCharges({searchValue}) {
         </TableBody>
       </Table>
 
+      <ModalDetailCharge
+        openModalDetailCharge={openModalDetailCharge}
+        handleClose={() => setOpenModalDetailCharge(false)}
+      />
+
       <ModalEditCharge
-        open={openModalEditCharges}
-        handleClose={() => setOpenModalEditCharges(false)}
+        openModalEditCharge={openModalEditCharge}
+        handleClose={() => setOpenModalEditCharge(false)}
       />
 
       <ModalDeleteCharge
-        open={openModalDeleteCharges}
-        handleClose={() => setOpenModalDeleteCharges(false)}
+        openModalDeleteCharge={openModalDeleteCharge}
+        handleClose={() => setOpenModalDeleteCharge(false)}
       />
     </TableContainer>
   );

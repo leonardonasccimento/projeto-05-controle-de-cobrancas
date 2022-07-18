@@ -3,13 +3,13 @@ import CustomersIcon from '../../assets/customers.svg';
 import FilterIcon from '../../assets/filter-icon.svg';
 import SearchIcon from '../../assets/search-icon.svg';
 import Header from '../../Components/Header';
-import ModalCustomers from '../../Components/ModalCustomers';
+import ModalAddCustomer from '../../Components/ModalAddCustomer';
 import Sidebar from '../../Components/Sidebar';
 import TableCustomers from '../../Components/TableCustomers';
 import './styles.css';
 
 function Customers() {
-    const [openModalAddCustomers, setOpenModalAddCustomers] = useState(false);
+    const [openModalAddCustomer, setOpenModalAddCustomer] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     // const [clickedSearchIcon, setClickedSearchIcon] = useState(false);
 
@@ -26,7 +26,7 @@ function Customers() {
                     <div className='customers-header-actions'>
                         <button
                             className='btn-pink btn-add'
-                            onClick={() => setOpenModalAddCustomers(true)}
+                            onClick={() => setOpenModalAddCustomer(true)}
                         >
                             + Adicionar cliente
                         </button>
@@ -53,9 +53,9 @@ function Customers() {
                       searchValue={searchValue}
                     />
                 </div>
-                <ModalCustomers
-                    open={openModalAddCustomers}
-                    handleClose={() => setOpenModalAddCustomers(false)}
+                <ModalAddCustomer
+                    openModalAddCustomer={openModalAddCustomer}
+                    handleClose={() => setOpenModalAddCustomer(false)}
                 />
             </div>
         </div>

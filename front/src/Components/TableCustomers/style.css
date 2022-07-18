@@ -22,23 +22,24 @@
   border-radius: 0.8rem;
   font-family: "Nunito";
   font-style: normal;
-  font-weight: 600;
-  font-size: 1.4rem;
+  font-weight: 600 !important;
+  font-size: 1.4rem !important;
   line-height: 1.9rem;
+  text-align: center;
 }
 
 .in-day {
-  color: #1fa7af;
+  color: #1fa7af !important;
   background-color: #eef6f6;
 }
 
 .defaulter {
-  color: #971d1d;
+  color: #971d1d !important;
   background-color: #ffefef;
 }
 
 .in-day-pending {
-  color: #c5a605;
+  color: #c5a605 !important;
   background-color: #fcf6dc;
 }
 

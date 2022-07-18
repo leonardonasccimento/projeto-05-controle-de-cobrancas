@@ -5,7 +5,7 @@ import IconEdit from '../../assets/icon-edit.svg';
 import IconExit from '../../assets/icon-exit.svg';
 import useGlobalContext from '../../hooks/useGlobalContext';
 import api from '../../services/api';
-import Modal from '../Modal';
+import ModalEditUser from '../ModalEditUser';
 import './styles.css';
 
 function Header() {
@@ -110,7 +110,7 @@ function Header() {
         )}
 
         {modalEdit && (
-            <Modal
+            <ModalEditUser
               toggleModal={toggleModal}
               applyModal={editUser}
               handleUpdateUser={handleUpdateUser}
