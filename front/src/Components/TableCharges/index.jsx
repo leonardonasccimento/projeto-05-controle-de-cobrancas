@@ -34,8 +34,6 @@ export default function TableCharges({searchValue}) {
 
   function handleVerifyDataCharge(row) {
     setCurrentCharge(row);
-    console.log(row)
-
   }
 
   async function handleLoadCharges() {
