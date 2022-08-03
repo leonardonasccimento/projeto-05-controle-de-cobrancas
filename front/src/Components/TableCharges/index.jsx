@@ -28,7 +28,7 @@ export default function TableCharges({searchValue}) {
     setChargesArray, 
     setCurrentCharge } = useGlobalContext();
 
-  function stopPropagation(e){
+  function handleStopPropagation(e){
     e.stopPropagation();
   }
 
@@ -69,8 +69,8 @@ export default function TableCharges({searchValue}) {
   });
 
   return (
-    <TableContainer>
-      <Table sx={{ minWidth: 280 }} size="medium" aria-label="a dense table">
+    <TableContainer className='table-container'>
+      <Table sx={{ minWidth: '28rem' }} size="medium" aria-label="a dense table">
         <TableHead>
           <TableCell className="title-table">
             <div
@@ -108,14 +108,17 @@ export default function TableCharges({searchValue}) {
           {chargesArray.map((row, index) => (
             <TableRow 
               key={row.id}
-              onClick={() => handleVerifyDataCharge(row)} 
+              onClick={() => handleVerifyDataCharge(row)}
+              className='table-row' 
             >
               <TableCell component="th" scope="row" className="table-items">
-                {row.cliente}
+                <span className='resized-text'>{row.cliente}</span>
               </TableCell>
-              <TableCell className="table-items">{row.id}</TableCell>
               <TableCell className="table-items">
-                {`R$ ${row.valor}`.replace(".", ",")}
+                <span className='resized-text'>{row.id}</span>
+              </TableCell>
+              <TableCell className="table-items">
+                <span className='resized-text'>{`R$ ${row.valor}`.replace(".", ",")}</span>
               </TableCell>
               <TableCell className="table-items">
                 {new Date(row.vencimento).toLocaleDateString()}
@@ -131,11 +134,13 @@ export default function TableCharges({searchValue}) {
                   {row.status}
                 </span>
               </TableCell>
-              <TableCell className="table-items">{row.descricao}</TableCell>
+              <TableCell className="table-items ">
+                <span className='resized-text'>{row.descricao}</span>
+              </TableCell>
               <TableCell className="table-items">
                 <div
                   className="container-edit-delete-icons"
-                  onClick={(e) => stopPropagation(e)}
+                  onClick={(e) => handleStopPropagation(e)}
                 >
                   <div onClick={() => handleVerifyDataCharge(row)}>
                     <img

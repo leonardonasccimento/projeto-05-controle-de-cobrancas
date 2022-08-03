@@ -57,8 +57,8 @@ export default function TableCustomers({searchValue}) {
   });
 
   return (
-    <TableContainer>
-      <Table sx={{ minWidth: 280 }} size="medium" aria-label="a dense table">
+    <TableContainer >
+      <Table sx={{ minWidth: '28rem' }} size="medium" aria-label="a dense table">
         <TableHead>
           <TableCell className="title-table">
             <img
@@ -80,11 +80,15 @@ export default function TableCustomers({searchValue}) {
           {customersArray.map((row, index) => (
             <TableRow key={index}>
               <TableCell component="th" scope="row" className="table-items">
-                {row.nome}
+                <span className='resized-text'>{row.nome}</span>
               </TableCell>
               <TableCell className="table-items">{row.cpf}</TableCell>
-              <TableCell className="table-items">{row.email}</TableCell>
-              <TableCell className="table-items">{row.telefone}</TableCell>
+              <TableCell className="table-items">
+                <span className='resized-text'>{row.email}</span>
+              </TableCell>
+              <TableCell className="table-items">
+                <span className='resized-text'>{row.telefone}</span>
+              </TableCell>
               <TableCell className="table-items">
                 <span
                   className={

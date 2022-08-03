@@ -149,7 +149,6 @@ function Home() {
               color: "#f8f8f9",
             }}
           >s</div>
-
           <div className="charges-home-internal">
             <div className="summary-charges-paid">
               {statusCobrancas.map((statusCobranca, index) => (
@@ -162,7 +161,6 @@ function Home() {
                 />
               ))}
             </div>
-
             <div className="customer-pay-tables">
               <BillingStatus
                 key={typesOfCharge[0].id}
@@ -172,7 +170,6 @@ function Home() {
                 color={typesOfCharge[0].color}
                 arrayOverdueBilling={arrayOverdueBilling}
               />
-
               <BillingStatus2
                 key={typesOfCharge[1].id}
                 title={typesOfCharge[1].title}
@@ -181,7 +178,6 @@ function Home() {
                 color={typesOfCharge[1].color}
                 arrayPendingBilling={arrayPendingBilling}
               />
-
               <BillingStatus3
                 key={typesOfCharge[2].id}
                 title={typesOfCharge[2].title}
@@ -191,7 +187,6 @@ function Home() {
                 arrayBillingPaid={arrayBillingPaid}
               />
             </div>
-
             <div className="customer-status-tables">
               <CustomerStatus
                 key={customerDescriptionData[0].id}
@@ -202,7 +197,6 @@ function Home() {
                 number={customerDescriptionData[0].number}
                 arrayDelinquentCustomers={arrayDelinquentCustomers}
               />
-
               <CustomerStatus2
                 key={customerDescriptionData[1].id}
                 img={customerDescriptionData[1].img}

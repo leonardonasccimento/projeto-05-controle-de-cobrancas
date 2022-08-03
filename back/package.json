@@ -1,24 +1,16 @@
 {
-  "name": "back-integral-m05-desafio-t05",
+  "name": "back",
   "version": "1.0.0",
-  "description": "![](https://i.imgur.com/xG74tOh.png)",
+  "description": "*URL da aplicação funcionando*: \"https://controle-de-cobrancas.herokuapp.com\"",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./src/index.js",
     "test": "nodemon ./src/index.js",
     "start": "node ./src/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/maria-bernardino/back-integral-m05-desafio-t05.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/maria-bernardino/back-integral-m05-desafio-t05/issues"
-  },
-  "homepage": "https://github.com/maria-bernardino/back-integral-m05-desafio-t05#readme",
   "devDependencies": {
     "nodemon": "^1.3.3"
   },

@@ -51,6 +51,7 @@ header h2 {
 .profile-icon {
   padding: 1rem;
   background-color: #dedee9;
+  /* background-color: red; */
   color: #0e8750;
   font-family: "Nunito";
   font-weight: 600;
@@ -58,6 +59,10 @@ header h2 {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
+}
+
+.image-dimension {
   border-radius: 50%;
 }
 
