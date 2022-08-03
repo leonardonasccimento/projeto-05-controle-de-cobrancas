@@ -1,7 +1,9 @@
 {
-  "name": "front-integral-m05-desafio-t05",
-  "version": "0.1.2",
+  "name": "front",
+  "version": "1.0.0",
   "private": true,
+  "description": "*URL da aplicação funcionando*:",
+  "main": "index.js",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -43,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

@@ -11,7 +11,6 @@ import './styles.css';
 function Header() {
   const navigate = useNavigate();
   const {
-    // token,
     user,
     usersArray,
     setUser,
@@ -80,15 +79,15 @@ function Header() {
   return (
     <header>
       <h2>Resumo de cobranças</h2>
-
       <div className="container-sign-out">
         <div className="profile-area">
-          <div className="profile-icon">
+          <div 
+            className="profile-icon" 
+          >
             {user.nome.slice(0, 2).toUpperCase()}
           </div>
           <strong>{user.nome}</strong>
         </div>
-
         <img
           className="arrow-options"
           src={ArrowHeader}
