@@ -10,7 +10,12 @@ function ChargeCard({ img, description, value, backgroundColor }) {
     >
       <img src={img} alt="Charges paid" />
       <h3>{description}</h3>
-      <h2>{`R$ ${value.toFixed(2)}`.replace('.',',')}</h2>
+      <h2
+       style={{
+        overflow: 'hidden',
+        textOverflow: 'ellipsis'
+       }}
+      >{`R$ ${value.toFixed(2)}`.replace('.',',')}</h2>
     </div>
   );
 }

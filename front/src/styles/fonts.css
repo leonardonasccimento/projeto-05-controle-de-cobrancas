@@ -39,3 +39,11 @@
   font-size: 1.2rem;
   line-height: 130%;
 }
+
+.resized-text {
+  display: block;
+  width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
