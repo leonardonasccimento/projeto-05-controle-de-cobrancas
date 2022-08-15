@@ -1,0 +1,30 @@
+.mod-popup {
+  margin-top: 1rem;
+  width: 50%;
+  flex-direction: column;
+  cursor: default;
+  top: 0 !important;
+  left: 25%;
+  right: auto !important;
+}
+
+.mod-popup img {
+  width: 1.8rem;
+  height: 1.8rem;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.title-delete {
+  font-size: 1.4rem;
+  white-space: nowrap;
+}
+
+.mod-btns-no-yes {
+  margin-top: 0rem !important;
+}
+
+.mod-btns-no-yes :nth-child(1),
+.mod-btns-no-yes :nth-child(2) {
+  width: 5rem !important;
+}

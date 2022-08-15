@@ -6,10 +6,6 @@ const editUser = async (req, res) => {
     const { usuario } = req;
 
     try {
-      const user = await knex("usuarios")
-      .where("id", usuario.id)
-      .first();
-
        const hash = await bcrypt.hash(senha, 10);
 
        const editedUser = await knex("usuarios")
@@ -29,7 +25,7 @@ const editUser = async (req, res) => {
 
        return res.status(200).json(editedUser[0]);
     } catch (error) {
-       return res.status(500).json(error.message);
+       return res.status(500).json({error: error.message});
     }
 }
 

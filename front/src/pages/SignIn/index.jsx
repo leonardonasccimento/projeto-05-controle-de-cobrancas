@@ -3,12 +3,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../Components/Input';
 import useGlobalContext from '../../hooks/useGlobalContext';
 import api from '../../services/api';
+import { clearAll } from '../../utils/localStorage';
 import './styles.css';
 
 function SignIn() {
   const navigate = useNavigate();
-
-  const { token, setToken, setUser } = useGlobalContext();
+  const { 
+    token, 
+    setToken, 
+    setUser,
+    clearUser
+  } = useGlobalContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -41,14 +46,20 @@ function SignIn() {
     }
   }, [token, navigate]);
 
+  useEffect(() => {
+    if (!token) {
+      clearUser();
+      clearAll();
+    }
+  });
+
   return (
     <div className="container-sign-in">
-      <div className="left-sign-in">
+      <div className="left-sign-in centered-image">
         <h1 className="montserrat-24">
           Gerencie todos os pagamentos da sua empresa em um só lugar.
         </h1>
       </div>
-
       <div className="right-sign-in">
         <form className="form-sign-in" onSubmit={handleSubmit}>
           <h1 className="montserrat-24">Faça seu login!</h1>
@@ -69,7 +80,6 @@ function SignIn() {
                 <Link to="/">Esqueceu a senha?</Link>
               </span>
             </div>
-
             <Input
               placeholder="Digite sua senha"
               type="password"
@@ -82,7 +92,6 @@ function SignIn() {
             Entrar
           </button>
         </form>
-
         <span className=".nunito-16">
           Ainda não possui uma conta? <Link to="/sign-up"> Cadastre-se</Link>
         </span>

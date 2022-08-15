@@ -7,9 +7,6 @@
 .left-sign-in {
   width: 30%;
   background-image: url("../../assets/background-sign-in.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .left-sign-in h1 {

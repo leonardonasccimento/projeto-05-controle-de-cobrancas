@@ -49,9 +49,11 @@ header h2 {
 }
 
 .profile-icon {
+  position: relative;
+  width: 4.8rem;
+  height: 4.8rem;
   padding: 1rem;
   background-color: #dedee9;
-  /* background-color: red; */
   color: #0e8750;
   font-family: "Nunito";
   font-weight: 600;
@@ -60,10 +62,7 @@ header h2 {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-}
-
-.image-dimension {
-  border-radius: 50%;
+  cursor: pointer;
 }
 
 .arrow-options {
@@ -76,13 +75,14 @@ header h2 {
   align-items: center;
   background-color: #fff;
   color: #747488;
-  box-shadow: rgba(0, 0, 0, 0.35) 0 --0.2rem 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 0.2rem 1rem;
   border-radius: 0.8rem;
   cursor: pointer;
   font-family: "Nunito";
   font-size: 0.8rem;
   font-weight: 600;
   position: absolute;
+  z-index: 2;
   right: -4rem;
   top: 4rem;
   padding: 1rem;

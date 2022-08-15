@@ -10,9 +10,9 @@ import ChargesEdit from '../../assets/chargesEdit.svg';
 import OrganizeIcon from '../../assets/organize-icon.svg';
 import useGlobalContext from '../../hooks/useGlobalContext';
 import api from '../../services/api';
+import ModalDeleteCharge from '../ModalDeleteCharge';
 import ModalDetailCharge from '../ModalDetailCharge';
 import ModalEditCharge from '../ModalEditCharge';
-import ModalDeleteCharge from '../ModalDeleteCharge';
 import './style.css';
 
 export default function TableCharges({searchValue}) {
@@ -26,7 +26,8 @@ export default function TableCharges({searchValue}) {
     token, 
     chargesArray, 
     setChargesArray, 
-    setCurrentCharge } = useGlobalContext();
+    setCurrentCharge 
+  } = useGlobalContext();
 
   function handleStopPropagation(e){
     e.stopPropagation();
@@ -69,7 +70,7 @@ export default function TableCharges({searchValue}) {
   });
 
   return (
-    <TableContainer className='table-container'>
+    <TableContainer>
       <Table sx={{ minWidth: '28rem' }} size="medium" aria-label="a dense table">
         <TableHead>
           <TableCell className="title-table">
@@ -109,7 +110,7 @@ export default function TableCharges({searchValue}) {
             <TableRow 
               key={row.id}
               onClick={() => handleVerifyDataCharge(row)}
-              className='table-row' 
+              className='table-row table-customers' 
             >
               <TableCell component="th" scope="row" className="table-items">
                 <span className='resized-text'>{row.cliente}</span>

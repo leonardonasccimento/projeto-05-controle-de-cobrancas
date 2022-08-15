@@ -9,7 +9,6 @@ import './styles.css';
 
 export function Sidebar() {
   const navigate = useNavigate();
-
   const { pathname } = useLocation();
 
   function buttonHome() {
@@ -34,7 +33,6 @@ export function Sidebar() {
           <img src={pathname === '/home' ? HomePink : HomeBlack} alt='Home' />
           <span className='nunito-16'>Home</span>
         </li>
-
         <li
           className={`btns ${pathname === '/customers' && 'selected'}`}
           onClick={() => buttonCustomers()}
@@ -42,7 +40,6 @@ export function Sidebar() {
           <img src={pathname === '/customers' ? CustomersPink : Customers} alt='Customers' />
           <span className='nunito-16'>Clientes</span>
         </li>
-
         <li
           className={`btns ${pathname === '/charges' && 'selected'}`}
           onClick={() => buttonCharges()}

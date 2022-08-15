@@ -19,6 +19,7 @@ html {
 @import url("./inputs.css");
 @import url("./fonts.css");
 @import url("react-toastify/dist/ReactToastify.min.css");
+@import url("./images.css");
 
 :root {
   --toastify-color-success: #0e8750;

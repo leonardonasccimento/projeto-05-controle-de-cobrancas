@@ -28,7 +28,7 @@ function ModalDetailCharge({ openModalDetailCharge, handleClose }) {
               </div>
               <div className="nunito-14  item-span">
                 Descrição
-                <span className='description-style'>{currentCharge.descricao}</span>
+                <span className='description-style' >{currentCharge.descricao} </span>
               </div>
               <div className="container-dueDate-value">
                 <div className="nunito-14 item-span">

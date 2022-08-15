@@ -28,7 +28,7 @@ function ModalDeleteCharge({ openModalDeleteCharge, handleClose }) {
 
       alert("Cobrança excluída com sucesso!");
     } catch (error) {
-      alert(error.response.data.mensage);
+      alert(error);
     }
   }
 
@@ -51,11 +51,11 @@ function ModalDeleteCharge({ openModalDeleteCharge, handleClose }) {
             <div className="container-no-yes">
               <strong>Tem certeza que deseja excluir esta cobrança?</strong>
               <div className="btns-no-yes">
-                <button type="button" onClick={handleClose}>
-                  Não
-                </button>
                 <button type="submit" onClick={handleDeleteCharge}>
                   Sim
+                </button>
+                <button type="button" onClick={handleClose}>
+                  Não
                 </button>
               </div>
             </div>

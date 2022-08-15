@@ -1,11 +1,9 @@
 .backdrop {
   background: rgba(145, 154, 150, 0.3);
   backdrop-filter: blur(0.4rem);
-
   position: fixed;
   inset: 0;
-  z-index: 99999;
-
+  z-index: 99;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,11 +91,9 @@
   font-size: 1.6rem;
   cursor: pointer;
   border: 0.1rem solid #dedee9;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-family: "Nunito";
   font-style: normal;
   font-weight: 400;

@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import RegisterSuccess from '../../assets/img-success.svg';
 import CustomStepper from '../../Components/CustomStepper/index';
@@ -12,8 +11,8 @@ function SignUp() {
   const navigate = useNavigate();
   const {
     usersArray,
-    setUsersArray}=useGlobalContext();
-
+    setUsersArray
+  }=useGlobalContext();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -80,14 +79,12 @@ function SignUp() {
       return;
     }
 
-    const user = {
-      nome: name,
-      email: email,
-      senha: password,
-    };
-
     try {
-      const response=await api.post("usuario", user);
+      const response=await api.post("usuario", {
+        nome: name,
+        email: email,
+        senha: password,
+      });
 
       if (response.status > 204) {
         return;

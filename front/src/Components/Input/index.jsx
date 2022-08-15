@@ -6,10 +6,6 @@ import './styles.css';
 function Input({ name, type, placeholder, handleOnChange, value, required }) {
   const [passwordType, setPasswordType] = useState('password');
 
-  function togglePasswordType() {
-    setPasswordType(passwordType === 'password' ? 'text' : 'password');
-  }
-
   return (
     <div className="item">
       {type === "password" ? (
@@ -26,7 +22,7 @@ function Input({ name, type, placeholder, handleOnChange, value, required }) {
           <img
             src={passwordType === "password" ? EyeClose : EyeOpen}
             alt="password"
-            onClick={togglePasswordType}
+            onClick={ ()=>setPasswordType(passwordType === 'password' ? 'text' : 'password')}
           />
         </>
       ) : (

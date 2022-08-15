@@ -20,7 +20,8 @@ export default function TableCustomers({searchValue}) {
     token, 
     customersArray, 
     setCustomersArray, 
-    setCurrentCustomer } = useGlobalContext();
+    setCurrentCustomer 
+  } = useGlobalContext();
 
   function handleVerifyDataCustomer(row) {
     setCurrentCustomer(row);
@@ -57,16 +58,14 @@ export default function TableCustomers({searchValue}) {
   });
 
   return (
-    <TableContainer >
+    <TableContainer>
       <Table sx={{ minWidth: '28rem' }} size="medium" aria-label="a dense table">
         <TableHead>
           <TableCell className="title-table">
             <img
               src={OrganizeIcon}
               alt="organize"
-              onClick={() =>
-                setClickedOrganizeCustomers(!clickedOrganizeCustomers)
-              }
+              onClick={() => setClickedOrganizeCustomers(!clickedOrganizeCustomers)}
             />
             <span>Cliente</span>
           </TableCell>
@@ -76,9 +75,9 @@ export default function TableCustomers({searchValue}) {
           <TableCell className="title-table">Status</TableCell>
           <TableCell className="title-table">Criar Cobrança</TableCell>
         </TableHead>
-        <TableBody>
+        <TableBody >
           {customersArray.map((row, index) => (
-            <TableRow key={index}>
+            <TableRow className='table-customers' key={index}>
               <TableCell component="th" scope="row" className="table-items">
                 <span className='resized-text'>{row.nome}</span>
               </TableCell>

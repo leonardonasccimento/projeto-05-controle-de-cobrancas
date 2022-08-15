@@ -5,28 +5,28 @@ import api from '../../services/api';
 import Input from '../Input';
 import './styles.css';
 
-function ModalEditUser({
-  toggleModal,
-  handleUpdateUser,
-  modalEdit,
-  }){
-  const { token, user, usersArray} = useGlobalContext();
-
+function ModalEditUser({openModalEdit, setOpenModalEdit}){
+  const { 
+    token, 
+    user, 
+    usersArray, 
+    handleUpdateUser
+  } = useGlobalContext();
   const [nameEdit, setNameEdit] = useState("");
   const [emailEdit, setEmailEdit] = useState("");
   const [cpfEdit, setCpfEdit] = useState("");
   const [phoneEdit, setPhoneEdit] = useState("");
   const [passwordEdit, setPasswordEdit] = useState("");
   const [passwordEditConfirmed, setPasswordEditConfirmed] = useState("");
-
+  
   useEffect(()=>{
-    if(modalEdit){
+    if(openModalEdit){
       setNameEdit(user.nome);
       setEmailEdit(user.email);
       setCpfEdit(user.cpf);
       setPhoneEdit(user.telefone);
     }
-  },[modalEdit, user.nome, user.email, user.cpf, user.telefone]);
+  },[openModalEdit, user.nome, user.email, user.cpf, user.telefone]);
 
   function handleReset() {
     setNameEdit("");
@@ -74,11 +74,6 @@ function ModalEditUser({
         return;
       }
 
-      // if(`${parseInt(phoneEdit)}`.length !== `${Number(phoneEdit)}`.length){
-      //   alert("O campo Telefone deve conter apenas números.");
-      //   return;
-      // }
-
       if (phoneEdit.includes('e') || phoneEdit.includes('E') || phoneEdit.includes('.')) {
         alert("O campo Telefone deve conter apenas números.");
         return;
@@ -109,17 +104,23 @@ function ModalEditUser({
       alert("Usuário editado com sucesso!");
       handleReset();
     } catch (error) {
-      alert(error.response.data.message);
+      alert(error);
     }
   }
 
-  handleUpdateUser();
+  useEffect(()=>{
+    handleUpdateUser();
+  })
 
   return (
     <>
     <div className="backdrop">
       <div className="modal-container">
-        <img src={CloseIcon} alt="close icon" onClick={toggleModal} />
+        <img 
+          src={CloseIcon} 
+          alt="close icon" 
+          onClick={()=>setOpenModalEdit(false)} 
+        />
         <form
           className="modal-form"
           onSubmit={(e) => handleSubmitEditedUser(e)}
@@ -137,7 +138,7 @@ function ModalEditUser({
                 required
               />
             </label>
-            <label className="nunito-14" htmlFor="nome">
+            <label className="nunito-14" htmlFor="email">
               E-mail*
               <Input
                 placeholder="Digite seu e-mail"
@@ -149,7 +150,7 @@ function ModalEditUser({
               />
             </label>
             <div className="modal-edit-row">
-              <label className="nunito-14" htmlFor="nome">
+              <label className="nunito-14" htmlFor="cpf">
                 CPF
                 <Input
                   placeholder="Apenas números"
@@ -159,7 +160,7 @@ function ModalEditUser({
                   handleOnChange={(e) => setCpfEdit(e.target.value)}
                 />
               </label>
-              <label className="nunito-14" htmlFor="nome">
+              <label className="nunito-14" htmlFor="telefone">
                 Telefone
                 <Input
                   placeholder="Apenas números"
@@ -170,33 +171,32 @@ function ModalEditUser({
                 />
               </label>
             </div>
-            <label className="nunito-14" htmlFor="nome">
+            <label className="nunito-14" htmlFor="senha">
               Nova Senha*
               <Input
                 placeholder="*********"
                 type="password"
                 name="senha"
-                required
                 value={passwordEdit}
                 handleOnChange={(e) => setPasswordEdit(e.target.value)}
+                required
               />
             </label>
-            <label className="nunito-14" htmlFor="nome">
+            <label className="nunito-14" htmlFor="senhaConfirmada">
               Confirmar Senha*
               <Input
                 placeholder="*********"
                 type="password"
                 name="senhaConfirmada"
-                required
                 value={passwordEditConfirmed}
                 handleOnChange={(e) => setPasswordEditConfirmed(e.target.value)}
+                required
               />
             </label>
           </div>
           <button
             className="btn-pink btn-apply"
             type="submit"
-            onClick={() => handleUpdateUser()}
           >
             Aplicar
           </button>

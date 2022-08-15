@@ -9,14 +9,14 @@ const detailCustomer = async (req, res) => {
         .first();
 
         if (!customer) {
-            return res.status(400).json('Cliente não encontrado')
+            return res.status(400).json({error: 'Cliente não encontrado'})
         }
 
         const { id: idCostumer, usuario_id, ...costumerInfo } = customer;
 
         return res.status(200).json(costumerInfo);
     } catch (error) {
-        return res.status(500).json(error.message);
+        return res.status(500).json({error: error.message});
     }
 }
 

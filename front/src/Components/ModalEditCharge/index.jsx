@@ -7,8 +7,7 @@ import './styles.css';
 
 function ModalEditCharge({ openModalEditCharge, handleClose }) {
   const { token, currentCharge } = useGlobalContext();
-
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
   const [value, setValue] = useState("");
   const [dueDate, setDueDate] = useState("");
@@ -65,7 +64,7 @@ function ModalEditCharge({ openModalEditCharge, handleClose }) {
       alert("Cobrança editada com sucesso!");
       handleClear();
     } catch (error) {
-      alert(error.response.data.message);
+      alert(error);
     }
   }
 

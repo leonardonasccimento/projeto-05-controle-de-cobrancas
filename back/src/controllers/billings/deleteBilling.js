@@ -10,7 +10,7 @@ const deleteBilling = async (req, res) => {
     .first();
 
     if(!billing){
-        return res.status(400).json("Esta cobrança não existe");
+        return res.status(400).json({error: "Esta cobrança não existe"});
     }
 
     const dueDate = new Date(billing.vencimento);
@@ -19,7 +19,7 @@ const deleteBilling = async (req, res) => {
     const result = compareAsc(currentDate, dueDate);
 
     if (billing.status !== "pendente" || result === 1) {
-      return res.status(400).json("Cobranças pagas ou vencidas não podem ser excluídas");
+      return res.status(400).json({error: "Cobranças pagas ou vencidas não podem ser excluídas"});
     }
 
     const chargeExcluded=await knex("cobrancas")
@@ -28,12 +28,12 @@ const deleteBilling = async (req, res) => {
     returning("*");
 
     if (chargeExcluded.length===0) {
-        return res.status(400).json("Cobrança não pôde ser excluída");
+        return res.status(400).json({error: "Cobrança não pôde ser excluída"});
     }
 
-    return res.status(200).json(`Cobrança de idêntificador (${id}) foi excluída com sucesso!`);
+    return res.status(200).json({message: `Cobrança de idêntificador (${id}) foi excluída com sucesso!`});
   } catch (error) {
-    return res.status(500).json(error.message);
+    return res.status(500).json({error: error.message});
   }
 };
 

@@ -9,6 +9,10 @@
   cursor: pointer;
 }
 
+.table-customers:hover {
+  border: 0.2rem solid rgb(68, 156, 68);
+}
+
 .table-items {
   font-family: "Nunito" !important;
   font-weight: 400 !important;

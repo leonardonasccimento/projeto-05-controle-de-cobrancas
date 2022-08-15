@@ -14,9 +14,25 @@ import './styles.css';
 
 function Home() {
   const { 
-    token,
+    token, 
     chargesArray, 
-    setChargesArray } = useGlobalContext();
+    setChargesArray, 
+    setUsersArray
+  } = useGlobalContext();
+
+  async function handleLoadUsersArray() {
+    try {
+      const response = await api.get("/usuario");
+
+      if (response.status > 204) {
+        return;
+      }
+
+      setUsersArray([...response.data]);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+  }
 
   async function handleCharges() {
     try {
@@ -37,6 +53,7 @@ function Home() {
   }
 
   useEffect(() => {
+    handleLoadUsersArray();
     handleCharges();
   });
 
@@ -101,7 +118,7 @@ function Home() {
     chargesOverdueBillingIdentifier,
     chargesOverdueBillingValue,
   ];
-  
+
   let customerOverdueBillingName = [];
   let customerOverdueBillingIdentifier = [];
   let customerOverdueBillingValue = [];
@@ -148,7 +165,9 @@ function Home() {
               height: "100%",
               color: "#f8f8f9",
             }}
-          >s</div>
+          >
+          s
+          </div>
           <div className="charges-home-internal">
             <div className="summary-charges-paid">
               {statusCobrancas.map((statusCobranca, index) => (

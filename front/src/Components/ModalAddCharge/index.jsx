@@ -7,7 +7,6 @@ import './styles.css';
 
 function ModalAddCharge({ openModalAddCharge, handleClose }) {
   const { token, currentCustomer } = useGlobalContext();
-
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
   const [value, setValue] = useState("");
@@ -56,7 +55,7 @@ function ModalAddCharge({ openModalAddCharge, handleClose }) {
       alert("Cobrança cadastrada com sucesso!");
       handleClear();
     } catch (error) {
-      alert(error.response.data.message);
+      alert(error);
     }
   }
 
