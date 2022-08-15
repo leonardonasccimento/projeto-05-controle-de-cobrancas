@@ -14,11 +14,118 @@ const verifyFieldsEditUser = async (req, res, next) => {
 	try {
 		await schema.validate(req.body);
 	} catch (error) {
-		return res.status(400).json({ mensagem: error.message });
+		return res.status(400).json({ error: error.message });
 	}
 
 	next();
 };
+
+const verifyFieldsBilling = async (req, res, next) => {
+	const schema = yup.object().shape({
+		descricao: yup.string(),
+		status: yup.string().required(),
+		valor: yup.number().required(),
+		// vencimento: yup.date().required()
+	});
+
+	try {
+		await schema.validate(req.body);
+	} catch (error) {
+		return res.status(500).json({error: error.message});
+	}
+
+	next();
+}
+
+const verifyFieldsLogin = async (req, res, next) => {
+	const schemaLogin = yup.object().shape({
+		email: yup.string().email().required(),
+		senha: yup.string().required()
+	})
+
+	try {
+		await schemaLogin.validate(req.body);
+	} catch (error) {
+		return res.status(500).json({ error: error.message });
+	}
+
+	next();
+}
+
+const verifyFieldsSignup = async (req, res, next) => {
+	const { email } = req.body;
+
+	if (!email) {
+		return res.status(400).json({ error: 'email é um campo obrigatório.' });
+	}
+
+    const schemaSignUp = yup.object()
+    .shape({
+        nome: yup.string().required(),
+        email: yup.string().email().required({ error: 'E-mail é um campo obrigatório.' }),
+        senha: yup.string().required(),
+    });
+
+	try {
+		await schemaSignUp.validate(req.body);
+	} catch (error) {
+		return res.status(500).json({ error: error.message });
+	}
+
+	next();
+}
+
+const verifyFieldsCustomer = async (req, res, next) => {
+	const schemaCustomer = yup.object().shape({
+		nome: yup.string().required(),
+		email: yup.string().email().required(),
+		cpf: yup.string().min(11).max(11).required(),
+		telefone: yup.string().max(11).required(),
+		cep: yup.string().max(8),
+		logradouro: yup.string(),
+		complemento: yup.string(),
+		bairro: yup.string(),
+		cidade: yup.string(),
+		estado: yup.string()
+	})
+
+	try {
+		await schemaCustomer.validate(req.body);
+	} catch (error) {
+		return res.status(500).json({ error: error.message });
+	}
+
+	next();
+}
+
+const verifyFieldsUploadImage = async (req, res, next) => {
+	const schemaCustomer = yup.object().shape({
+		nome: yup.string().required(),
+		imagem: yup.string().required()
+	})
+
+	try {
+		await schemaCustomer.validate(req.body);
+	} catch (error) {
+		return res.status(500).json({ error: error.message });
+	}
+
+	next();
+}
+
+const verifyFieldsDeleteImage = async (req, res, next) => {
+	const schemaCustomer = yup.object().shape({
+		nome: yup.string().required()
+	})
+
+	try {
+		await schemaCustomer.validate(req.body);
+	} catch (error) {
+		return res.status(500).json({ error: error.message });
+	}
+
+	next();
+}
 
 const verifyEmailEditUser = async (req, res, next) => {
 	const { email } = req.body;
@@ -31,7 +138,7 @@ const verifyEmailEditUser = async (req, res, next) => {
 			.first();
 
 			if (userEmail) {
-				return res.status(400).json("E-mail já cadastrado.");
+				return res.status(400).json({error: "E-mail já cadastrado."});
 			}
 
 		}
@@ -59,7 +166,7 @@ const verifyEmailCustomerEdit = async (req, res, next) => {
 				.first();
 
 			if (clientEmail) {
-				return res.status(400).json("E-mail já cadastrado.");
+				return res.status(400).json({error: "E-mail já cadastrado."});
 			}
 		}
 
@@ -109,7 +216,7 @@ const verifyCpfCustomerEdit = async (req, res, next) => {
 			const cpfCustomerFound = await knex("clientes").where('cpf', cpf).first();
 
 			if (!cpfCustomerFound) {
-				return res.status(401).json({ "mensagem": "Cpf ja possui cadastro para outro usuario" });
+				return res.status(401).json({ error: "Cpf ja possui cadastro para outro usuario" });
 			}
 		}
 	} catch (error) {
@@ -126,10 +233,10 @@ const verifyEmailLogin = async (req, res, next) => {
 		const user = await knex("usuarios").where("email", email).first();
 
 		if (!user) {
-			return res.status(404).json("E-mail não encontrado");
+			return res.status(404).json({error: "E-mail não encontrado"});
 		}
 	} catch (error) {
-		return res.status(400).json(error.message);
+		return res.status(400).json({ error: error.message });
 	}
 
 	next();
@@ -151,68 +258,6 @@ const verifyEmailSignup = async (req, res, next) => {
 	next();
 }
 
-const verifyFieldsCustomer = async (req, res, next) => {
-
-	const schemaCustomer = yup.object().shape({
-		nome: yup.string().required(),
-		email: yup.string().email().required(),
-		cpf: yup.string().min(11).max(11).required(),
-		telefone: yup.string().max(11).required(),
-		cep: yup.string().max(8),
-		logradouro: yup.string(),
-		complemento: yup.string(),
-		bairro: yup.string(),
-		cidade: yup.string(),
-		estado: yup.string()
-	})
-
-	try {
-		await schemaCustomer.validate(req.body);
-	} catch (error) {
-		return res.status(500).json({ error: error.message });
-	}
-
-	next();
-}
-
-const verifyFieldsLogin = async (req, res, next) => {
-	const schemaLogin = yup.object().shape({
-		email: yup.string().email().required(),
-		senha: yup.string().required()
-	})
-
-	try {
-		await schemaLogin.validate(req.body);
-	} catch (error) {
-		return res.status(500).json({ error: error.message });
-	}
-
-	next();
-}
-
-const verifyFieldsSignup = async (req, res, next) => {
-	const { email } = req.body;
-
-	if (!email) {
-		return res.status(400).json({ error: 'email é um campo obrigatório.' });
-	}
-
-    const schemaSignUp = yup.object()
-    .shape({
-        nome: yup.string().required(),
-        email: yup.string().email().required({ error: 'E-mail é um campo obrigatório.' }),
-        senha: yup.string().required(),
-    });
-
-	try {
-		await schemaSignUp.validate(req.body);
-	} catch (error) {
-		return res.status(500).json({ error: error.message });
-	}
-
-	next();
-}
-
 const verifyPassword = async (req, res, next) => {
 	const { email, senha } = req.body;
 
@@ -225,12 +270,14 @@ const verifyPassword = async (req, res, next) => {
 	}
 
 	try {
-		const user = await knex("usuarios").where("email", email).first();
+		const user = await knex("usuarios")
+		.where("email", email)
+		.first();
 
 		const bcryptPassword = await bcrypt.compare(senha, user.senha);
 
 		if (!bcryptPassword) {
-			return res.status(400).json("Email e senha não confere");
+			return res.status(400).json({error: "Email e senha não confere"});
 		}
 	} catch (error) {
 		return res.status(500).json({ error: error.message });
@@ -239,22 +286,6 @@ const verifyPassword = async (req, res, next) => {
 	next();
 }
 
-const verifyFieldsBilling = async (req, res, next) => {
-	const schema = yup.object().shape({
-		descricao: yup.string(),
-		status: yup.string().required(),
-		valor: yup.number().required(),
-		// vencimento: yup.date().required()
-	});
-
-	try {
-		await schema.validate(req.body);
-	} catch (error) {
-		return res.status(400).json(error.message);
-	}
-
-	next();
-}
 
 module.exports = {
 	verifyFieldsSignup,
@@ -268,5 +299,7 @@ module.exports = {
 	verifyEmailEditUser,
 	verifyCpfCustomerEdit,
 	verifyEmailCustomerEdit,
-	verifyFieldsBilling
+	verifyFieldsBilling,
+	verifyFieldsUploadImage,
+	verifyFieldsDeleteImage
 };

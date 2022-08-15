@@ -29,7 +29,6 @@
   font-style: normal;
   font-weight: 600;
   font-size: 1.8rem;
-  /* line-height: 130%; */
   line-height: 130%;
   color: #3f3f55;
   margin-right: 5rem;
@@ -43,7 +42,6 @@
   font-weight: 700;
   font-size: 1.6rem;
   line-height: 130%;
-  /* line-height: 130%; */
   display: flex;
   align-items: center;
   justify-content: center;

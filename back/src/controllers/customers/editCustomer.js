@@ -11,7 +11,8 @@ async function editCustomer(req, res) {
 		complemento,
 		bairro,
 		cidade,
-		estado } = req.body;
+		estado 
+	} = req.body;
 	const { id } = req.params;
 
 	try {
@@ -33,9 +34,9 @@ async function editCustomer(req, res) {
 			return res.status(404).json({ error: "Dados do cliente nao foram atualizados" });
 		}
 		
-		return res.status(200).json({ "mensagem": "Dados atualizados com sucesso" });
+		return res.status(200).json({ message: "Dados atualizados com sucesso" });
 	} catch (error) {
-		return res.status(500).json({ "mensagem": " Ocorreu um erro inesperado" + error.mensage });
+		return res.status(500).json({ error: error.mensage });
 	}
 }
 

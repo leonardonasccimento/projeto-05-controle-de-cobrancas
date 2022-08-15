@@ -8,79 +8,90 @@ import './styles.css';
 function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
   const { 
     token, 
-    customersArray} = useGlobalContext();
+    customersArray
+  } = useGlobalContext();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [phone, setPhone] = useState("");
-  const [cep, setCep] = useState("");
-  const [address, setAddress] = useState("");
-  const [complement, setComplement] = useState("");
-  const [district, setDistrict] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
+  const [formCustomer, setFormCustomer]=useState({
+    name: '',
+    email: '',
+    cpf: '',
+    phone: '',
+    cep: '',
+    address: '',
+    complement: '',
+    district: '',
+    city: '',
+    state: ''
+  });
+
+  function handleChangeFormValues(e){
+    setFormCustomer({...formCustomer,
+      [e.target.name]: e.target.value,
+    });
+  }
 
   function handleClear() {
-    setName("");
-    setEmail("");
-    setCpf("");
-    setPhone("");
-    setCep("");
-    setAddress("");
-    setComplement("");
-    setDistrict("");
-    setCity("");
-    setState("");
+    setFormCustomer({
+      name: '',
+      email: '',
+      cpf: '',
+      phone: '',
+      cep: '',
+      address: '',
+      complement: '',
+      district: '',
+      city: '',
+      state: ''
+    });
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!name || !email || !cpf || !phone) {
+    if (!formCustomer.name || !formCustomer.email || !formCustomer.cpf || !formCustomer.phone) {
       alert("Informe todos os campos obrigatórios.");
       return;
     }
 
-    if (cpf.length !== 11) {
+    if (formCustomer.cpf.length !== 11) {
       alert("CPF deve conter 11 dígitos.");
       return;
     }
 
-    if (cpf.includes('e') || cpf.includes('E') || cpf.includes('.')) {
+    if (formCustomer.cpf.includes('e') || formCustomer.cpf.includes('E') || formCustomer.cpf.includes('.')) {
       alert("O campo CPF deve conter apenas números.");
       return;
     }
 
-    const emailDouble = customersArray.some((object) => object.email === email);
+    const emailDouble = customersArray.some((object) => object.email === formCustomer.email);
     if (emailDouble) {
       alert("Este E-mail já foi cadastrado.");
       return;
     }
 
-    const cpfDouble = customersArray.some((object) => object.cpf === cpf);
+    const cpfDouble = customersArray.some((object) => object.cpf === formCustomer.cpf);
     if (cpfDouble) {
       alert("Este CPF já foi cadastrado.");
       return;
     }
 
-    if (phone.length > 11) {
+    if (formCustomer.phone.length > 11) {
       alert("O telefone deve ter o máximo de 11 caracteres");
       return;
     }
 
-    if (phone.includes('e') || phone.includes('E') || phone.includes('.')) {
+    if (formCustomer.phone.includes('e') || formCustomer.phone.includes('E') || formCustomer.phone.includes('.')) {
       alert("O campo Telefone deve conter apenas números.");
       return;
     }
    
-    if(cep){
-      if (cep.length > 8) {
+    if(formCustomer.cep){
+      if (formCustomer.cep.length > 8) {
         alert("O CEP deve ter o máximo de 8 caracteres");
         return;
       }
 
-      if (cep.includes('e') || cep.includes('E') || cep.includes('.')) {
+      if (formCustomer.cep.includes('e') || formCustomer.cep.includes('E') || formCustomer.cep.includes('.')) {
         alert("O campo CEP deve conter apenas números.");
         return;
       }
@@ -88,16 +99,16 @@ function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
 
     try {
       const response = await api.post("/cliente", {
-        nome: name,
-        email,
-        cpf,
-        telefone: phone,
-        cep,
-        logradouro: address,
-        complemento: complement,
-        bairro: district,
-        cidade: city,
-        estado: state,
+        nome: formCustomer.name,
+        email: formCustomer.email,
+        cpf: formCustomer.cpf,
+        telefone: formCustomer.phone,
+        cep: formCustomer.cep,
+        logradouro: formCustomer.address,
+        complemento: formCustomer.complement,
+        bairro: formCustomer.district,
+        cidade: formCustomer.city,
+        estado: formCustomer.state,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -109,9 +120,8 @@ function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
 
       alert("Cliente registrado com sucesso!");
       handleClear();
-      // setCustomersArray([...response.data]);
     } catch (error) {
-      alert(error.response.data.mensage);
+      alert(error);
     }
   }
 
@@ -137,22 +147,20 @@ function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
                   <input
                     placeholder="Digite o nome"
                     type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    name="name"
+                    value={formCustomer.name}
+                    onChange={(e) => handleChangeFormValues(e)}
                     required
                   />
                 </label>
-                <label
-                  className="nunito-14"
-                  //   htmlFor="email"
-                >
+                <label className="nunito-14">
                   E-mail*
                   <input
                     placeholder="Digite o e-mail"
                     type="email"
-                    // name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    name="email"
+                    value={formCustomer.email}
+                    onChange={(e) => handleChangeFormValues(e)}
                     required
                   />
                 </label>
@@ -162,8 +170,9 @@ function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
                     <input
                       placeholder="Apenas números"
                       type="number"
-                      value={cpf}
-                      onChange={(e) => setCpf(e.target.value)}
+                      name="cpf"
+                      value={formCustomer.cpf}
+                      onChange={(e) => handleChangeFormValues(e)}
                       required
                     />
                   </label>
@@ -172,8 +181,9 @@ function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
                     <input
                       placeholder="Apenas números"
                       type="number"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      name="phone"
+                      value={formCustomer.phone}
+                      onChange={(e) => handleChangeFormValues(e)}
                       required
                     />
                   </label>
@@ -183,8 +193,9 @@ function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
                   <input
                     placeholder="Digite o endereço"
                     type="text"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
+                    name="address"
+                    value={formCustomer.address}
+                    onChange={(e) => handleChangeFormValues(e)}
                   />
                 </label>
                 <label className="nunito-14">
@@ -192,8 +203,9 @@ function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
                   <input
                     placeholder="Digite o complemento"
                     type="text"
-                    value={complement}
-                    onChange={(e) => setComplement(e.target.value)}
+                    name="complement"
+                    value={formCustomer.complement}
+                    onChange={(e) => handleChangeFormValues(e)}
                   />
                 </label>
                 <div className="modal-edit-row">
@@ -202,8 +214,9 @@ function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
                     <input
                       placeholder="Apenas números"
                       type="number"
-                      value={cep}
-                      onChange={(e) => setCep(e.target.value)}
+                      name="cep"
+                      value={formCustomer.cep}
+                      onChange={(e) => handleChangeFormValues(e)}
                     />
                   </label>
                   <label className="nunito-14">
@@ -211,8 +224,9 @@ function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
                     <input
                       placeholder="Digite o bairro"
                       type="text"
-                      value={district}
-                      onChange={(e) => setDistrict(e.target.value)}
+                      name="district"
+                      value={formCustomer.district}
+                      onChange={(e) => handleChangeFormValues(e)}
                     />
                   </label>
                 </div>
@@ -222,17 +236,18 @@ function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
                     <input
                       placeholder="Digite a cidade"
                       type="text"
-                      value={city}
-                      onChange={(e) => setCity(e.target.value)}
+                      name="city"
+                      value={formCustomer.city}
+                      onChange={(e) => handleChangeFormValues(e)}
                     />
                   </label>
-
                   <label className="nunito-14 align-label-select">
                     UF
-                    <select 
-                      onChange={(e) => setState(e.target.value)}
+                    <select
+                      name="state"
+                      onChange={(e) => handleChangeFormValues(e)}
                     >
-                      <option value="" selected>Nenhum</option>
+                      <option defaultValue="">Nenhum</option>
                       <option value="AC">AC</option>
                       <option value="AL">AL</option>
                       <option value="AM">AM</option>

@@ -1,79 +1,24 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import ArrowHeader from '../../assets/arrow-header.svg';
-import IconEdit from '../../assets/icon-edit.svg';
-import IconExit from '../../assets/icon-exit.svg';
 import useGlobalContext from '../../hooks/useGlobalContext';
-import api from '../../services/api';
 import ModalEditUser from '../ModalEditUser';
+import ModalLoadImage from '../ModalLoadImage';
+import ModalPopup from '../ModalPopup';
 import './styles.css';
 
 function Header() {
-  const navigate = useNavigate();
   const {
     user,
-    usersArray,
-    setUser,
-    setUsersArray,
-    clearToken,
-    clearUser,
-    clearCurrentCustomer,
-    clearCurrentCharge } = useGlobalContext();
-  const [modal, setModal] = useState(false);
-  const [modalEdit, setModalEdit] = useState(false);
+    handleUpdateUser 
+  } = useGlobalContext();
+  const [openModal, setOpenModal] = useState(false);
+  const [openModalEdit, setOpenModalEdit] = useState(false);
+  const [openModalLoadImage, setOpenModalLoadImage] = useState(false);
 
-  async function handleLoadUsersArray() {
-    try {
-      const response = await api.get("/usuario");
-
-      if (response.status > 204) {
-        return;
-      }
-
-      setUsersArray([...response.data]);
-    } catch (error) {
-      alert(error.response.data.message);
-    }
-  }
-
-  async function handleUpdateUser() {
-    try {
-      const response = await api.get("/usuario");
-
-      if (response.status > 204) {
-        return;
-      }
-
-      setUsersArray([...response.data]);
-
-      const userFound = usersArray.filter((object) => object.id === user.id);
-
-      setUser(userFound[0]);
-    } catch (error) {
-      alert(error.response.data.message);
-    }
-  }
-
-  const togglePopup = () => setModal(!modal);
-
-  const toggleModal = () => {
-    setModal(false);
-    setModalEdit(!modalEdit);
-  };
-
-  const editUser = async () => setModalEdit(false);
-
-  async function handleExitHome(e) {
-    e.stopPropagation();
-    clearToken();
-    clearUser();
-    clearCurrentCustomer();
-    clearCurrentCharge();
-    navigate("/");
-  }
+  const togglePopup = () => setOpenModal(!openModal);
 
   useEffect(() => {
-    handleLoadUsersArray();
+    handleUpdateUser();
   });
 
   return (
@@ -81,10 +26,14 @@ function Header() {
       <h2>Resumo de cobranças</h2>
       <div className="container-sign-out">
         <div className="profile-area">
-          <div 
-            className="profile-icon" 
+          <div
+            onClick={() => setOpenModalLoadImage(true)}
+            style={{
+              backgroundImage: `url(${user.imagem_url})`,
+            }}
+            className="profile-icon centered-image"
           >
-            {user.nome.slice(0, 2).toUpperCase()}
+            {!user.imagem_url && user.nome.slice(0, 2).toUpperCase()}
           </div>
           <strong>{user.nome}</strong>
         </div>
@@ -95,27 +44,26 @@ function Header() {
           onClick={togglePopup}
         />
 
-        {modal && (
-          <div className="popup">
-            <div className="popup-button" onClick={toggleModal}>
-              <img src={IconEdit} alt="edit" />
-              <span>Editar</span>
-            </div>
-            <div className="popup-button" onClick={handleExitHome}>
-              <img src={IconExit} alt="exit" />
-              <span>Sair</span>
-            </div>
-          </div>
+        {openModal && (
+          <ModalPopup
+            openModalEdit={openModalEdit}
+            setOpenModal={setOpenModal}
+            setOpenModalEdit={setOpenModalEdit}
+          />
         )}
 
-        {modalEdit && (
-            <ModalEditUser
-              toggleModal={toggleModal}
-              applyModal={editUser}
-              handleUpdateUser={handleUpdateUser}
-              modalEdit={modalEdit}
-              setModalEdit={setModalEdit}
-            />
+        {openModalEdit && (
+          <ModalEditUser
+            openModalEdit={openModalEdit}
+            setOpenModalEdit={setOpenModalEdit}
+          />
+        )}
+
+        {openModalLoadImage && (
+          <ModalLoadImage
+            openModalLoadImage={openModalLoadImage}
+            setOpenModalLoadImage={setOpenModalLoadImage}
+          />
         )}
       </div>
     </header>

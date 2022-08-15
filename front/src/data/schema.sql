@@ -12,7 +12,9 @@ create table if not exists usuarios(
   email text not null unique,
   senha text not null,
   cpf varchar(11) unique,
-  telefone varchar(11)
+  telefone varchar(11),
+  imagem_Url text,
+  imagem_Nome text
 );
 
 create table if not exists clientes(

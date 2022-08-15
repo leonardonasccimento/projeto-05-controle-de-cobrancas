@@ -34,16 +34,16 @@ function Customers() {
                             <img src={FilterIcon} alt='filter' />
                         </button>
                         <div className='search'>
-                            <input 
-                              type='search' 
+                            <input
+                              type='search'
                               placeholder='Pesquisar'
                               value={searchValue}
-                              onChange={(e)=>setSearchValue(e.target.value)} 
+                              onChange={(e)=>setSearchValue(e.target.value)}
                             />
-                            <img 
-                              src={SearchIcon} 
+                            <img
+                              src={SearchIcon}
                               alt='search'
-                            //   onClick={()=>setClickedSearchIcon(true)} 
+                            //   onClick={()=>setClickedSearchIcon(true)}
                             />
                         </div>
                     </div>
@@ -53,6 +53,7 @@ function Customers() {
                       searchValue={searchValue}
                     />
                 </div>
+                
                 <ModalAddCustomer
                     openModalAddCustomer={openModalAddCustomer}
                     handleClose={() => setOpenModalAddCustomer(false)}

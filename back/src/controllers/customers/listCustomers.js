@@ -32,7 +32,7 @@ const listCustomers = async (req, res) => {
 
     return res.status(200).json(customersArray);
   } catch (error) {
-    return res.status(500).json(error.message);
+    return res.status(500).json({error: error.message});
   }
 };
 

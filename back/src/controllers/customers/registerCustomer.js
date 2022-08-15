@@ -12,7 +12,8 @@ async function registerCustomer(req, res){
         complemento, 
         bairro, 
         cidade, 
-        estado }=req.body;
+        estado 
+    }=req.body;
 
     try {
         const emailCustomerFound=await knex('clientes')

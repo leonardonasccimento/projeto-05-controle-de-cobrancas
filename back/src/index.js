@@ -9,7 +9,7 @@ const routeCostumer = require('./routes/customer');
 const routeBilling = require('./routes/billings');
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({limit: Infinity}));
 app.use(routeLogin);
 app.use(routeUser);
 app.use(routeCostumer);
@@ -18,3 +18,4 @@ app.use(routeBilling);
 app.listen(port, () => {
     console.log(`Server is Runnig at http://localhost:${port}/`);
 });
+

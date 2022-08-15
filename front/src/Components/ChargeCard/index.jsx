@@ -1,6 +1,12 @@
 import './styles.css';
 
-function ChargeCard({ img, description, value, backgroundColor }) {
+function ChargeCard({ 
+  img, 
+  description, 
+  value, 
+  backgroundColor 
+  }){
+    
   return (
     <div
       className="customize-paid"

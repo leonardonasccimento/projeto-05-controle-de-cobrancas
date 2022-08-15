@@ -20,12 +20,12 @@ async function editBilling(req, res) {
     });
 
     if (!customerUpdate) {
-      return res.status(404).json({ mensagem: "Não foi possivel realizar a edição" });
+      return res.status(404).json({ error: "Não foi possivel realizar a edição" });
     }
 
-    return res.status(201).json({ mensagem: "Dados atualizados com sucesso" });
+    return res.status(201).json({ message: "Dados atualizados com sucesso" });
   } catch (error) {
-    return res.status(500).json({ mensagem: " Ocorreu um erro inesperado" + error.mensage });
+    return res.status(500).json({ error: error.mensage });
   }
 }
 

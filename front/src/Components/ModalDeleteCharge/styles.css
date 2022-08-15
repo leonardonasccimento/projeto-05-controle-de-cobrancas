@@ -6,7 +6,6 @@
 
 .atention-icon {
   all: unset !important;
-
   width: 16rem !important;
   height: 16rem !important;
   position: absolute !important;
@@ -57,11 +56,11 @@
 }
 
 .btns-no-yes :nth-child(1) {
-  background: #f2d6d0;
-  color: #ae1100;
+  background: #acd9c5;
+  color: #034a2a;
 }
 
 .btns-no-yes :nth-child(2) {
-  background: #acd9c5;
-  color: #034a2a;
+  background: #f2d6d0;
+  color: #ae1100;
 }

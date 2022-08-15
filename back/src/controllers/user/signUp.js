@@ -21,7 +21,7 @@ async function signUp(req, res) {
 
         return res.status(201).json(user[0]);
     } catch (error) {
-        return res.status(500).json(error.message);
+        return res.status(500).json({error: error.message});
     }
 }
 
