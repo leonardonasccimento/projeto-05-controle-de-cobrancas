@@ -25,7 +25,7 @@ async function editBilling(req, res) {
 
     return res.status(201).json({ message: "Dados atualizados com sucesso" });
   } catch (error) {
-    return res.status(500).json({ error: error.mensage });
+    return res.status(500).json({ error: error.message });
   }
 }
 
