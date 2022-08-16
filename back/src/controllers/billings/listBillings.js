@@ -39,7 +39,7 @@ const listBillings = async (req, res) => {
 
     return res.status(200).json(billingsArray);
   } catch (error) {
-    return res.status(500).json(error.message);
+    return res.status(500).json({error: error.message});
   }
 };
 
