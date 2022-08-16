@@ -5,7 +5,7 @@ async function editBilling(req, res) {
   const { id } = req.params;
 
   if(!vencimento){
-	  return res.status(400).json({mensagem: 'vencimento é um campo obrigatório.'});
+	  return res.status(400).json({error: 'vencimento é um campo obrigatório.'});
   }
 
   try {

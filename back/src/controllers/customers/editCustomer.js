@@ -36,7 +36,7 @@ async function editCustomer(req, res) {
 		
 		return res.status(200).json({ message: "Dados atualizados com sucesso" });
 	} catch (error) {
-		return res.status(500).json({ error: error.mensage });
+		return res.status(500).json({ error: error.message });
 	}
 }
 

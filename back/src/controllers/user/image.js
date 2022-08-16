@@ -67,7 +67,7 @@ async function uploadImage(req, res){
 
         return res.status(200).json(userImageUrl);
     } catch (error) {
-        return res.status(500).json(error.message);
+        return res.status(500).json({error: error.message});
     }
 }
 
