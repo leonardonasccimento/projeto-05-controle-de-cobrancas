@@ -10,7 +10,6 @@ function ModalEditUser({openModalEdit, setOpenModalEdit}){
     token, 
     user, 
     usersArray, 
-    handleUpdateUser
   } = useGlobalContext();
   const [nameEdit, setNameEdit] = useState("");
   const [emailEdit, setEmailEdit] = useState("");
@@ -107,10 +106,6 @@ function ModalEditUser({openModalEdit, setOpenModalEdit}){
       alert(error);
     }
   }
-
-  useEffect(()=>{
-    handleUpdateUser();
-  })
 
   return (
     <>
