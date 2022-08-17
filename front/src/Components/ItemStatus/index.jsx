@@ -5,7 +5,7 @@ function ItemStatus({name, date, value}){
       <li className="customer-billing-description">
         <strong className='resized-text'>{name}</strong>
         <strong className='resized-text'>{date}</strong>
-        <strong className='resized-text'>{value?`R$ ${value}`.replace('.',','):''}</strong>
+        <strong className='resized-text'>{value?`R$ ${Number(value).toFixed(2)}`.replace('.',','):''}</strong>
       </li>
     );
 }

@@ -119,7 +119,7 @@ export default function TableCharges({searchValue}) {
                 <span className='resized-text'>{row.id}</span>
               </TableCell>
               <TableCell className="table-items">
-                <span className='resized-text'>{`R$ ${row.valor}`.replace(".", ",")}</span>
+                <span className='resized-text'>{`R$ ${Number(row.valor).toFixed(2)}`.replace(".", ",")}</span>
               </TableCell>
               <TableCell className="table-items">
                 {new Date(row.vencimento).toLocaleDateString()}
