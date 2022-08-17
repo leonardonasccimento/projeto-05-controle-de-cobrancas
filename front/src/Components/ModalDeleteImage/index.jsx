@@ -10,6 +10,7 @@ function ModalDeleteImage({setOpenModalDeleteImage}){
     e.preventDefault();
 
     if (!user.imagem_nome) {
+      setOpenModalDeleteImage(false);
       return;
     }
 
