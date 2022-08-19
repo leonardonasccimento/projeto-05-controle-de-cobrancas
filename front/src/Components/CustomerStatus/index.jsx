@@ -36,6 +36,7 @@ function CustomerStatus({
       <ul className="separator">
         {positionsNumber.map((position, index) => (
           <ItemStatus
+            key={index}
             name={arrayDelinquentCustomers[0][index]}
             date={
               arrayDelinquentCustomers[1][index]? 

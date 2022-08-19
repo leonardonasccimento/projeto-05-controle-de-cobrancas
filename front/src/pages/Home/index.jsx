@@ -14,25 +14,10 @@ import './styles.css';
 
 function Home() {
   const { 
-    token, 
+    token,
     chargesArray, 
-    setChargesArray, 
-    setUsersArray
+    setChargesArray
   } = useGlobalContext();
-
-  async function handleLoadUsersArray() {
-    try {
-      const response = await api.get("/usuario");
-
-      if (response.status > 204) {
-        return;
-      }
-
-      setUsersArray([...response.data]);
-    } catch (error) {
-      alert(error.response.data.message);
-    }
-  }
 
   async function handleCharges() {
     try {
@@ -48,12 +33,11 @@ function Home() {
 
       setChargesArray([...response.data]);
     } catch (error) {
-      alert(error.response.data.message);
+      alert(error);
     }
   }
 
   useEffect(() => {
-    handleLoadUsersArray();
     handleCharges();
   });
 
