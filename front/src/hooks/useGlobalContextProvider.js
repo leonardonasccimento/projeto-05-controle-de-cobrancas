@@ -28,7 +28,21 @@ function useGlobalContextProvider() {
 
         setUser(response.data);
       } catch (error) {
-        alert(error.response.data.message);
+        alert(error);
+      }
+    }
+
+    async function handleLoadUsersArray() {
+      try {
+        const response = await api.get("/usuario");
+  
+        if (response.status > 204) {
+          return;
+        }
+  
+        setUsersArray([...response.data]);
+      } catch (error) {
+        alert(error);
       }
     }
 
@@ -71,6 +85,8 @@ function useGlobalContextProvider() {
         clearCurrentCharge,
 
         handleUpdateUser,
+
+        handleLoadUsersArray
     }
 }
 

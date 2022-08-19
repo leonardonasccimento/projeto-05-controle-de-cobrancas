@@ -1,9 +1,4 @@
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+import {TableContainer ,Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import { useEffect, useState } from 'react';
 import ChargesDelete from '../../assets/chargesDelete.svg';
 import ChargesEdit from '../../assets/chargesEdit.svg';
@@ -71,55 +66,63 @@ export default function TableCharges({searchValue}) {
 
   return (
     <TableContainer>
-      <Table sx={{ minWidth: '28rem' }} size="medium" aria-label="a dense table">
+      <Table
+        sx={{ minWidth: "28rem" }}
+        size="medium"
+        aria-label="a dense table"
+      >
         <TableHead>
-          <TableCell className="title-table">
-            <div
-              className="display"
-              onClick={() => setClickedOrganizeIconId(false)}
-            >
-              <img
-                src={OrganizeIcon}
-                alt="organize"
-                onClick={() => setClickedOrganizeChargesCustomer(!clickedOrganizeChargesCustomer)}
-              />
-            </div>
-            <span>Cliente</span>
-          </TableCell>
-          <TableCell className="title-table">
-            <div
-              className="display"
-              onClick={() => setClickedOrganizeIconId(true)}
-            >
-              <img
-                src={OrganizeIcon}
-                alt="organize"
-                onClick={() => setClickedOrganizeChargesId(!clickedOrganizeChargesId)}
-              />
-            </div>
-            <span>ID Cob.</span>
-          </TableCell>
-          <TableCell className="title-table">Valor</TableCell>
-          <TableCell className="title-table">Data de venc.</TableCell>
-          <TableCell className="title-table">Status</TableCell>
-          <TableCell className="title-table">Descrição</TableCell>
-          <TableCell className="title-table"></TableCell>
+          <TableRow>
+            <TableCell className="title-table">
+              <div
+                className="display"
+                onClick={() => setClickedOrganizeIconId(false)}
+              >
+                <img
+                  src={OrganizeIcon}
+                  alt="organize"
+                  onClick={() => setClickedOrganizeChargesCustomer(!clickedOrganizeChargesCustomer)}
+                />
+              </div>
+              <span>Cliente</span>
+            </TableCell>
+            <TableCell className="title-table">
+              <div
+                className="display"
+                onClick={() => setClickedOrganizeIconId(true)}
+              >
+                <img
+                  src={OrganizeIcon}
+                  alt="organize"
+                  onClick={() => setClickedOrganizeChargesId(!clickedOrganizeChargesId)}
+                />
+              </div>
+              <span>ID Cob.</span>
+            </TableCell>
+            <TableCell className="title-table">Valor</TableCell>
+            <TableCell className="title-table">Data de venc.</TableCell>
+            <TableCell className="title-table">Status</TableCell>
+            <TableCell className="title-table">Descrição</TableCell>
+            <TableCell className="title-table"></TableCell>
+          </TableRow>
         </TableHead>
         <TableBody onClick={() => setOpenModalDetailCharge(true)}>
           {chargesArray.map((row, index) => (
-            <TableRow 
+            <TableRow
               key={row.id}
               onClick={() => handleVerifyDataCharge(row)}
-              className='table-row table-customers' 
+              className="table-row table-customers"
             >
               <TableCell component="th" scope="row" className="table-items">
-                <span className='resized-text'>{row.cliente}</span>
+                <span className="resized-text">{row.cliente}</span>
               </TableCell>
               <TableCell className="table-items">
-                <span className='resized-text'>{row.id}</span>
+                <span className="resized-text">{row.id}</span>
               </TableCell>
               <TableCell className="table-items">
-                <span className='resized-text'>{`R$ ${Number(row.valor).toFixed(2)}`.replace(".", ",")}</span>
+                <span className="resized-text">
+                  {`R$ ${Number(row.valor).toFixed(2)}`.replace(".", ",")}
+                </span>
               </TableCell>
               <TableCell className="table-items">
                 {new Date(row.vencimento).toLocaleDateString()}
@@ -127,16 +130,16 @@ export default function TableCharges({searchValue}) {
               <TableCell className="table-items">
                 <span
                   className={
-                    (row.status==="pago" && "status-color in-day") ||
-                    (row.status==="vencido" && "status-color defaulter") ||
-                    (row.status==="pendente" && "status-color in-day-pending")
+                    (row.status === "pago" && "status-color in-day") ||
+                    (row.status === "vencido" && "status-color defaulter") ||
+                    (row.status === "pendente" && "status-color in-day-pending")
                   }
                 >
                   {row.status}
                 </span>
               </TableCell>
               <TableCell className="table-items ">
-                <span className='resized-text'>{row.descricao}</span>
+                <span className="resized-text">{row.descricao}</span>
               </TableCell>
               <TableCell className="table-items">
                 <div

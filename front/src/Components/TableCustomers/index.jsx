@@ -1,9 +1,4 @@
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+import {TableContainer ,Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import { useEffect, useState } from 'react';
 import ChargesIcon from '../../assets/charges-pink.svg';
 import OrganizeIcon from '../../assets/organize-icon.svg';
@@ -59,34 +54,40 @@ export default function TableCustomers({searchValue}) {
 
   return (
     <TableContainer>
-      <Table sx={{ minWidth: '28rem' }} size="medium" aria-label="a dense table">
+      <Table
+        sx={{ minWidth: "28rem" }}
+        size="medium"
+        aria-label="a dense table"
+      >
         <TableHead>
-          <TableCell className="title-table">
-            <img
-              src={OrganizeIcon}
-              alt="organize"
-              onClick={() => setClickedOrganizeCustomers(!clickedOrganizeCustomers)}
-            />
-            <span>Cliente</span>
-          </TableCell>
-          <TableCell className="title-table">CPF</TableCell>
-          <TableCell className="title-table">E-mail</TableCell>
-          <TableCell className="title-table">Telefone</TableCell>
-          <TableCell className="title-table">Status</TableCell>
-          <TableCell className="title-table">Criar Cobrança</TableCell>
+          <TableRow>
+            <TableCell className="title-table">
+              <img
+                src={OrganizeIcon}
+                alt="organize"
+                onClick={() => setClickedOrganizeCustomers(!clickedOrganizeCustomers)}
+              />
+              <span>Cliente</span>
+            </TableCell>
+            <TableCell className="title-table">CPF</TableCell>
+            <TableCell className="title-table">E-mail</TableCell>
+            <TableCell className="title-table">Telefone</TableCell>
+            <TableCell className="title-table">Status</TableCell>
+            <TableCell className="title-table">Criar Cobrança</TableCell>
+          </TableRow>
         </TableHead>
-        <TableBody >
+        <TableBody>
           {customersArray.map((row, index) => (
-            <TableRow className='table-customers' key={index}>
+            <TableRow key={index} className="table-customers">
               <TableCell component="th" scope="row" className="table-items">
-                <span className='resized-text'>{row.nome}</span>
+                <span className="resized-text">{row.nome}</span>
               </TableCell>
               <TableCell className="table-items">{row.cpf}</TableCell>
               <TableCell className="table-items">
-                <span className='resized-text'>{row.email}</span>
+                <span className="resized-text">{row.email}</span>
               </TableCell>
               <TableCell className="table-items">
-                <span className='resized-text'>{row.telefone}</span>
+                <span className="resized-text">{row.telefone}</span>
               </TableCell>
               <TableCell className="table-items">
                 <span

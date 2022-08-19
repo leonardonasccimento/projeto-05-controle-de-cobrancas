@@ -10,7 +10,8 @@ function ModalEditUser({openModalEdit, setOpenModalEdit}){
     token, 
     user, 
     usersArray,
-    handleUpdateUser 
+    handleUpdateUser,
+    handleLoadUsersArray 
   } = useGlobalContext();
   const [nameEdit, setNameEdit] = useState("");
   const [emailEdit, setEmailEdit] = useState("");
@@ -29,10 +30,6 @@ function ModalEditUser({openModalEdit, setOpenModalEdit}){
   },[openModalEdit, user.nome, user.email, user.cpf, user.telefone]);
 
   function handleReset() {
-    setNameEdit("");
-    setEmailEdit("");
-    setCpfEdit("");
-    setPhoneEdit("");
     setPasswordEdit("");
     setPasswordEditConfirmed("");
   }
@@ -101,6 +98,8 @@ function ModalEditUser({openModalEdit, setOpenModalEdit}){
         return;
       }
 
+      handleLoadUsersArray();
+
       alert("Usuário editado com sucesso!");
       handleReset();
     } catch (error) {
@@ -156,7 +155,7 @@ function ModalEditUser({openModalEdit, setOpenModalEdit}){
                   placeholder="Apenas números"
                   type="number"
                   name="cpf"
-                  value={cpfEdit}
+                  value={cpfEdit??''}
                   handleOnChange={(e) => setCpfEdit(e.target.value)}
                 />
               </label>
@@ -166,7 +165,7 @@ function ModalEditUser({openModalEdit, setOpenModalEdit}){
                   placeholder="Apenas números"
                   type="number"
                   name="telefone"
-                  value={phoneEdit}
+                  value={phoneEdit??''}
                   handleOnChange={(e) => setPhoneEdit(e.target.value)}
                 />
               </label>
