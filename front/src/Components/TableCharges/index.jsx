@@ -104,6 +104,38 @@ export default function TableCharges({searchValue}) {
             <TableCell className="title-table">Status</TableCell>
             <TableCell className="title-table">Descrição</TableCell>
             <TableCell className="title-table"></TableCell>
+          <TableCell className="title-table">
+            <></>
+            <div
+              className="display"
+              onClick={() => setClickedOrganizeIconId(false)}
+            >
+              <img
+                src={OrganizeIcon}
+                alt="organize"
+                onClick={() => setClickedOrganizeChargesCustomer(!clickedOrganizeChargesCustomer)}
+              />
+            </div>
+            <span>Cliente</span>
+          </TableCell>
+          <TableCell className="title-table">
+            <div
+              className="display"
+              onClick={() => setClickedOrganizeIconId(true)}
+            >
+              <img
+                src={OrganizeIcon}
+                alt="organize"
+                onClick={() => setClickedOrganizeChargesId(!clickedOrganizeChargesId)}
+              />
+            </div>
+            <span>ID Cob.</span>
+          </TableCell>
+          <TableCell className="title-table">Valor</TableCell>
+          <TableCell className="title-table">Data de venc.</TableCell>
+          <TableCell className="title-table">Status</TableCell>
+          <TableCell className="title-table">Descrição</TableCell>
+          <TableCell className="title-table"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody onClick={() => setOpenModalDetailCharge(true)}>
