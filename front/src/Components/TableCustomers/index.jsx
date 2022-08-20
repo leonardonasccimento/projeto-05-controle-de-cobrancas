@@ -44,7 +44,7 @@ export default function TableCustomers({searchValue}) {
         [...response.data].sort((a,b)=>(a.nome).localeCompare(b.nome))
       );
     } catch (error) {
-      console.log(error.response.data.message);
+      alert(error);
     }
   }
 
@@ -74,6 +74,19 @@ export default function TableCustomers({searchValue}) {
             <TableCell className="title-table">Telefone</TableCell>
             <TableCell className="title-table">Status</TableCell>
             <TableCell className="title-table">Criar Cobrança</TableCell>
+          <TableCell className="title-table">
+            <img
+              src={OrganizeIcon}
+              alt="organize"
+              onClick={() => setClickedOrganizeCustomers(!clickedOrganizeCustomers)}
+            />
+            <span>Cliente</span>
+          </TableCell>
+          <TableCell className="title-table">CPF</TableCell>
+          <TableCell className="title-table">E-mail</TableCell>
+          <TableCell className="title-table">Telefone</TableCell>
+          <TableCell className="title-table">Status</TableCell>
+          <TableCell className="title-table">Criar Cobrança</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
