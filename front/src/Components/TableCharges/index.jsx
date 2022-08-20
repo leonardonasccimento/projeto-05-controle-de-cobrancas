@@ -56,7 +56,7 @@ export default function TableCharges({searchValue}) {
         [...response.data].sort((a,b)=>(a.cliente).localeCompare(b.cliente))
       );
     } catch (error) {
-      alert(error.response.data.message);
+      alert(error);
     }
   }
 

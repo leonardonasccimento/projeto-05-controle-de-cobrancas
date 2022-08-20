@@ -44,7 +44,7 @@ export default function TableCustomers({searchValue}) {
         [...response.data].sort((a,b)=>(a.nome).localeCompare(b.nome))
       );
     } catch (error) {
-      console.log(error.response.data.message);
+      alert(error);
     }
   }
 
