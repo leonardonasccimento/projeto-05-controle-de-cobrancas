@@ -15,13 +15,13 @@ async function uploadImage(req, res){
     }
 
     let newName=nome.replace(/ /g, '').split('').reverse().join().replace('.', '.'+Math.floor(Math.random() * 100000)+'_').split('').reverse().join().replace(/,/g,'');
-    let newWay=`projeto05/usuario/${usuario.id}/${newName}`;
+    let newWay=`projeto05Local/usuario/${usuario.id}/${newName}`;
     const imageBuffer=Buffer.from(imagem, 'base64');
 
     try {
         const resultList = await supabase.storage
         .from('delivery2')
-        .list(`projeto05/usuario/${usuario.id}`);
+        .list(`projeto05Local/usuario/${usuario.id}`);
 
         if(resultList.error){
             return res.status(400).json({error: resultList.error});
@@ -30,7 +30,7 @@ async function uploadImage(req, res){
         if(resultList.data.length>0){
             const resultRemove = await supabase.storage
             .from(process.env.SUPABASE_BUCKET)
-            .remove(`projeto05/usuario/${usuario.id}/${resultList.data[0].name}`);
+            .remove(`projeto05Local/usuario/${usuario.id}/${resultList.data[0].name}`);
     
             if(resultRemove.error){
                 return res.status(400).json({error: resultRemove.error});
@@ -42,7 +42,7 @@ async function uploadImage(req, res){
         .upload(newWay, imageBuffer);
 
         if(resultUpload.error){
-            return res.status(400).json({error: resultUpload.error});;
+            return res.status(400).json({error: resultUpload.error});
         }
 
         const resultUrl = supabase.storage
@@ -75,7 +75,7 @@ async function deleteImage(req, res){
     const {nome}=req.body;
     const {usuario}=req;
 
-    let newName=`projeto05/usuario/${usuario.id}/${usuario.imagem_nome}`;
+    let newName=`projeto05Local/usuario/${usuario.id}/${usuario.imagem_nome}`;
     
     try {
         if(usuario.imagem_nome!==nome){
