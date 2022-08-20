@@ -1,5 +1,5 @@
 
 
-*URL da aplicação funcionando*: "https://controle-de-cobrancas.herokuapp.com"
+*URL da aplicação: "https://controle-de-cobrancas.herokuapp.com"
 
 
