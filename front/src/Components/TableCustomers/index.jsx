@@ -61,6 +61,8 @@ export default function TableCustomers({searchValue}) {
     <TableContainer>
       <Table sx={{ minWidth: '28rem' }} size="medium" aria-label="a dense table">
         <TableHead>
+          <TableRow>
+
           <TableCell className="title-table">
             <img
               src={OrganizeIcon}
@@ -74,6 +76,8 @@ export default function TableCustomers({searchValue}) {
           <TableCell className="title-table">Telefone</TableCell>
           <TableCell className="title-table">Status</TableCell>
           <TableCell className="title-table">Criar Cobrança</TableCell>
+
+          </TableRow>
         </TableHead>
         <TableBody >
           {customersArray.map((row, index) => (

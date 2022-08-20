@@ -73,6 +73,7 @@ export default function TableCharges({searchValue}) {
     <TableContainer>
       <Table sx={{ minWidth: '28rem' }} size="medium" aria-label="a dense table">
         <TableHead>
+          <TableRow>
           <TableCell className="title-table">
             <div
               className="display"
@@ -104,6 +105,9 @@ export default function TableCharges({searchValue}) {
           <TableCell className="title-table">Status</TableCell>
           <TableCell className="title-table">Descrição</TableCell>
           <TableCell className="title-table"></TableCell>
+
+
+          </TableRow>
         </TableHead>
         <TableBody onClick={() => setOpenModalDetailCharge(true)}>
           {chargesArray.map((row, index) => (
