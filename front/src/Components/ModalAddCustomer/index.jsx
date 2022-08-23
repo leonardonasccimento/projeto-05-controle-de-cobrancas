@@ -8,7 +8,8 @@ import './styles.css';
 function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
   const { 
     token, 
-    customersArray
+    customersArray,
+    setCustomersArray
   } = useGlobalContext();
 
   const [formCustomer, setFormCustomer]=useState({
@@ -119,6 +120,24 @@ function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
       }
 
       alert("Cliente registrado com sucesso!");
+
+      try {
+        const response = await api.get(`/cliente?query=`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.status > 204) {
+          return;
+        }
+
+        setCustomersArray([...response.data]);
+      } catch (error) {
+        alert(error);
+        window.location.reload();
+      }
+
       handleClear();
     } catch (error) {
       alert(error);

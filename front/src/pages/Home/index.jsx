@@ -9,38 +9,17 @@ import Header from '../../Components/Header';
 import Sidebar from '../../Components/Sidebar';
 import { customerDescriptionData, statusCobrancas, typesOfCharge } from '../../data/index.js';
 import useGlobalContext from '../../hooks/useGlobalContext';
-import api from '../../services/api';
 import './styles.css';
 
 function Home() {
   const { 
-    token,
     chargesArray, 
-    setChargesArray
+    handleLoadCharges
   } = useGlobalContext();
 
   useEffect(() => {
-    async function handleCharges() {
-      try {
-        const response = await api.get("/cobranca?query", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-  
-        if (response.status > 204) {
-          return;
-        }
-  
-        setChargesArray([...response.data]);
-      } catch (error) {
-        alert(error);
-        window.location.reload();
-      }
-    }
-
-    handleCharges();
-  }, [token, setChargesArray]);
+    handleLoadCharges();
+  }, [ chargesArray, handleLoadCharges]);
 
   let sumChargesPaid = 0;
   let sumExpectedCharges = 0;

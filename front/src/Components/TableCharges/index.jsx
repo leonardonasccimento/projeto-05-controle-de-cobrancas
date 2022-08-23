@@ -33,7 +33,7 @@ export default function TableCharges({searchValue}) {
   }
 
   useEffect(() => {
-    async function handleLoadCharges() {
+    async function handleLoadChargesOrdenation() {
       try {
         const response = await api.get(`/cobranca?query=${searchValue}`, {
           headers: {
@@ -61,7 +61,8 @@ export default function TableCharges({searchValue}) {
         window.location.reload();
       }
     }
-    handleLoadCharges();
+    
+    handleLoadChargesOrdenation();
   }, [searchValue, token, clickedOrganizeIconId, setChargesArray, clickedOrganizeChargesId, clickedOrganizeChargesCustomer]);
 
   return (

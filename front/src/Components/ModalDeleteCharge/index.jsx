@@ -5,7 +5,11 @@ import api from '../../services/api';
 import './styles.css';
 
 function ModalDeleteCharge({ openModalDeleteCharge, handleClose }) {
-  const { token, currentCharge } = useGlobalContext();
+  const { 
+    token,
+    currentCharge,
+    handleLoadCharges
+  } = useGlobalContext();
 
   async function handleDeleteCharge(e) {
     e.preventDefault();
@@ -27,6 +31,7 @@ function ModalDeleteCharge({ openModalDeleteCharge, handleClose }) {
       }
 
       alert("Cobrança excluída com sucesso!");
+      handleLoadCharges();
     } catch (error) {
       alert(error);
       window.location.reload();
