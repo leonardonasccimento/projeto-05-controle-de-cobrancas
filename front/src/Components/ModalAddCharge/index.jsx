@@ -56,6 +56,7 @@ function ModalAddCharge({ openModalAddCharge, handleClose }) {
       handleClear();
     } catch (error) {
       alert(error);
+      window.location.reload();
     }
   }
 

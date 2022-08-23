@@ -29,6 +29,7 @@ function ModalDeleteCharge({ openModalDeleteCharge, handleClose }) {
       alert("Cobrança excluída com sucesso!");
     } catch (error) {
       alert(error);
+      window.location.reload();
     }
   }
 

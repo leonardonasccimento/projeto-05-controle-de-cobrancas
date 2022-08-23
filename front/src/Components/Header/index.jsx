@@ -19,7 +19,7 @@ function Header() {
 
   useEffect(() => {
     handleUpdateUser();
-  });
+  }, [user, handleUpdateUser]);
 
   return (
     <header>

@@ -65,6 +65,7 @@ function ModalEditCharge({ openModalEditCharge, handleClose }) {
       handleClear();
     } catch (error) {
       alert(error);
+      window.location.reload();
     }
   }
 

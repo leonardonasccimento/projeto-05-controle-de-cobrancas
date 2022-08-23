@@ -51,7 +51,7 @@ function SignIn() {
       clearUser();
       clearAll();
     }
-  });
+  }, [token, clearUser]);
 
   return (
     <div className="container-sign-in">

@@ -122,6 +122,7 @@ function ModalAddCustomer({ openModalAddCustomer, handleClose }) {
       handleClear();
     } catch (error) {
       alert(error);
+      window.location.reload();
     }
   }
 

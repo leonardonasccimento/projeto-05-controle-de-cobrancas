@@ -19,27 +19,28 @@ function Home() {
     setChargesArray
   } = useGlobalContext();
 
-  async function handleCharges() {
-    try {
-      const response = await api.get("/cobranca?query", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.status > 204) {
-        return;
-      }
-
-      setChargesArray([...response.data]);
-    } catch (error) {
-      alert(error);
-    }
-  }
-
   useEffect(() => {
+    async function handleCharges() {
+      try {
+        const response = await api.get("/cobranca?query", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        if (response.status > 204) {
+          return;
+        }
+  
+        setChargesArray([...response.data]);
+      } catch (error) {
+        alert(error);
+        window.location.reload();
+      }
+    }
+
     handleCharges();
-  });
+  }, [token, setChargesArray]);
 
   let sumChargesPaid = 0;
   let sumExpectedCharges = 0;
