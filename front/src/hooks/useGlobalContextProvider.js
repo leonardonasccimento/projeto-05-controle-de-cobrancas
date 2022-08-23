@@ -3,91 +3,114 @@ import { useLocalStorage } from "react-use";
 import api from "../services/api";
 
 function useGlobalContextProvider() {
-    const [token, setToken, clearToken] = useLocalStorage('token');
-    const [user, setUser, clearUser] = useLocalStorage('user');
-    const [users, setUsers, clearUsers]=useLocalStorage('users');
-    const [customers, setCustomers, clearCustomers] = useLocalStorage('customers');
-    const [charges, setCharges, clearCharges] = useLocalStorage('charges');
-    const [usersArray, setUsersArray]=useState([]);
-    const [customersArray, setCustomersArray] = useState([]);
-    const [chargesArray, setChargesArray]=useState([]);
-    const[currentCustomer, setCurrentCustomer, clearCurrentCustomer]=useLocalStorage('currentCustomer');
-    const[currentCharge, setCurrentCharge, clearCurrentCharge]=useLocalStorage('currentCharge');
+  const [token, setToken, clearToken] = useLocalStorage('token');
+  const [user, setUser, clearUser] = useLocalStorage('user');
+  const [users, setUsers, clearUsers] = useLocalStorage('users');
+  const [customers, setCustomers, clearCustomers] = useLocalStorage('customers');
+  const [charges, setCharges, clearCharges] = useLocalStorage('charges');
+  const [usersArray, setUsersArray] = useState([]);
+  const [customersArray, setCustomersArray] = useState([]);
+  const [chargesArray, setChargesArray] = useState([]);
+  const [currentCustomer, setCurrentCustomer, clearCurrentCustomer] = useLocalStorage('currentCustomer');
+  const [currentCharge, setCurrentCharge, clearCurrentCharge] = useLocalStorage('currentCharge');
 
-    async function handleUpdateUser() {
-      try {
-        const response = await api.get(`/usuario/${user.id}`,{
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+  async function handleUpdateUser() {
+    try {
+      const response = await api.get(`/usuario/${user.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-        if (response.status > 204) {
-          return;
-        }
-
-        setUser(response.data);
-      } catch (error) {
-        alert(error);
+      if (response.status > 204) {
+        return;
       }
-    }
 
-    async function handleLoadUsersArray() {
-      try {
-        const response = await api.get("/usuario");
-  
-        if (response.status > 204) {
-          return;
-        }
-  
-        setUsersArray([...response.data]);
-      } catch (error) {
-        alert(error);
+      setUser(response.data);
+    } catch (error) {
+      alert(error);
+      window.location.reload();
+    }
+  }
+
+  async function handleLoadUsersArray() {
+    try {
+      const response = await api.get("/usuario");
+
+      if (response.status > 204) {
+        return;
       }
+
+      setUsersArray([...response.data]);
+    } catch (error) {
+      alert(error);
+      window.location.reload();
     }
+  }
 
-    return {
-        token,
-        setToken,
-        clearToken,
-        
-        user,
-        setUser,
-        clearUser,
+  async function handleLoadCharges() {
+    try {
+      const response = await api.get(`/cobranca?query=`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-        users,
-        setUsers,
-        clearUsers,
+      if (response.status > 204) {
+        return;
+      }
 
-        usersArray,
-        setUsersArray,
-
-        customersArray,
-        setCustomersArray,
-
-        chargesArray,
-        setChargesArray,
-
-        customers,
-        setCustomers,
-        clearCustomers,
-
-        charges,
-        setCharges,
-        clearCharges,
-
-        currentCustomer,
-        setCurrentCustomer,
-        clearCurrentCustomer,
-
-        currentCharge,
-        setCurrentCharge,
-        clearCurrentCharge,
-
-        handleUpdateUser,
-
-        handleLoadUsersArray
+      setChargesArray(response.data);
+    } catch (error) {
+      alert(error);
+      window.location.reload();
     }
+  }
+
+  return {
+    token,
+    setToken,
+    clearToken,
+
+    user,
+    setUser,
+    clearUser,
+
+    users,
+    setUsers,
+    clearUsers,
+
+    usersArray,
+    setUsersArray,
+
+    customersArray,
+    setCustomersArray,
+
+    chargesArray,
+    setChargesArray,
+
+    customers,
+    setCustomers,
+    clearCustomers,
+
+    charges,
+    setCharges,
+    clearCharges,
+
+    currentCustomer,
+    setCurrentCustomer,
+    clearCurrentCustomer,
+
+    currentCharge,
+    setCurrentCharge,
+    clearCurrentCharge,
+
+    handleUpdateUser,
+
+    handleLoadUsersArray,
+
+    handleLoadCharges
+  }
 }
 
 export default useGlobalContextProvider;

@@ -6,7 +6,11 @@ import api from '../../services/api';
 import './styles.css';
 
 function ModalEditCharge({ openModalEditCharge, handleClose }) {
-  const { token, currentCharge } = useGlobalContext();
+  const { 
+    token, 
+    currentCharge,
+    handleLoadCharges 
+  } = useGlobalContext();
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
   const [value, setValue] = useState("");
@@ -62,6 +66,8 @@ function ModalEditCharge({ openModalEditCharge, handleClose }) {
       }
 
       alert("Cobrança editada com sucesso!");
+
+      handleLoadCharges();
       handleClear();
     } catch (error) {
       alert(error);
