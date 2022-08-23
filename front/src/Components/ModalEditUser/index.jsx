@@ -104,12 +104,13 @@ function ModalEditUser({openModalEdit, setOpenModalEdit}){
       handleReset();
     } catch (error) {
       alert(error);
+      window.location.reload();
     }
   }
 
   useEffect(() => {
     handleUpdateUser();
-  });
+  }, [user, handleUpdateUser]);
 
   return (
     <>

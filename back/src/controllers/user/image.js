@@ -105,7 +105,6 @@ async function deleteImage(req, res){
         return res.status(200).json(resultRemove);
     } catch (error) {
         return res.status(500).json({error: error.message});
-        
     }
 }
 

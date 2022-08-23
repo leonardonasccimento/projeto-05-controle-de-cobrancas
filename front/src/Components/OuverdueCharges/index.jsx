@@ -1,6 +1,7 @@
 import './styles.css'
 
 export function OuverdueCharges() {
+    
     return (
         <div className='content-ouverdue-card'>
             <div className='header-card'>

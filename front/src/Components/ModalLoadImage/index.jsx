@@ -9,7 +9,10 @@ import ModalDeleteImage from '../ModalDeleteImage';
 import './styles.css';
 
 function ModalLoadImage({setOpenModalLoadImage}){
-  const { token, user} = useGlobalContext();
+  const { 
+    token, 
+    user
+  } = useGlobalContext();
   const [namePicture, setNamePicture] = useState('');
   const [newPicture, setNewPicture] = useState('');
   const [isBase64, setIsBase64] = useState(false);
@@ -66,12 +69,13 @@ function ModalLoadImage({setOpenModalLoadImage}){
       alert("Carregamento bem sucedido!");
     } catch (error) {
       alert(error);
+      window.location.reload();
     }
   }
 
   useEffect(()=>{
     handleUpdateUser();
-  });
+  }, [user, handleUpdateUser]);
 
   return (
     <>

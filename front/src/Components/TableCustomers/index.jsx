@@ -22,35 +22,32 @@ export default function TableCustomers({searchValue}) {
     setCurrentCustomer(row);
   }
 
-  async function handleLoadCustomers() {
-    try {
-      // let valueAndClick=searchValue&&clickedSearchIcon?
-      // searchValue:
-      // '';
-      
-      const response = await api.get(`/cliente?query=${searchValue}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.status > 204) {
-        return;
-      }
-
-      setCustomersArray(
-        clickedOrganizeCustomers?
-        [...response.data].sort((a,b)=>(b.nome).localeCompare(a.nome)):
-        [...response.data].sort((a,b)=>(a.nome).localeCompare(b.nome))
-      );
-    } catch (error) {
-      alert(error);
-    }
-  }
-
   useEffect(() => {
+    async function handleLoadCustomers() {
+      try {
+        const response = await api.get(`/cliente?query=${searchValue}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        if (response.status > 204) {
+          return;
+        }
+  
+        setCustomersArray(
+          clickedOrganizeCustomers?
+          [...response.data].sort((a,b)=>(b.nome).localeCompare(a.nome)):
+          [...response.data].sort((a,b)=>(a.nome).localeCompare(b.nome))
+        );
+      } catch (error) {
+        alert(error);
+        window.location.reload();
+      }
+    }
+
     handleLoadCustomers();
-  });
+  }, [token, searchValue, setCustomersArray, clickedOrganizeCustomers]);
 
   return (
     <TableContainer>
@@ -74,19 +71,6 @@ export default function TableCustomers({searchValue}) {
             <TableCell className="title-table">Telefone</TableCell>
             <TableCell className="title-table">Status</TableCell>
             <TableCell className="title-table">Criar Cobrança</TableCell>
-          <TableCell className="title-table">
-            <img
-              src={OrganizeIcon}
-              alt="organize"
-              onClick={() => setClickedOrganizeCustomers(!clickedOrganizeCustomers)}
-            />
-            <span>Cliente</span>
-          </TableCell>
-          <TableCell className="title-table">CPF</TableCell>
-          <TableCell className="title-table">E-mail</TableCell>
-          <TableCell className="title-table">Telefone</TableCell>
-          <TableCell className="title-table">Status</TableCell>
-          <TableCell className="title-table">Criar Cobrança</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

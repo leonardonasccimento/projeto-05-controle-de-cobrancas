@@ -32,37 +32,37 @@ export default function TableCharges({searchValue}) {
     setCurrentCharge(row);
   }
 
-  async function handleLoadCharges() {
-    try {
-      const response = await api.get(`/cobranca?query=${searchValue}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.status > 204) {
-        return;
-      }
-
-      clickedOrganizeIconId?
-      setChargesArray(
-        clickedOrganizeChargesId?
-        [...response.data].sort((a,b)=>(b.id-a.id)):
-        [...response.data].sort((a,b)=>(a.id-b.id))
-      ):
-      setChargesArray(
-        clickedOrganizeChargesCustomer?
-        [...response.data].sort((a,b)=>(b.cliente).localeCompare(a.cliente)):
-        [...response.data].sort((a,b)=>(a.cliente).localeCompare(b.cliente))
-      );
-    } catch (error) {
-      alert(error);
-    }
-  }
-
   useEffect(() => {
+    async function handleLoadCharges() {
+      try {
+        const response = await api.get(`/cobranca?query=${searchValue}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        if (response.status > 204) {
+          return;
+        }
+  
+        clickedOrganizeIconId?
+        setChargesArray(
+          clickedOrganizeChargesId?
+          [...response.data].sort((a,b)=>(b.id-a.id)):
+          [...response.data].sort((a,b)=>(a.id-b.id))
+        ):
+        setChargesArray(
+          clickedOrganizeChargesCustomer?
+          [...response.data].sort((a,b)=>(b.cliente).localeCompare(a.cliente)):
+          [...response.data].sort((a,b)=>(a.cliente).localeCompare(b.cliente))
+        );
+      } catch (error) {
+        alert(error);
+        window.location.reload();
+      }
+    }
     handleLoadCharges();
-  });
+  }, [searchValue, token, clickedOrganizeIconId, setChargesArray, clickedOrganizeChargesId, clickedOrganizeChargesCustomer]);
 
   return (
     <TableContainer>
@@ -74,38 +74,6 @@ export default function TableCharges({searchValue}) {
         <TableHead>
           <TableRow>
             <TableCell className="title-table">
-              <div
-                className="display"
-                onClick={() => setClickedOrganizeIconId(false)}
-              >
-                <img
-                  src={OrganizeIcon}
-                  alt="organize"
-                  onClick={() => setClickedOrganizeChargesCustomer(!clickedOrganizeChargesCustomer)}
-                />
-              </div>
-              <span>Cliente</span>
-            </TableCell>
-            <TableCell className="title-table">
-              <div
-                className="display"
-                onClick={() => setClickedOrganizeIconId(true)}
-              >
-                <img
-                  src={OrganizeIcon}
-                  alt="organize"
-                  onClick={() => setClickedOrganizeChargesId(!clickedOrganizeChargesId)}
-                />
-              </div>
-              <span>ID Cob.</span>
-            </TableCell>
-            <TableCell className="title-table">Valor</TableCell>
-            <TableCell className="title-table">Data de venc.</TableCell>
-            <TableCell className="title-table">Status</TableCell>
-            <TableCell className="title-table">Descrição</TableCell>
-            <TableCell className="title-table"></TableCell>
-          <TableCell className="title-table">
-            <></>
             <div
               className="display"
               onClick={() => setClickedOrganizeIconId(false)}

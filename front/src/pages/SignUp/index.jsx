@@ -33,15 +33,31 @@ function SignUp() {
 
       setUsersArray([...response.data]);
     } catch (error) {
-      alert(error.response.data.message);
+      alert(error);
+      window.location.reload();
     }
   }
 
   useEffect(()=>{
+    async function handleUsers() {
+      try {
+        const response = await api.get("/usuario");
+  
+        if (response.status > 204) {
+          return;
+        }
+  
+        setUsersArray([...response.data]);
+      } catch (error) {
+        alert(error);
+        window.location.reload();
+      }
+    }
+
     if(email!==''){
       handleUsers();
     }
-  });
+  }, [email, setUsersArray]);
 
   function nextFirstSection(e) {
     e.preventDefault();
@@ -93,7 +109,8 @@ function SignUp() {
       alert("usuario cadastrado " + name);
       navigate("/");
     } catch (error) {
-      alert(error.response.data.message);
+      alert(error);
+      window.location.reload();
     }
   }
 

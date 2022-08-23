@@ -29,23 +29,24 @@ function ModalDeleteImage({setOpenModalDeleteImage}){
       setOpenModalDeleteImage(false);
     } catch (error) {
       alert(error);
+      window.location.reload();
     }
   }
 
-    return(
-        <div className="popup mod-popup">
-            <img 
-              src={CloseIcon} 
-              alt='Icone fechar'
-              onClick={()=>setOpenModalDeleteImage(false)}
-            />
-            <h3 className='title-delete'>Excluir imagem de perfil?</h3>
-            <div className="btns-no-yes mod-btns-no-yes">
-              <button type='submit' onClick={(e)=>handleDeleteImage(e)}>Sim</button>
-              <button type='button' onClick={()=>setOpenModalDeleteImage(false)}>Não</button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="popup mod-popup">
+      <img
+        src={CloseIcon}
+        alt='Icone fechar'
+        onClick={() => setOpenModalDeleteImage(false)}
+      />
+      <h3 className='title-delete'>Excluir imagem de perfil?</h3>
+      <div className="btns-no-yes mod-btns-no-yes">
+        <button type='submit' onClick={(e) => handleDeleteImage(e)}>Sim</button>
+        <button type='button' onClick={() => setOpenModalDeleteImage(false)}>Não</button>
+      </div>
+    </div>
+  );
 }
 
 export default ModalDeleteImage;
