@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const token = localStorage.getItem('token');
+export const token = localStorage.getItem('token');
 
 export default axios.create({
-    baseURL: 'https://controle-de-cobrancas.herokuapp.com',
+    baseURL: 'http://localhost:8000',
     // timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
