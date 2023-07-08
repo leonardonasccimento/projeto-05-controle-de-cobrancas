@@ -20,4 +20,4 @@ const detailUser = async (req, res) => {
     }
 }
 
-module.exports = { detailUser };
+module.exports = detailUser;

@@ -1,9 +1,11 @@
 const express = require('express');
-const { login } = require('../controllers/user/login');
-const verify = require('../middlewares/verify');
+const verifyFieldsLogin=require('../middlewares/verifyFields/verifyFieldsLogin');
+const verifyEmailLogin=require('../middlewares/genericChecks/verifyEmailLogin');
+const verifyPassword=require('../middlewares/genericChecks/verifyPassword');
+const  login = require('../controllers/user/login');
 
 const routeLogin = express();
 
-routeLogin.post('/login', verify.verifyFieldsLogin, verify.verifyEmailLogin, verify.verifyPassword, login);
+routeLogin.post('/login', verifyFieldsLogin, verifyEmailLogin, verifyPassword, login);
 
 module.exports = routeLogin;

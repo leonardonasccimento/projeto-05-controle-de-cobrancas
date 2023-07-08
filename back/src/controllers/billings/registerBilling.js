@@ -51,4 +51,4 @@ const registerBilling = async (req, res) => {
     }
 }
 
-module.exports = { registerBilling };
+module.exports =  registerBilling ;

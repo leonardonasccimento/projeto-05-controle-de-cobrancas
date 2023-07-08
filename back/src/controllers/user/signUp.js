@@ -25,6 +25,4 @@ async function signUp(req, res) {
     }
 }
 
-module.exports = {
-    signUp
-}
+module.exports = signUp;

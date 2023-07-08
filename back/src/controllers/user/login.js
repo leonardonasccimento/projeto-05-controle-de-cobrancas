@@ -1,6 +1,6 @@
 const knex = require('../../db/conection');
 const jwt = require('jsonwebtoken');
-const hashPassword = require('../../utils/hash-password');
+// const hashPassword = require('../../utils/hash-password');
 
 const login = async (req, res) => {
     const { email } = req.body;
@@ -8,7 +8,7 @@ const login = async (req, res) => {
     try {
         const user = await knex('usuarios').where('email', email).first();
 
-        const token = jwt.sign({ id: user.id }, hashPassword, { expiresIn: '365d' });
+        const token = jwt.sign({ id: user.id }, process.env.DATABASE_HASH, { expiresIn: '365d' });
 
         const { senha: _, ...userInformation } = user;
 
@@ -21,6 +21,4 @@ const login = async (req, res) => {
     }
 }
 
-module.exports = {
-    login
-}
+module.exports = login;

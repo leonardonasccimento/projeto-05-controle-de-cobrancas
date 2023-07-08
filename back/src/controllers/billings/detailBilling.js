@@ -23,4 +23,4 @@ const detailBilling = async (req, res) => {
     }
 }
 
-module.exports = { detailBilling };
+module.exports =  detailBilling ;

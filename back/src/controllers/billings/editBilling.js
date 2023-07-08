@@ -29,4 +29,4 @@ async function editBilling(req, res) {
   }
 }
 
-module.exports = { editBilling };
+module.exports =  editBilling ;
