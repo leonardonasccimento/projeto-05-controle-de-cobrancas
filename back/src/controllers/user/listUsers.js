@@ -1,6 +1,7 @@
 const knex = require('../../db/conection');
 
-async function listUsers(req, res) {
+const listUsers = async (req, res) => {
+
     try {
         const usersArray = await knex('usuarios');
 
@@ -10,6 +11,5 @@ async function listUsers(req, res) {
     }
 }
 
-module.exports = {
-    listUsers
-}
+module.exports = listUsers;
+

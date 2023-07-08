@@ -40,4 +40,4 @@ async function editCustomer(req, res) {
 	}
 }
 
-module.exports = { editCustomer }
+module.exports = editCustomer;

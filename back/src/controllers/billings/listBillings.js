@@ -43,4 +43,4 @@ const listBillings = async (req, res) => {
   }
 };
 
-module.exports = { listBillings };
+module.exports =  listBillings ;

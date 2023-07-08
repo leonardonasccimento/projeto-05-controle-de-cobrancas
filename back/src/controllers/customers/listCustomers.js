@@ -36,4 +36,4 @@ const listCustomers = async (req, res) => {
   }
 };
 
-module.exports = { listCustomers };
+module.exports = listCustomers;

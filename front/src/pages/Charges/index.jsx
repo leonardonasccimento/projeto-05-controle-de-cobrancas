@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import ChargesIcon from '../../assets/charges.svg';
-import FilterIcon from '../../assets/filter-icon.svg';
-import SearchIcon from '../../assets/search-icon.svg';
 import Header from '../../Components/Header';
 import Sidebar from '../../Components/Sidebar';
 import TableCharges from '../../Components/TableCharges';
+import ChargesIcon from '../../assets/charges.svg';
+import FilterIcon from '../../assets/filter-icon.svg';
+import SearchIcon from '../../assets/search-icon.svg';
 import './styles.css';
 
 function Charges() {

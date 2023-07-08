@@ -73,6 +73,4 @@ async function registerCustomer(req, res){
     }
 }
 
-module.exports={
-    registerCustomer
-}
+module.exports= registerCustomer;

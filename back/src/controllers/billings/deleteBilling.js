@@ -37,4 +37,4 @@ const deleteBilling = async (req, res) => {
   }
 };
 
-module.exports = { deleteBilling };
+module.exports =  deleteBilling ;
