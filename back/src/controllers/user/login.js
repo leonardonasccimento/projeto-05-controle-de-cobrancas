@@ -1,6 +1,5 @@
 const knex = require('../../db/conection');
 const jwt = require('jsonwebtoken');
-// const hashPassword = require('../../utils/hash-password');
 
 const login = async (req, res) => {
     const { email } = req.body;

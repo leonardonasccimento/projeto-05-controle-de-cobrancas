@@ -1,11 +1,6 @@
 const yup = require('../../utils/yup');
 
 module.exports=async function verifyFieldsSignup(req, res, next) {
-    const { email } = req.body;
-
-    // if (!email) {
-    // return res.status(405).json({ error: 'email é um campo obrigatório.' });
-    // }
     const schemaSignUp = yup.object()
         .shape({
             nome: yup.string().required(),

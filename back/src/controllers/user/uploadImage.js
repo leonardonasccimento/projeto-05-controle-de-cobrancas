@@ -2,7 +2,7 @@ const knex = require('../../db/conection');
 const supabase=require('../../utils/supabase.js');
 const sizeof = require('object-sizeof')
 
-module.exports=async function uploadImage(req, res){
+const uploadImage = async  (req, res)=>{
     const {nome, imagem}=req.body;
     const {usuario}=req;
 
@@ -70,3 +70,5 @@ module.exports=async function uploadImage(req, res){
         return res.status(500).json({error: error.message});
     }
 }
+
+module.exports=uploadImage;

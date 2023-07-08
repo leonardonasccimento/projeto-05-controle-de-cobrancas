@@ -1,8 +1,7 @@
 const knex = require('../../db/conection');
 const supabase=require('../../utils/supabase.js');
-const sizeof = require('object-sizeof');
 
-module.exports=async function deleteImage(req, res){
+const deleteImage = async (req, res) => {
     const {nome}=req.body;
      const {usuario}=req;
 
@@ -24,7 +23,7 @@ module.exports=async function deleteImage(req, res){
         const userImageUrl = await knex("usuarios")
         .update({
           imagem_url: null,
-          imagem_nome: null,
+          imagem_nome: null
         })
         .where("id", usuario.id)
         .returning("*");
@@ -38,3 +37,5 @@ module.exports=async function deleteImage(req, res){
         return res.status(500).json({error: error.message});
     }
 }
+
+module.exports=deleteImage;

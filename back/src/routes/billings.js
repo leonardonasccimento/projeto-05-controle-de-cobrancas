@@ -1,11 +1,11 @@
 const express = require('express');
+const authenticateAccess = require('../middlewares/authentication');
+const verifyFieldsBilling=require('../middlewares/verifyFields/verifyFieldsBilling');
 const  registerBilling  = require('../controllers/billings/registerBilling');
 const  listBillings  = require('../controllers/billings/listBillings');
 const  editBilling  = require('../controllers/billings/editBilling');
 const  detailBilling  = require('../controllers/billings/detailBilling');
 const  deleteBilling  = require('../controllers/billings/deleteBilling');
-const authenticateAccess = require('../middlewares/authentication');
-const verifyFieldsBilling=require('../middlewares/verifyFields/verifyFieldsBilling');
 
 const routeBilling = express();
 

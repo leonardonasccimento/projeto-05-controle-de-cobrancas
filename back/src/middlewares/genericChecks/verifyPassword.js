@@ -1,4 +1,5 @@
 const knex = require('../../db/conection');
+const bcrypt = require('bcrypt');
 
 module.exports=async function verifyPassword(req, res, next) {
     const { email, senha } = req.body;
